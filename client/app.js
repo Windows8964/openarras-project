@@ -2968,9 +2968,8 @@ function startGame(hideMenu = false) {
     //document.getElementById("gameAreaWrapper").style.opacity = 1;
     // Set up the socket
     if (!global.socket) {
-        let isSecureProtocol = "https:" === location.protocol;
         //let mockupUrl = `${global.server.secure||isSecureProtocol?"https":"http"}://${global.server.at}/mockups.json`
-        let mockupUrl = "http://"+global.server+"/mockups.json";
+        let mockupUrl = (global.secure ? (window.location.protocol + "//") : "http://")+global.server+"/mockups.json";
         util.pullJSON(mockupUrl).then(data => {
             mockups = data;
         });
@@ -4332,9 +4331,8 @@ setTimeout(function() {
 }, 3000);
 setTimeout(function() {
     global.animations.loading = true;
-    let isSecureProtocol = "https:" === location.protocol;
     //let mockupUrl = `${global.server.secure||isSecureProtocol?"https":"http"}://${global.server.at}/mockups.json`
-    let url = "http://"+global.server+"/versionInfo.json";
+    let url = (global.secure ? (window.location.protocol + "//") : "http://")+global.server+"/versionInfo.json";
     util.pullJSON(url).then(data => {
         console.log(data);
         global.serverVersion = data.version;
