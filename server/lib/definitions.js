@@ -4101,8 +4101,8 @@ exports.miniboss = {
         BODY: {
             FOV: 1.3,
             SPEED: base.SPEED * 0.25,
-            HEALTH: base.HEALTH * 1.5,
-            SHIELD: base.SHIELD * 1.25,
+            HEALTH: base.HEALTH * 1,
+            SHIELD: base.SHIELD * 0.90,
             REGEN: base.REGEN,
             DAMAGE: base.DAMAGE * 2.5,
         },
