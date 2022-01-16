@@ -79,6 +79,7 @@ var global = {
         menuFadeBlack: 1,
     },
     server: window.top.location.host,
+    secure: true, // only on heroku!!
 };
 
 var util = (function(exports = {}) {
@@ -2629,7 +2630,7 @@ const socketInit = (() => {
     })();
     // The initialization function (this is returned)
     return port => {
-        let socket = new WebSocket('ws://' + window.top.location.host + "/server");
+        let socket = new WebSocket((global.secure ? (window.location.protocol == "https:" ? "wss://" : "ws://") : "ws://") + window.top.location.host + "/server");
         // Set up our socket
         socket.binaryType = 'arraybuffer';
         socket.open = false;
