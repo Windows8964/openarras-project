@@ -78,7 +78,7 @@ var global = {
         menuFade: 1,
         menuFadeBlack: 1,
     },
-    server: "localhost:8080",
+    server: window.top.location.host,
 };
 
 var util = (function(exports = {}) {
