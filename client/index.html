@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en" id="mainBody"><link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700" rel="stylesheet"> 
+
+<style type="text/css">
+    body {
+        overflow:hidden;
+    }
+</style>
+
+<head>
+    <!-- Meta Properties -->
+    <meta charset="UTF-8">
+    <title>arras2 beta</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <!-- CSS -->
+    <link rel="stylesheet" href="main.css" />
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/favicons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/favicons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/favicons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/favicons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/favicons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body oncontextmenu="return false;" id="mainBody">
+    <div id="gameAreaWrapper">
+        <canvas id="gameCanvas" tabindex="1" id="cvs" tabindex="1"></canvas>
+    </div>
+    <div id="mainWrapper">
+        <div id="startMenuWrapper" style="display:none">
+            <div class="startMenu" id="startMenu">
+                <div class="startMenuHolder">
+                    <div class="sliderHolder">
+                        <div class="slider startMenuSlidingContent">
+                            <h1 style="font-size: 20px;">OpenArras Project (BETA)</h1>
+                            <h1 style="font-size: 10px;">Open source arras.io private server that anyone can contribute and use the code</h1>
+                            <div class="bottomHolder">
+                                <a style="background:#44d362" id="features"><img src="./assets/check.svg" class="bottomHolderImage">Features</a>
+                                <a style="background:#171515" href="(link here)"><img src="./assets/github.svg" style="filter:invert(1);" class="bottomHolderImage">Github</a>
+                                <a style="background:#5865f2" href="(link here)"><img src="./assets/discord.svg" class="bottomHolderImage">Discord</a>
+                              </div>
+                            <input type="text" autofocus tabindex="1" spellcheck="false" placeholder="This is the tale of:" id="playerNameInput" maxlength="24" />
+                            <input type="text" tabindex="1" placeholder="Token required." style="display:none" id="playerKeyInput" maxlength="64" />
+                        </div>
+                        <div class="slider" id="startMenuSlidingTrigger">
+                        <h3> <span id="viewOptionText">view options</span>&nbsp;&nbsp;<i class="arrow" id="optionArrow" style="transform:rotate(-45deg);-webkit-transform:rotate(-45deg)"></i> </h3>
+                     </div>
+                        <div class="slider" id="startMenuSlidingContent">
+                            <div class="shadowScroll" style="height:110px;position:relative;top:10px;">
+                            <div class="controlTable optionsHeader">Controls <i id="resetControls" class="reset resetControls" title="Reset controls"></i></div>
+                            <table>
+                                <tr>
+                                    <td><b>E</b>: auto-fire</td>
+                                    <td><b>C</b>: auto-spin</td>
+                                </tr>
+                                <tr>
+                                    <td><b>R</b>: disable auto-weapons</td>
+                                    <td><b>N</b>: level up (sandbox)</td>
+                                </tr>
+                            </table>
+                            <div class="optionsHeader">Themes &amp; Graphics</div>
+                            <select id="optColors" tabindex="-1">
+                                <option value="normal">Light Colors</option>
+                                <option value="dark">Dark Colors</option>
+                                <option value="natural">Natural</option>
+                                <option value="classic">Classic</option>
+                                <option value="forest">Forest (Fan-made)</option>
+                                <option value="midnight">Midnight (Fan-made)</option>
+                                <option value="pastel">Snow (Fan-made)</option>
+                                <option value="ocean">Coral Reef (Fan-made)</option>
+                                <option value="badlands">Badlands (Fan-made)</option>
+                                <option value="bleach">Bleach (Fan-made)</option>
+                            </select>
+                            <select id="optBorders" tabindex="-1">
+                                <option value="normal">Soft Borders</option>
+                                <option value="dark">Dark Borders</option>
+                                <option value="neon">Neon Mode</option>
+                                <option value="glass">Glass Mode</option>
+                            </select>
+                            <table>
+                                <tr>
+                                    <td><div>
+                                        <label class="container"><input id="optScreenshotMode" tabindex="-1" class="checkbox" type="checkbox" value=""><span class="checkmark"></span>Screenshot Mode</label>
+                                    </div></td>
+                                    <td><div>
+                                        <label class="container"><input id="optNoPointy" tabindex="-1" class="checkbox" type="checkbox" value=""><span class="checkmark"></span>Classic Traps</label>
+                                    </div></td>
+                                </tr><tr>
+                                    <td><div>
+                                        <label class="container"><input id="optFancy" tabindex="-1" class="checkbox" type="checkbox" value=""><span class="checkmark"></span>Low Graphics</label>
+                                    </div></td>
+                                    <td><div>
+                                        <label class="container"><input id="optPredictive" tabindex="-1" class="checkbox" type="checkbox" value=""><span class="checkmark"></span> Disable Hyperactivity</label>
+                                    </div></td>
+                                </tr><tr>
+                                </tr>
+                            </table>
+                        </div>    
+                    </div>
+                    </div>
+                    <div style="position: relative; bottom: -10px;">
+                        <button id="startButton" tabindex="2">Play</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- JS -->
+    <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="app.js"></script>
+    <script>
+        /*var clicked=true;
+        $("#startMenuSlidingTrigger").on('click', function() {
+            if(clicked) {
+                clicked=false;
+                $(this).html('<h3 class="nopadding">close options</h3>');
+                $(".slider").css({"top": "-265px"})
+            } else {
+                clicked=true;
+                $(this).html('<h3 class="nopadding">view options</h3>');
+                $(".slider").css({"top": 0});
+            }
+        });*/
+    </script>
+    <script src="features.js"></script>
+    <script>
+        var clicked=true;
+        document.getElementById("startMenuSlidingTrigger").onclick = function() {
+            document.getElementById("optionArrow").style.webkitTransform = clicked ? "translate(2px, -2px) rotate(45deg)" : "rotate(-45deg)";
+            if (clicked) {
+                document.getElementsByClassName("sliderHolder")[0].classList.add("slided"); 
+            } else {
+                document.getElementsByClassName("sliderHolder")[0].classList.remove("slided")
+            }
+            clicked = !clicked;
+        };
+        $(document).ready( function() {
+            // This is because it acts weird in Chrome for whatever reason...
+            $("#twitterHolder").css({"height": "100%"});
+            // This is for updates
+            if (localStorage.getItem('updated') === 'datgudshit') {
+                localStorage.setItem('updated', false);
+                $('#patchNotesIFrame').load(function(){
+                    $("#patchNotesIFrame").contents().find('#patchNotes').prepend('<update>New update!</update> ');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
