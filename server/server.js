@@ -4952,8 +4952,8 @@ var express = require('express')
 var app = express();
 var expressWs = require('express-ws')(app);
 app.use(express.static('./client'));
-const server = app.listen(process.env.PORT, () => {
-    console.log('======> [INFO] Server started at', process.env.PORT);
+const server = app.listen(process.env.PORT || 3000, () => {
+    console.log('======> [INFO] Server started at', process.env.PORT || 3000);
 });
 app.get('/mockups.json', function (req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*')

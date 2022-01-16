@@ -611,7 +611,7 @@ function setColor(context, givenColor) {
 
 // Get mockups <3
 var mockups = [];
-util.pullJSON('mockups').then(data => mockups = data);
+//util.pullJSON('mockups').then(data => mockups = data);
 // Mockup functions
 function getEntityImageFromMockup(index, color = mockups[index].color) {
     let mockup = mockups[index];
@@ -2970,7 +2970,7 @@ function startGame(hideMenu = false) {
     if (!global.socket) {
         let isSecureProtocol = "https:" === location.protocol;
         //let mockupUrl = `${global.server.secure||isSecureProtocol?"https":"http"}://${global.server.at}/mockups.json`
-        let mockupUrl = "http://"+global.server+"/mockups.json"
+        let mockupUrl = "http://"+global.server+"/mockups.json";
         util.pullJSON(mockupUrl).then(data => {
             mockups = data;
         });
