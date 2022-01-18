@@ -1,5 +1,5 @@
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 0px;
   height: 0;
 }
 ::-webkit-scrollbar-track {
@@ -8,7 +8,7 @@
 }
 ::-webkit-scrollbar-thumb {
   border-radius: 3px;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0,0,0,0.3);
 }
 
 html, body {
@@ -27,7 +27,6 @@ body {
   font-size: 14px;
   background-color: #484848;
 }
-
 hr {
   border: 0.5px solid rgba(0, 0, 0, 0.15);
   margin: 18px 0 18px;

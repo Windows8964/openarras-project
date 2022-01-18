@@ -44,7 +44,7 @@ const room = {
         square: c.WIDTH * c.HEIGHT / 100000000,
         linear: Math.sqrt(c.WIDTH * c.HEIGHT / 100000000),
     },
-    maxFood: c.WIDTH * c.HEIGHT / 200000 * c.FOOD_AMOUNT,
+    maxFood: c.MAX_FOOD,
     isInRoom: location => {
         return location.x >= 0 && location.x <= c.WIDTH && location.y >= 0 && location.y <= c.HEIGHT
     },    
@@ -73,7 +73,6 @@ const room = {
     room.findType('bas4');
     room.findType('roid');
     room.findType('rock');
-    room.nestFoodAmount = 1.5 * Math.sqrt(room.nest.length) / room.xgrid / room.ygrid;
     room.random = () => {
         return {
             x: ran.irandom(room.width),
@@ -147,7 +146,7 @@ const room = {
         } while (!room.isIn(type, location));
         return location;
     };
-util.log(room.width + ' x ' + room.height + ' room initalized.  Max food: ' + room.maxFood + ', max nest food: ' + (room.maxFood * room.nestFoodAmount) + '.');
+util.log(room.width + ' x ' + room.height + ' room initalized.  Max food: ' + room.max);
 
 // Define a vector
 class Vector {
@@ -4620,7 +4619,7 @@ var maintainloop = (() => {
         };
     })();
     let spawnCrasher = census => {
-        if (ran.chance(1 -  0.5 * census.crasher / room.maxFood / room.nestFoodAmount)) {
+        if (ran.chance(1 -  0.5 * census.crasher / room.maxFood*3)) {
             let spot, i = 30;
             do { spot = room.randomType('nest'); i--; if (!i) return 0; } while (dirtyCheck(spot, 100));
             let type = (ran.dice(80)) ? ran.choose([Class.sentryGun, Class.sentrySwarm, Class.sentryTrap]) : Class.crasher;
@@ -4681,220 +4680,77 @@ var maintainloop = (() => {
             */
         };
     })();
-    // The big food function
-    let makefood = (() => {
-        let food = [], foodSpawners = [];
-        // The two essential functions
-        function getFoodClass(level) {
-            let a = { };
-            switch (level) {
-                case 0: a = Class.egg; break;
-                case 1: a = Class.square; break;
-                case 2: a = Class.triangle; break;
-                case 3: a = Class.pentagon; break;
-                case 4: a = Class.bigPentagon; break;
-                case 5: a = Class.hugePentagon; break;
-                default: throw('bad food level');
-            }
-            if (a !== {}) {
-                a.BODY.ACCELERATION = 0.015 / (a.FOOD.LEVEL + 1);
-            }
-            return a;
-        }
-        let placeNewFood = (position, scatter, level, allowInNest = false) => {
-            let o = nearest(food, position); 
-            let mitosis = false;
-            let seed = false;
-            // Find the nearest food and determine if we can do anything with it
-            if (o != null) {
-                for (let i=50; i>0; i--) {
-                    if (scatter == -1 || util.getDistance(position, o) < scatter) {
-                        if (ran.dice((o.foodLevel + 1) * (o.foodLevel + 1))) {
-                            mitosis = true; break;
-                        } else {
-                            seed = true; break;
-                        }
-                    }
-                }
-            }
-            // Decide what to do
-            if (scatter != -1 || mitosis || seed) {
-                // Splitting
-                if (o != null && (mitosis || seed) && room.isIn('nest', o) === allowInNest) {
-                    let levelToMake = (mitosis) ? o.foodLevel : level,
-                        place = {
-                        x: o.x + o.size * Math.cos(o.facing),
-                        y: o.y + o.size * Math.sin(o.facing),
-                    };
-                    let new_o = new Entity(place);
-                        new_o.define(getFoodClass(levelToMake));
-                        new_o.team = -100;
-                    new_o.facing = o.facing + ran.randomRange(Math.PI/2, Math.PI);
-                    food.push(new_o);
-                    return new_o;
-                }
-                // Brand new
-                else if (room.isIn('nest', position) === allowInNest) {
-                    if (!dirtyCheck(position, 20)) {
-                        o = new Entity(position);
-                            o.define(getFoodClass(level));
-                            o.team = -100;
-                        o.facing = ran.randomAngle();
-                        food.push(o);
-                        return o;
-                    }
-                }
-            }
-        };
-        // Define foodspawners
-        class FoodSpawner {
-            constructor() {
-                this.foodToMake = Math.ceil(Math.abs(ran.gauss(0, room.scale.linear*80)));
-                this.size = Math.sqrt(this.foodToMake) * 25;
-            
-                // Determine where we ought to go
-                let position = {}; let o;
-                do { 
-                    position = room.gaussRing(1/3, 20); 
-                    o = placeNewFood(position, this.size, 0);
-                } while (o == null);
-        
-                // Produce a few more
-                for (let i=Math.ceil(Math.abs(ran.gauss(0, 4))); i<=0; i--) {
-                    placeNewFood(o, this.size, 0);
-                }
-        
-                // Set location
-                this.x = o.x;
-                this.y = o.y;
-                //util.debug('FoodSpawner placed at ('+this.x+', '+this.y+'). Set to produce '+this.foodToMake+' food.');
-            }        
-            rot() {
-                if (--this.foodToMake < 0) {
-                    //util.debug('FoodSpawner rotted, respawning.');
-                    util.remove(foodSpawners, foodSpawners.indexOf(this));
-                    foodSpawners.push(new FoodSpawner());
-                }
-            }
-        }
-        // Add them
-        foodSpawners.push(new FoodSpawner());
-        foodSpawners.push(new FoodSpawner());
-        foodSpawners.push(new FoodSpawner());
-        foodSpawners.push(new FoodSpawner());
-        // Food making functions 
-        let makeGroupedFood = () => { // Create grouped food
-            // Choose a location around a spawner
-            let spawner = foodSpawners[ran.irandom(foodSpawners.length - 1)],
-                bubble = ran.gaussRing(spawner.size, 1/4);
-            placeNewFood({ x: spawner.x + bubble.x, y: spawner.y + bubble.y, }, -1, 0);
-            spawner.rot();
-        };
-        let makeDistributedFood = () => { // Distribute food everywhere
-            //util.debug('Creating new distributed food.');
-            let spot = {};
-            do { spot = room.gaussRing(1/2, 2); } while (room.isInNorm(spot));
-            placeNewFood(spot, 0.01 * room.width, 0);
-        };
-        let makeCornerFood = () => { // Distribute food in the corners
-            let spot = {};
-            do { spot = room.gaussInverse(5); } while (room.isInNorm(spot));
-            placeNewFood(spot, 0.05 * room.width, 0);
-        };
-        let makeNestFood = () => { // Make nest pentagons
-            let spot = room.randomType('nest');
-            placeNewFood(spot, 0.01 * room.width, 3, true);
-        };
-        // Return the full function
-        return () => {
-            // Find and understand all food
-            let census = {
-                [0]: 0, // Egg
-                [1]: 0, // Square
-                [2]: 0, // Triangle
-                [3]: 0, // Penta
-                [4]: 0, // Beta
-                [5]: 0, // Alpha
-                [6]: 0,
-                tank: 0,
-                sum: 0,
-            };
-            let censusNest = {
-                [0]: 0, // Egg
-                [1]: 0, // Square
-                [2]: 0, // Triangle
-                [3]: 0, // Penta
-                [4]: 0, // Beta
-                [5]: 0, // Alpha
-                [6]: 0,
-                sum: 0,
-            };
-            // Do the censusNest
-            food = entities.map(instance => {
-                try {
-                    if (instance.type === 'tank') {
-                        census.tank++;
-                    } else if (instance.foodLevel > -1) { 
-                        if (room.isIn('nest', { x: instance.x, y: instance.y, })) { censusNest.sum++; censusNest[instance.foodLevel]++; }
-                        else { census.sum++; census[instance.foodLevel]++; }
-                        return instance;
-                    }
-                } catch (err) { util.error(instance.label); util.error(err); instance.kill(); }
-            }).filter(e => { return e; });     
-            // Sum it up   
-            let maxFood = 1 + room.maxFood + 10 * census.tank;      
-            let maxNestFood = 1 + room.maxFood * room.nestFoodAmount;
-            let foodAmount = census.sum;
-            let nestFoodAmount = censusNest.sum;
-            /*********** ROT OLD SPAWNERS **********/
-            foodSpawners.forEach(spawner => { if (ran.chance(1 - foodAmount/maxFood)) spawner.rot(); });
-            /************** MAKE FOOD **************/
-            while (ran.chance(0.8 * (1 - foodAmount * foodAmount / maxFood / maxFood))) {
-                switch (ran.chooseChance(10, 2, 1)) {
-                case 0: makeGroupedFood(); break;
-                case 1: makeDistributedFood(); break;
-                case 2: makeCornerFood(); break;
-                }
-            } 
-            while (ran.chance(0.5 * (1 - nestFoodAmount * nestFoodAmount / maxNestFood / maxNestFood))) makeNestFood();
-            /************* UPGRADE FOOD ************/
-            if (!food.length) return 0;
-            for (let i=Math.ceil(food.length / 100); i>0; i--) {
-                let o = food[ran.irandom(food.length - 1)], // A random food instance
-                    oldId = -1000,
-                    overflow, location;
-                // Bounce 6 times
-                for (let j=0; j<6; j++) { 
-                    overflow = 10;
-                    // Find the nearest one that's not the last one
-                    do { o = nearest(food, { x: ran.gauss(o.x, 30), y: ran.gauss(o.y, 30), });
-                    } while (o.id === oldId && --overflow);        
-                    if (!overflow) continue;
-                    // Configure for the nest if needed
-                    let proportions = c.FOOD,
-                        cens = census,
-                        amount = foodAmount;
-                    if (room.isIn('nest', o)) {
-                        proportions = c.FOOD_NEST;
-                        cens = censusNest;
-                        amount = nestFoodAmount;
-                    }
-                    // Upgrade stuff
-                    o.foodCountup += Math.ceil(Math.abs(ran.gauss(0, 10)));
-                    while (o.foodCountup >= (o.foodLevel + 1) * 100) {
-                        o.foodCountup -= (o.foodLevel + 1) * 100;
-                        if (ran.chance(1 - cens[o.foodLevel + 1] / amount / proportions[o.foodLevel + 1])) {
-                            o.define(getFoodClass(o.foodLevel + 1));
-                        }
-                    }
-                }
-            }
-        };
-    })();
+//Food functions
+  let Food = []
+  function sendfood(place, type=[]){
+  let pos = room.randomType(place)
+  while(dirtyCheck(pos, 300)){
+    pos = room.randomType(place)
+  }
+  for(let i = 0; i < type.length; i++){
+    let o = new Entity(pos)
+    if(type[i].PARENT&&type[i].PARENT[0].TYPE==="food")type[i].BODY.ACCELERATION = 0.001
+    o.define(type[i]);
+    o.team = -100;
+    Food.push(o);
+  }
+  }
+
+  let makefood = census => {
+    if (Food.length < c.MAX_FOOD) {
+      let type = []
+      let place; 
+      let zonetype = ran.chooseChance(
+      50, // Norm
+      25, // Nest
+      );
+    for(let i = 0; i < (Math.floor(Math.random() * c.MAX_FOOD_CLUSTER))+c.FOOD_CLUSTER_ADDITIVE; i++){
+      switch (zonetype){
+      // Spawn shit in norms
+        case 0:
+      switch (ran.chooseChance(
+        50, // Egg 
+        40, // Square
+        30, // Triangle
+        10, // Pentagon
+      )){
+        case 0: {type.push(Class.egg)}; break;
+        case 1: {type.push(Class.square)}; break;
+        case 2: {type.push(Class.triangle)}; break;
+        case 3: {type.push(Class.pentagon)}; break;
+      }
+      place = 'norm'
+       break;
+      // Spawn shit in nests
+        case 1:
+      switch (ran.chooseChance(
+        80, // Pentagon 
+        5, // Big Pentagon
+        2.5, // HUGEEEEE Pentagon
+      )){
+        case 0: {type.push(Class.pentagon)}; break;
+        case 1: {type.push(Class.bigPentagon)}; break;
+        case 2: {type.push(Class.hugePentagon)}; break;
+      }
+      place = 'nest'
+       break;
+        default:
+          throw new Error("INVALID FOOD SPAWNING CHOICE")
+          break;
+    }
+        sendfood(place, type)
+    }
+    }
+}
     // Define food and food spawning
     return () => {
         // Do stuff
         makenpcs();      
+        // Clear dead shit first
+        Food = Food.filter(e => {
+          return !e.isDead();
+        });
+        // Then Make some babies
         makefood(); 
         // Regen health and update the grid
         entities.forEach(instance => {

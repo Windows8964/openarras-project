@@ -44,24 +44,11 @@
   "DAMAGE_CONSTANT": 14,
   "KNOCKBACK_CONSTANT": 1.5,
   "ROOM_BOUND_FORCE": 0.01,
-  "FOOD": [
-    0, 
-    0.75,
-    0.22,
-    0.1,
-    0.005,
-    0,
-    0
-  ],
-  "FOOD_NEST": [
-    0, 
-    0.0,
-    0.0,
-    0.75,
-    0.23,
-    0.02,
-    0
-  ],
+
+  "MAX_FOOD": 200,
+  "MAX_FOOD_CLUSTER": 5,
+  "FOOD_CLUSTER_ADDITIVE": 5,
+
   "MAX_SKILL": 9,
   "SOFT_MAX_SKILL": 0.59,
   "TIER_1": 10,
@@ -73,7 +60,6 @@
   "SKILL_LEAK": 0,
   "STEALTH": 4,
   "MIN_SPEED": 0.001,
-  "FOOD_AMOUNT": 2, 
   "SKILL_BOOST": 5,
   "BOTS": 0,
   "GLASS_HEALTH_FACTOR": 2
