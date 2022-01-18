@@ -1323,7 +1323,7 @@ class Canvas {
       if (global.canSkill) {
         let t = this.statMaxing ? 15 : 1;
         do {
-          switch (e.keyCode) {
+          switch (event.keyCode) {
             case global.KEY_UPGRADE_ATK:
               this.parent.socket.talk("x", 0);
               break;
@@ -1356,8 +1356,6 @@ class Canvas {
           }
         } while (--t);
       }
-    }
-  }
             if (global.canUpgrade) {
                 switch (event.keyCode) {
                     case global.KEY_CHOOSE_1:
