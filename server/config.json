@@ -11,7 +11,7 @@
   "runSpeed": 1.5,
   "maxHeartbeatInterval": 300000,
   "verbose": true,
-  "VERSION": "v0.1",
+  "VERSION": "v0.2",
   "WIDTH": 5000,
   "HEIGHT": 5000,
   "MODE": "ffa",
@@ -45,7 +45,7 @@
   "KNOCKBACK_CONSTANT": 1.5,
   "ROOM_BOUND_FORCE": 0.01,
 
-  "MAX_FOOD": 100,
+  "MAX_FOOD": 200,
   "MAX_FOOD_CLUSTER": 5,
   "FOOD_CLUSTER_ADDITIVE": 5,
 
