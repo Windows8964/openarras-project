@@ -27,6 +27,11 @@ let featuresArray = [
         name: "Change Logs",
         description: "A tab to log all changes made to the game",
         done: true,
+    },
+    {
+        name: "Better AIS",
+        description: 'Make all ais work very very well',
+        done: false,
     }
 ]
 features.onclick = function(){
