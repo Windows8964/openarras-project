@@ -39,6 +39,7 @@ var global = {
     KEY_UPGRADE_MOB: 56,
     KEY_UPGRADE_RGN: 57,
     KEY_UPGRADE_SHI: 48,
+    KEY_UPGRADE_MAX: 77,
     KEY_MOUSE_0: 32,
     KEY_MOUSE_1: 86,
     KEY_MOUSE_2: 16,
@@ -1263,6 +1264,9 @@ class Canvas {
 
     keyboardDown(event) {
         switch (event.keyCode) {
+      case global.KEY_UPGRADE_MAX:
+        this.statMaxing = !0;
+        break;
             case 13:
                 if (global.died) {
                     //this.parent.socket.talk('s', global.playerName, 0);
@@ -1316,40 +1320,44 @@ class Canvas {
                     this.parent.socket.talk('t', 2);
                     break;
             }
-            if (global.canSkill) {
-                switch (event.keyCode) {
-                    case global.KEY_UPGRADE_ATK:
-                        this.parent.socket.talk('x', 0);
-                        break;
-                    case global.KEY_UPGRADE_HTL:
-                        this.parent.socket.talk('x', 1);
-                        break;
-                    case global.KEY_UPGRADE_SPD:
-                        this.parent.socket.talk('x', 2);
-                        break;
-                    case global.KEY_UPGRADE_STR:
-                        this.parent.socket.talk('x', 3);
-                        break;
-                    case global.KEY_UPGRADE_PEN:
-                        this.parent.socket.talk('x', 4);
-                        break;
-                    case global.KEY_UPGRADE_DAM:
-                        this.parent.socket.talk('x', 5);
-                        break;
-                    case global.KEY_UPGRADE_RLD:
-                        this.parent.socket.talk('x', 6);
-                        break;
-                    case global.KEY_UPGRADE_MOB:
-                        this.parent.socket.talk('x', 7);
-                        break;
-                    case global.KEY_UPGRADE_RGN:
-                        this.parent.socket.talk('x', 8);
-                        break;
-                    case global.KEY_UPGRADE_SHI:
-                        this.parent.socket.talk('x', 9);
-                        break;
-                }
-            }
+      if (global.canSkill) {
+        let t = this.statMaxing ? 15 : 1;
+        do {
+          switch (e.keyCode) {
+            case global.KEY_UPGRADE_ATK:
+              this.parent.socket.talk("x", 0);
+              break;
+            case global.KEY_UPGRADE_HTL:
+              this.parent.socket.talk("x", 1);
+              break;
+            case global.KEY_UPGRADE_SPD:
+              this.parent.socket.talk("x", 2);
+              break;
+            case global.KEY_UPGRADE_STR:
+              this.parent.socket.talk("x", 3);
+              break;
+            case global.KEY_UPGRADE_PEN:
+              this.parent.socket.talk("x", 4);
+              break;
+            case global.KEY_UPGRADE_DAM:
+              this.parent.socket.talk("x", 5);
+              break;
+            case global.KEY_UPGRADE_RLD:
+              this.parent.socket.talk("x", 6);
+              break;
+            case global.KEY_UPGRADE_MOB:
+              this.parent.socket.talk("x", 7);
+              break;
+            case global.KEY_UPGRADE_RGN:
+              this.parent.socket.talk("x", 8);
+              break;
+            case global.KEY_UPGRADE_SHI:
+              this.parent.socket.talk("x", 9);
+          }
+        } while (--t);
+      }
+    }
+  }
             if (global.canUpgrade) {
                 switch (event.keyCode) {
                     case global.KEY_CHOOSE_1:
@@ -1382,6 +1390,9 @@ class Canvas {
     }
     keyboardUp(event) {
         switch (event.keyCode) {
+      case global.KEY_UPGRADE_MAX:
+        this.statMaxing = !1;
+        break;
             case global.KEY_UP_ARROW:
             case global.KEY_UP:
                 this.parent.socket.cmd.set(0, false);
