@@ -7,7 +7,7 @@ var global = {
     started: false,
     inGame: false,
     state: 0,
-    version: "v0.1",
+    version: "v0.12",
     // 0: Logo
     // 1: Menu
     // 2: version error
