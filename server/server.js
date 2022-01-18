@@ -146,7 +146,7 @@ const room = {
         } while (!room.isIn(type, location));
         return location;
     };
-util.log(room.width + ' x ' + room.height + ' room initalized.  Max food: ' + room.max);
+util.log(room.width + ' x ' + room.height + ' room initalized.  Max food: ' + room.maxFood);
 
 // Define a vector
 class Vector {
