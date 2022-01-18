@@ -11,12 +11,13 @@
   "runSpeed": 1.5,
   "maxHeartbeatInterval": 300000,
   "verbose": true,
-  "VERSION": "v0.12",
+  "VERSION": "v0.13",
   "WIDTH": 6000,
   "HEIGHT": 6000,
   "MODE": "ffa",
   "RANDOM_COLORS": false,
   "BANNED_CHARACTER_REGEX": "/[\uFDFD\u200E\u0000]/gi", 
+  "COMPILED_CLIENT": true,
   "ROOM_SETUP": [
     [ "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm" ],
     
