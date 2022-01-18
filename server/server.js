@@ -963,7 +963,7 @@ class Skill {
                 this.deduction += this.levelScore;
                 this.level += 1;
                 this.points += this.levelPoints;
-                if (this.level == c.TIER_1 || this.level == c.TIER_2 || this.level == c.TIER_3 || this.level == c.TIER_4) {
+                if (this.level == c.TIER_1 || this.level == c.TIER_2 || this.level == c.TIER_3) {
                     this.canUpgrade = true;
                 }
                 this.update();
@@ -1838,11 +1838,6 @@ class Entity {
         if (set.UPGRADES_TIER_3 != null) { 
             set.UPGRADES_TIER_3.forEach((e) => {
                 this.upgrades.push({ class: e, tier: 3, level: c.TIER_3, index: e.index });
-            });
-        }
-        if (set.UPGRADES_TIER_4 != null) { 
-            set.UPGRADES_TIER_4.forEach((e) => {
-                this.upgrades.push({ class: e, tier: 4, level: c.TIER_4, index: e.index });
             });
         }
         if (set.SIZE != null) {
