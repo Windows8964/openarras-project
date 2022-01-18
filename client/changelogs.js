@@ -6,6 +6,7 @@ let changelogArray = [
                   ['black', '- added descriptions to the features tab'],
                   ['black', '- added changelogs'],
                   ['grey', '- nerfed sentries'],
+                  ['orange', '- added the ability to hold m + stat upgrade key to max said stat'],
                   ]
     },
     {
