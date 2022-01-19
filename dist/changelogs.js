@@ -12,6 +12,7 @@ let changelogArray = [
     },
     {
         name: "Gift of Creation",
+        contributor: "Winquacks",
         description: [
             ['gold', '- This project was created'],
             ['black', '- revamped the main menu and made a spectate system']
