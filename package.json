@@ -3,16 +3,27 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
+    "build": "npx webpack --config webpack.config.js",
+    "buildRun": "npx webpack --config webpack.config.js && node launcher",
     "start": "node launcher"
   },
   "dependencies": {
-    "google-closure-library": "20180506.0.0",
-    "ws": "6.1.x",
     "express": "^4.17.1",
-    "express-ws": "^5.0.2"
+    "express-ws": "^5.0.2",
+    "google-closure-library": "^20200315.0.0",
+    "ws": "^8.4.2"
   },
   "engines": {
     "node": "12.x"
+  },
+  "devDependencies": {
+    "closure-webpack-plugin": "^2.5.0",
+    "copy-webpack-plugin": "^10.2.0",
+    "google-closure-compiler": "^20220104.0.0",
+    "html-replace-webpack-plugin": "^2.6.0",
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.66.0",
+    "webpack-cli": "^4.9.1"
   },
   "license": "GPL-3.0"
 }

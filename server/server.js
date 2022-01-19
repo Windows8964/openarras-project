@@ -146,7 +146,7 @@ const room = {
         } while (!room.isIn(type, location));
         return location;
     };
-util.log(room.width + ' x ' + room.height + ' room initalized.  Max food: ' + room.max);
+util.log(room.width + ' x ' + room.height + ' room initalized.  Max food: ' + room.maxFood);
 
 // Define a vector
 class Vector {
@@ -963,7 +963,7 @@ class Skill {
                 this.deduction += this.levelScore;
                 this.level += 1;
                 this.points += this.levelPoints;
-                if (this.level == c.TIER_1 || this.level == c.TIER_2 || this.level == c.TIER_3 || this.level == c.TIER_4) {
+                if (this.level == c.TIER_1 || this.level == c.TIER_2 || this.level == c.TIER_3) {
                     this.canUpgrade = true;
                 }
                 this.update();
@@ -1838,11 +1838,6 @@ class Entity {
         if (set.UPGRADES_TIER_3 != null) { 
             set.UPGRADES_TIER_3.forEach((e) => {
                 this.upgrades.push({ class: e, tier: 3, level: c.TIER_3, index: e.index });
-            });
-        }
-        if (set.UPGRADES_TIER_4 != null) { 
-            set.UPGRADES_TIER_4.forEach((e) => {
-                this.upgrades.push({ class: e, tier: 4, level: c.TIER_4, index: e.index });
             });
         }
         if (set.SIZE != null) {
@@ -4812,7 +4807,7 @@ var speedcheckloop = (() => {
 var express = require('express')
 var app = express();
 var expressWs = require('express-ws')(app);
-app.use(express.static('./client'));
+app.use(express.static('./' + (c.COMPILED_CLIENT ? "dist" : "clientSrc")));
 const server = app.listen(process.env.PORT || 3000, () => {
     console.log('======> [INFO] Server started at', process.env.PORT || 3000);
 });

@@ -10,7 +10,7 @@
 <head>
     <!-- Meta Properties -->
     <meta charset="UTF-8">
-    <title>arras2 beta</title>
+    <title>openarras-project</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <!-- CSS -->
     <link rel="stylesheet" href="main.css" />
@@ -47,29 +47,22 @@
                             <h1 style="font-size: 10px;">Open source arras.io private server that anyone can contribute and use the code</h1>
                             <div class="bottomHolder">
                                 <a style="background:#44d362" id="features"><img src="./assets/check.svg" class="bottomHolderImage">Features</a>
+                                <a style="background:#FF0082" id="changelogs"><img src="./assets/scroll.svg" style="filter:invert(1);" class="bottomHolderImage">Change Logs</a>
                                 <a style="background:#171515" href="https://github.com/Windows8964/openarras-project"><img src="./assets/github.svg" style="filter:invert(1);" class="bottomHolderImage">Github</a>
-                                <a style="background:#FF00EA" id="changelogs"><img src="./assets/scroll.svg" style="filter:invert(1);" class="bottomHolderImage">Change Logs</a>
                                 <!--<a style="background:#5865f2" href="(link here)"><img src="./assets/discord.svg" class="bottomHolderImage">Discord</a>-->
                               </div>
                             <input type="text" autofocus tabindex="1" spellcheck="false" placeholder="This is the tale of:" id="playerNameInput" maxlength="24" />
                             <input type="text" tabindex="1" placeholder="Token required." style="display:none" id="playerKeyInput" maxlength="64" />
                         </div>
                         <div class="slider" id="startMenuSlidingTrigger">
-                        <h3> <span id="viewOptionText">view options</span>&nbsp;&nbsp;<i class="arrow" id="optionArrow" style="transform:rotate(-45deg);-webkit-transform:rotate(-45deg)"></i> </h3>
+                        <h3> <span id="viewOptionText">additional menu</span>&nbsp;&nbsp;<i class="arrow" id="optionArrow" style="transform:rotate(-45deg);-webkit-transform:rotate(-45deg)"></i> </h3>
                      </div>
                         <div class="slider" id="startMenuSlidingContent">
-                            <div class="shadowScroll" style="height:110px;position:relative;top:10px;">
-                            <div class="controlTable optionsHeader">Controls <i id="resetControls" class="reset resetControls" title="Reset controls"></i></div>
-                            <table>
-                                <tr>
-                                    <td><b>E</b>: auto-fire</td>
-                                    <td><b>C</b>: auto-spin</td>
-                                </tr>
-                                <tr>
-                                    <td><b>R</b>: disable auto-weapons</td>
-                                    <td><b>N</b>: level up (sandbox)</td>
-                                </tr>
-                            </table>
+                            <div style="height:110px;position:relative;top:10px;overflow:auto;" class="bottomHolder">
+                            <a style="background:#799197" id="controls"><img src="./assets/controller.svg" style="filter:invert(1);" class="bottomHolderImage">Controls</a>
+                            <a style="background:#5865f2" href="https://discord.com"><img src="./assets/discord.svg" style="filter:invert(1);" class="bottomHolderImage">Discord</a>
+
+                              
                             <div class="optionsHeader">Themes &amp; Graphics</div>
                             <select id="optColors" tabindex="-1">
                                 <option value="normal">Light Colors</option>
@@ -119,7 +112,7 @@
     </div>
     <!-- JS -->
     <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
-    <script src="app.js"></script>
+    <script type="module" src="app.js"></script>
     <script>
         /*var clicked=true;
         $("#startMenuSlidingTrigger").on('click', function() {
@@ -136,6 +129,7 @@
     </script>
     <script src="features.js"></script>
     <script src="changelogs.js"></script>
+    <script src="controls.js"></script>
     <script>
         var clicked=true;
         document.getElementById("startMenuSlidingTrigger").onclick = function() {

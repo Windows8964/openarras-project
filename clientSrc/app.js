@@ -1,13 +1,13 @@
-/*global require, console*/
-/*jshint -W097*/
-/*jshint browser: true*/
-"use strict";
+let buildHash = "Not compiled";
+if (typeof arrasBuild != "undefined") {
+    buildHash = arrasBuild;
+}
 // Fundamental requires <3
 var global = {
     started: false,
     inGame: false,
     state: 0,
-    version: "v0.1",
+    version: "v0.12",
     // 0: Logo
     // 1: Menu
     // 2: version error
@@ -83,13 +83,13 @@ var global = {
     secure: true, // only on heroku!!
 };
 
-var util = (function(exports = {}) {
-    exports.restoreMenu = function() {
+var util = (function (exports = {}) {
+    exports.restoreMenu = function () {
         document.getElementById("startMenuWrapper").style.opacity = 1;
         document.getElementById("startMenuWrapper").style.top = "50px";
         document.getElementById("startMenuWrapper").style.display = "block";
     }
-    exports.lerp = function(v0, v1, t) {
+    exports.lerp = function (v0, v1, t) {
         return v0 * (1 - t) + v1 * t
     }
     exports.submitToLocalStorage = name => {
@@ -662,7 +662,7 @@ function getEntityImageFromMockup(index, color = mockups[index].color) {
                 mockup.guns.forEach(() => a.push(0));
                 return a;
             },
-            update: () => {},
+            update: () => { },
         },
         turrets: mockup.turrets.map((t) => {
             let o = getEntityImageFromMockup(t.index);
@@ -747,26 +747,26 @@ global.upgradeHover = false;
 
 // Prepare stuff
 var player = {
-    reset:function() {
+    reset: function () {
         player = {
             reset: player.reset,
             vx: 0,
-    vy: 0,
-    x: global.screenWidth / 2,
-    y: global.screenHeight / 2,
-    lastvx: 0,
-    lastvy: 0,
-    renderx: global.screenWidth / 2,
-    rendery: global.screenHeight / 2,
-    lastx: global.screenWidth / 2,
-    lasty: global.screenHeight / 2,
-    target: {
-        x: global.screenWidth / 2,
-        y: global.screenHeight / 2
-    },
-    name: '',
-    lastUpdate: 0,
-    time: 0,
+            vy: 0,
+            x: global.screenWidth / 2,
+            y: global.screenHeight / 2,
+            lastvx: 0,
+            lastvy: 0,
+            renderx: global.screenWidth / 2,
+            rendery: global.screenHeight / 2,
+            lastx: global.screenWidth / 2,
+            lasty: global.screenHeight / 2,
+            target: {
+                x: global.screenWidth / 2,
+                y: global.screenHeight / 2
+            },
+            name: '',
+            lastUpdate: 0,
+            time: 0,
         }
     }
 };
@@ -929,8 +929,8 @@ const Leaderboard = class {
         for (let element of elements)
             if (this.entries[element.id])
                 this.entries[element.id].update(element)
-        else
-            this.entries[element.id] = new Entry(element)
+            else
+                this.entries[element.id] = new Entry(element)
         for (let [id, value] of Object.entries(this.entries))
             if (value.old)
                 delete this.entries[id]
@@ -1217,10 +1217,10 @@ window.onload = () => {
         }*/
         if (key == global.KEY_ENTER) {
             if (global.state == 0) {
-            global.state = 1; // Switch to menu!
-            util.restoreMenu();
-            startGame(false);
-            return;
+                global.state = 1; // Switch to menu!
+                util.restoreMenu();
+                startGame(false);
+                return;
             };
             if (global.disconnected) {
                 global.state = 1;
@@ -1264,9 +1264,9 @@ class Canvas {
 
     keyboardDown(event) {
         switch (event.keyCode) {
-      case global.KEY_UPGRADE_MAX:
-        this.statMaxing = !0;
-        break;
+            case global.KEY_UPGRADE_MAX:
+                this.statMaxing = !0;
+                break;
             case 13:
                 if (global.died) {
                     //this.parent.socket.talk('s', global.playerName, 0);
@@ -1320,42 +1320,42 @@ class Canvas {
                     this.parent.socket.talk('t', 2);
                     break;
             }
-      if (global.canSkill) {
-        let t = this.statMaxing ? 15 : 1;
-        do {
-          switch (event.keyCode) {
-            case global.KEY_UPGRADE_ATK:
-              this.parent.socket.talk("x", 0);
-              break;
-            case global.KEY_UPGRADE_HTL:
-              this.parent.socket.talk("x", 1);
-              break;
-            case global.KEY_UPGRADE_SPD:
-              this.parent.socket.talk("x", 2);
-              break;
-            case global.KEY_UPGRADE_STR:
-              this.parent.socket.talk("x", 3);
-              break;
-            case global.KEY_UPGRADE_PEN:
-              this.parent.socket.talk("x", 4);
-              break;
-            case global.KEY_UPGRADE_DAM:
-              this.parent.socket.talk("x", 5);
-              break;
-            case global.KEY_UPGRADE_RLD:
-              this.parent.socket.talk("x", 6);
-              break;
-            case global.KEY_UPGRADE_MOB:
-              this.parent.socket.talk("x", 7);
-              break;
-            case global.KEY_UPGRADE_RGN:
-              this.parent.socket.talk("x", 8);
-              break;
-            case global.KEY_UPGRADE_SHI:
-              this.parent.socket.talk("x", 9);
-          }
-        } while (--t);
-      }
+            if (global.canSkill) {
+                let t = this.statMaxing ? 15 : 1;
+                do {
+                    switch (event.keyCode) {
+                        case global.KEY_UPGRADE_ATK:
+                            this.parent.socket.talk("x", 0);
+                            break;
+                        case global.KEY_UPGRADE_HTL:
+                            this.parent.socket.talk("x", 1);
+                            break;
+                        case global.KEY_UPGRADE_SPD:
+                            this.parent.socket.talk("x", 2);
+                            break;
+                        case global.KEY_UPGRADE_STR:
+                            this.parent.socket.talk("x", 3);
+                            break;
+                        case global.KEY_UPGRADE_PEN:
+                            this.parent.socket.talk("x", 4);
+                            break;
+                        case global.KEY_UPGRADE_DAM:
+                            this.parent.socket.talk("x", 5);
+                            break;
+                        case global.KEY_UPGRADE_RLD:
+                            this.parent.socket.talk("x", 6);
+                            break;
+                        case global.KEY_UPGRADE_MOB:
+                            this.parent.socket.talk("x", 7);
+                            break;
+                        case global.KEY_UPGRADE_RGN:
+                            this.parent.socket.talk("x", 8);
+                            break;
+                        case global.KEY_UPGRADE_SHI:
+                            this.parent.socket.talk("x", 9);
+                    }
+                } while (--t);
+            }
             if (global.canUpgrade) {
                 switch (event.keyCode) {
                     case global.KEY_CHOOSE_1:
@@ -1388,9 +1388,9 @@ class Canvas {
     }
     keyboardUp(event) {
         switch (event.keyCode) {
-      case global.KEY_UPGRADE_MAX:
-        this.statMaxing = !1;
-        break;
+            case global.KEY_UPGRADE_MAX:
+                this.statMaxing = !1;
+                break;
             case global.KEY_UP_ARROW:
             case global.KEY_UP:
                 this.parent.socket.cmd.set(0, false);
@@ -1518,7 +1518,7 @@ var lag = (() => {
     return {
         get: () => {
             if (!lags.length) return 0;
-            var sum = lags.reduce(function(a, b) {
+            var sum = lags.reduce(function (a, b) {
                 return a + b;
             });
             return sum / lags.length;
@@ -1582,7 +1582,7 @@ var moveCompensation = (() => {
 const socketInit = (() => {
     // Inital setup stuff
     window.WebSocket = window.WebSocket || window.MozWebSocket;
-    const protocol = (function(exports = {}) {
+    const protocol = (function (exports = {}) {
         let u32 = new Uint32Array(1)
         let c32 = new Uint8Array(u32.buffer)
         let f32 = new Float32Array(u32.buffer)
@@ -1772,22 +1772,22 @@ const socketInit = (() => {
                         let byte = block.length === 0 ? 0 : block.charCodeAt(0)
                         output[index++] = byte
                     }
-                    break
-                case 0b1010:
-                    for (let i = 0; i < block.length; i++) {
-                        output[index++] = block.charCodeAt(i)
-                    }
-                    output[index++] = 0
-                    break
-                case 0b1011:
-                    for (let i = 0; i < block.length; i++) {
-                        let charCode = block.charCodeAt(i)
-                        output[index++] = charCode & 0xff
-                        output[index++] = charCode >> 8
-                    }
-                    output[index++] = 0
-                    output[index++] = 0
-                    break
+                        break
+                    case 0b1010:
+                        for (let i = 0; i < block.length; i++) {
+                            output[index++] = block.charCodeAt(i)
+                        }
+                        output[index++] = 0
+                        break
+                    case 0b1011:
+                        for (let i = 0; i < block.length; i++) {
+                            let charCode = block.charCodeAt(i)
+                            output[index++] = charCode & 0xff
+                            output[index++] = charCode >> 8
+                        }
+                        output[index++] = 0
+                        output[index++] = 0
+                        break
                 }
             }
 
@@ -1898,25 +1898,25 @@ const socketInit = (() => {
                         let byte = data[index++]
                         output.push(byte === 0 ? '' : String.fromCharCode(byte))
                     }
-                    break
-                case 0b1010: {
-                    let string = ''
-                    let byte = 0
-                    while (byte = data[index++]) {
-                        string += String.fromCharCode(byte)
+                        break
+                    case 0b1010: {
+                        let string = ''
+                        let byte = 0
+                        while (byte = data[index++]) {
+                            string += String.fromCharCode(byte)
+                        }
+                        output.push(string)
                     }
-                    output.push(string)
-                }
-                break
-                case 0b1011: {
-                    let string = ''
-                    let byte = 0
-                    while (byte = data[index++] | (data[index++] << 8)) {
-                        string += String.fromCharCode(byte)
+                        break
+                    case 0b1011: {
+                        let string = ''
+                        let byte = 0
+                        while (byte = data[index++] | (data[index++] << 8)) {
+                            string += String.fromCharCode(byte)
+                        }
+                        output.push(string)
                     }
-                    output.push(string)
-                }
-                break
+                        break
                 }
             }
 
@@ -2116,22 +2116,22 @@ const socketInit = (() => {
                                 output.push(str.slice(offset, offset + len))
                                 offset += len
                             }
-                            break
-                        case '8': { // String16
-                            let len = typeDecoder(str, 'Uint16', offset)
-                            offset += 2
-                            let arr = str.slice(offset, offset + len)
-                            let buf = new Uint16Array(len / 2)
-                            for (let i = 0; i < len; i += 2) {
-                                buf[i / 2] = typeDecoder(arr, 'Uint16', i)
+                                break
+                            case '8': { // String16
+                                let len = typeDecoder(str, 'Uint16', offset)
+                                offset += 2
+                                let arr = str.slice(offset, offset + len)
+                                let buf = new Uint16Array(len / 2)
+                                for (let i = 0; i < len; i += 2) {
+                                    buf[i / 2] = typeDecoder(arr, 'Uint16', i)
+                                }
+                                output.push(String.fromCharCode.apply(null, buf))
+                                offset += len
                             }
-                            output.push(String.fromCharCode.apply(null, buf))
-                            offset += len
-                        }
-                        break
-                        default:
-                            offset = str.length
-                            throw new Error('Unknown decoding command. Decoding exited.')
+                                break
+                            default:
+                                offset = str.length
+                                throw new Error('Unknown decoding command. Decoding exited.')
                         }
                     }
                     return output
@@ -2593,9 +2593,9 @@ const socketInit = (() => {
                 get.take(by)
                 let map = []
                 for (let {
-                        id,
-                        data
-                    } of minimapAllInt.entries()) {
+                    id,
+                    data
+                } of minimapAllInt.entries()) {
                     map.push({
                         id,
                         type: data[0],
@@ -2606,9 +2606,9 @@ const socketInit = (() => {
                     })
                 }
                 for (let {
-                        id,
-                        data
-                    } of minimapTeamInt.entries()) {
+                    id,
+                    data
+                } of minimapTeamInt.entries()) {
                     map.push({
                         id,
                         type: 0,
@@ -2621,9 +2621,9 @@ const socketInit = (() => {
                 minimap.update(map)
                 let entries = []
                 for (let {
-                        id,
-                        data
-                    } of leaderboardInt.entries()) {
+                    id,
+                    data
+                } of leaderboardInt.entries()) {
                     entries.push({
                         id,
                         score: data[0],
@@ -2724,179 +2724,179 @@ const socketInit = (() => {
                         global.message = '';
                     }
                 }
-                break;
-            case 'R': { // room setup
-                global.gameWidth = m[0];
-                global.gameHeight = m[1];
-                roomSetup = JSON.parse(m[2]);
-                serverStart = JSON.parse(m[3]);
-                config.roomSpeed = m[4];
-                console.log('Room data recieved. Commencing syncing process.');
-                // Start the syncing process
-                socket.talk('S', getNow());
-            }
-            break;
-            case 'c': { // force camera move
-                /*player.cx = c[0];
-                player.cy = c[1];
-                player.view = c[2];
-                player.renderx = player.cx;
-                player.rendery = player.cy;
-                player.renderv = player.view;*/
-            }
-            break;
-            case 'S': { // clock syncing
-                let clientTime = m[0],
-                    serverTime = m[1],
-                    laten = (getNow() - clientTime) / 2,
-                    delta = getNow() - laten - serverTime;
-                // Add the datapoint to the syncing data
-                sync.push({
-                    delta: delta,
-                    latency: laten,
-                });
-                // Do it again a couple times
-                if (sync.length < 10) {
-                    // Wait a bit just to space things out
-                    setTimeout(() => {
-                        socket.talk('S', getNow());
-                    }, 10);
-                    global.message = "Syncing clocks, please do not tab away. " + sync.length + "/10...";
-                } else {
-                    // Calculate the clock error
-                    sync.sort((e, f) => {
-                        return e.latency - f.latency;
+                    break;
+                case 'R': { // room setup
+                    global.gameWidth = m[0];
+                    global.gameHeight = m[1];
+                    roomSetup = JSON.parse(m[2]);
+                    serverStart = JSON.parse(m[3]);
+                    config.roomSpeed = m[4];
+                    console.log('Room data recieved. Commencing syncing process.');
+                    // Start the syncing process
+                    socket.talk('S', getNow());
+                }
+                    break;
+                case 'c': { // force camera move
+                    /*player.cx = c[0];
+                    player.cy = c[1];
+                    player.view = c[2];
+                    player.renderx = player.cx;
+                    player.rendery = player.cy;
+                    player.renderv = player.view;*/
+                }
+                    break;
+                case 'S': { // clock syncing
+                    let clientTime = m[0],
+                        serverTime = m[1],
+                        laten = (getNow() - clientTime) / 2,
+                        delta = getNow() - laten - serverTime;
+                    // Add the datapoint to the syncing data
+                    sync.push({
+                        delta: delta,
+                        latency: laten,
                     });
-                    let median = sync[Math.floor(sync.length / 2)].latency;
-                    let sd = 0,
-                        sum = 0,
-                        valid = 0;
-                    sync.forEach(e => {
-                        sd += Math.pow(e.latency - median, 2);
+                    // Do it again a couple times
+                    if (sync.length < 10) {
+                        // Wait a bit just to space things out
+                        setTimeout(() => {
+                            socket.talk('S', getNow());
+                        }, 10);
+                        global.message = "Syncing clocks, please do not tab away. " + sync.length + "/10...";
+                    } else {
+                        // Calculate the clock error
+                        sync.sort((e, f) => {
+                            return e.latency - f.latency;
+                        });
+                        let median = sync[Math.floor(sync.length / 2)].latency;
+                        let sd = 0,
+                            sum = 0,
+                            valid = 0;
+                        sync.forEach(e => {
+                            sd += Math.pow(e.latency - median, 2);
+                        });
+                        sd = Math.sqrt(sd / sync.length);
+                        sync.forEach(e => {
+                            if (Math.abs(e.latency - median) < sd) {
+                                sum += e.delta;
+                                valid++;
+                            }
+                        });
+                        clockDiff = Math.round(sum / valid);
+                        // Start the game
+                        console.log(sync);
+                        console.log('Syncing complete, calculated clock difference ' + clockDiff + 'ms. Beginning game.');
+                        global.gameStart = true;
+                        global.message = '';
+                    }
+                }
+                    break;
+                case 'm': { // message
+                    messages.push({
+                        text: m[0],
+                        status: 2,
+                        alpha: 0,
+                        time: Date.now(),
                     });
-                    sd = Math.sqrt(sd / sync.length);
-                    sync.forEach(e => {
-                        if (Math.abs(e.latency - median) < sd) {
-                            sum += e.delta;
-                            valid++;
+                }
+                    break;
+                case 'u': { // uplink
+                    // Pull the camera info
+                    let camtime = m[0],
+                        camx = m[1],
+                        camy = m[2],
+                        camfov = m[3],
+                        camvx = m[4],
+                        camvy = m[5],
+                        // We'll have to do protocol decoding on the remaining data
+                        theshit = m.slice(6);
+                    // Process the data
+                    if (camtime > player.lastUpdate) { // Don't accept out-of-date information. 
+                        // Time shenanigans
+                        lag.add(getNow() - camtime);
+                        player.time = camtime + lag.get();
+                        metrics.rendergap = camtime - player.lastUpdate;
+                        if (metrics.rendergap <= 0) {
+                            console.log('yo some bullshit is up wtf');
                         }
-                    });
-                    clockDiff = Math.round(sum / valid);
-                    // Start the game
-                    console.log(sync);
-                    console.log('Syncing complete, calculated clock difference ' + clockDiff + 'ms. Beginning game.');
-                    global.gameStart = true;
-                    global.message = '';
+                        player.lastUpdate = camtime;
+                        // Convert the gui and entities
+                        convert.begin(theshit);
+                        convert.gui();
+                        convert.data();
+                        // Set camera values
+                        player.cx = camx
+                        player.cy = camy
+                        // Save old physics values
+                        player.lastx = player.x;
+                        player.lasty = player.y;
+                        player.lastvx = player.vx;
+                        player.lastvy = player.vy;
+                        // Get new physics values
+                        player.x = camx;
+                        player.y = camy;
+                        player.vx = global.died ? 0 : camvx;
+                        player.vy = global.died ? 0 : camvy;
+                        // Figure out where we're rendering if we don't yet know
+                        if (isNaN(player.renderx)) {
+                            player.renderx = player.x;
+                        }
+                        if (isNaN(player.rendery)) {
+                            player.rendery = player.y;
+                        }
+                        moveCompensation.reset();
+                        // Fov stuff
+                        player.view = camfov;
+                        if (isNaN(player.renderv) || player.renderv === 0) {
+                            player.renderv = 2000;
+                        }
+                        // Metrics
+                        metrics.lastlag = metrics.lag;
+                        metrics.lastuplink = getNow();
+                    } else {
+                        console.log("Old data! Last given time: " + player.time + "; offered packet timestamp: " + camtime + ".");
+                    }
+                    // Send the downlink and the target
+                    socket.talk('d', Math.max(player.lastUpdate, camtime));
+                    socket.cmd.talk();
+                    updateTimes++; // metrics                                        
                 }
-            }
-            break;
-            case 'm': { // message
-                messages.push({
-                    text: m[0],
-                    status: 2,
-                    alpha: 0,
-                    time: Date.now(),
-                });
-            }
-            break;
-            case 'u': { // uplink
-                // Pull the camera info
-                let camtime = m[0],
-                    camx = m[1],
-                    camy = m[2],
-                    camfov = m[3],
-                    camvx = m[4],
-                    camvy = m[5],
-                    // We'll have to do protocol decoding on the remaining data
-                    theshit = m.slice(6);
-                // Process the data
-                if (camtime > player.lastUpdate) { // Don't accept out-of-date information. 
-                    // Time shenanigans
-                    lag.add(getNow() - camtime);
-                    player.time = camtime + lag.get();
-                    metrics.rendergap = camtime - player.lastUpdate;
-                    if (metrics.rendergap <= 0) {
-                        console.log('yo some bullshit is up wtf');
-                    }
-                    player.lastUpdate = camtime;
-                    // Convert the gui and entities
-                    convert.begin(theshit);
-                    convert.gui();
-                    convert.data();
-                    // Set camera values
-                    player.cx = camx
-                    player.cy = camy
-                    // Save old physics values
-                    player.lastx = player.x;
-                    player.lasty = player.y;
-                    player.lastvx = player.vx;
-                    player.lastvy = player.vy;
-                    // Get new physics values
-                    player.x = camx;
-                    player.y = camy;
-                    player.vx = global.died ? 0 : camvx;
-                    player.vy = global.died ? 0 : camvy;
-                    // Figure out where we're rendering if we don't yet know
-                    if (isNaN(player.renderx)) {
-                        player.renderx = player.x;
-                    }
-                    if (isNaN(player.rendery)) {
-                        player.rendery = player.y;
-                    }
-                    moveCompensation.reset();
-                    // Fov stuff
-                    player.view = camfov;
-                    if (isNaN(player.renderv) || player.renderv === 0) {
-                        player.renderv = 2000;
-                    }
-                    // Metrics
-                    metrics.lastlag = metrics.lag;
-                    metrics.lastuplink = getNow();
-                } else {
-                    console.log("Old data! Last given time: " + player.time + "; offered packet timestamp: " + camtime + ".");
+                    break;
+                case 'b': { // broadcasted minimap
+                    convert.begin(m);
+                    convert.broadcast();
                 }
-                // Send the downlink and the target
-                socket.talk('d', Math.max(player.lastUpdate, camtime));
-                socket.cmd.talk();
-                updateTimes++; // metrics                                        
-            }
-            break;
-            case 'b': { // broadcasted minimap
-                convert.begin(m);
-                convert.broadcast();
-            }
-            break;
-            case 'p': { // ping
-                metrics.latency = global.time - m[0];
-            }
-            break;
-            case 'F': { // to pay respects
-                global.finalScore = Smoothbar(0, 4);
-                global.finalScore.set(m[0]);
-                global.finalLifetime = Smoothbar(0, 5);
-                global.finalLifetime.set(m[1]);
-                global.finalKills = [Smoothbar(0, 3), Smoothbar(0, 4.5), Smoothbar(0, 2.5)];
-                global.finalKills[0].set(m[2]);
-                global.finalKills[1].set(m[3]);
-                global.finalKills[2].set(m[4]);
-                global.finalKillers = [];
-                for (let i = 0; i < m[5]; i++) {
-                    global.finalKillers.push(m[6 + i]);
+                    break;
+                case 'p': { // ping
+                    metrics.latency = global.time - m[0];
                 }
-                global.died = true;
-                window.onbeforeunload = () => {
-                    return false;
-                };
-            }
-            break;
-            case 'K': { // kicked
-                window.onbeforeunload = () => {
-                    return false;
-                };
-            }
-            break;
-            default:
-                throw new Error('Unknown message index.');
+                    break;
+                case 'F': { // to pay respects
+                    global.finalScore = Smoothbar(0, 4);
+                    global.finalScore.set(m[0]);
+                    global.finalLifetime = Smoothbar(0, 5);
+                    global.finalLifetime.set(m[1]);
+                    global.finalKills = [Smoothbar(0, 3), Smoothbar(0, 4.5), Smoothbar(0, 2.5)];
+                    global.finalKills[0].set(m[2]);
+                    global.finalKills[1].set(m[3]);
+                    global.finalKills[2].set(m[4]);
+                    global.finalKillers = [];
+                    for (let i = 0; i < m[5]; i++) {
+                        global.finalKillers.push(m[6 + i]);
+                    }
+                    global.died = true;
+                    window.onbeforeunload = () => {
+                        return false;
+                    };
+                }
+                    break;
+                case 'K': { // kicked
+                    window.onbeforeunload = () => {
+                        return false;
+                    };
+                }
+                    break;
+                default:
+                    throw new Error('Unknown message index.');
             }
         };
         // Handle closing 
@@ -2968,7 +2968,7 @@ function startGame(hideMenu = false) {
     if (hideMenu) {
         document.getElementById("startMenuWrapper").style.top = "-60px";
         document.getElementById("startMenuWrapper").style.opacity = 0;
-        setTimeout(function() {
+        setTimeout(function () {
             document.getElementById("startMenuWrapper").style.display = "none";
         }, 1000)
         global.inGame = true;
@@ -2978,7 +2978,7 @@ function startGame(hideMenu = false) {
     // Set up the socket
     if (!global.socket) {
         //let mockupUrl = `${global.server.secure||isSecureProtocol?"https":"http"}://${global.server.at}/mockups.json`
-        let mockupUrl = (global.secure ? (window.location.protocol + "//") : "http://")+global.server+"/mockups.json";
+        let mockupUrl = (global.secure ? (window.location.protocol + "//") : "http://") + global.server + "/mockups.json";
         util.pullJSON(mockupUrl).then(data => {
             mockups = data;
         });
@@ -3043,22 +3043,22 @@ const TextObj = (() => {
                                 eh = true;
                             }
                         }
-                        break;
-                    case 'object': {
-                        if (Array.isArray(newValue)) {
-                            if (newValue.length !== value.length) {
-                                eh = true;
-                            } else {
-                                for (let i = 0, len = newValue.length; i < len; i++) {
-                                    if (newValue[i] !== value[i]) eh = true;
-                                }
-                            }
                             break;
-                        }
-                    } // jshint ignore:line
-                    default:
-                        console.log(newValue);
-                        throw new Error('Unsupported type for a floppyvar!');
+                        case 'object': {
+                            if (Array.isArray(newValue)) {
+                                if (newValue.length !== value.length) {
+                                    eh = true;
+                                } else {
+                                    for (let i = 0, len = newValue.length; i < len; i++) {
+                                        if (newValue[i] !== value[i]) eh = true;
+                                    }
+                                }
+                                break;
+                            }
+                        } // jshint ignore:line
+                        default:
+                            console.log(newValue);
+                            throw new Error('Unsupported type for a floppyvar!');
                     }
                 }
                 // Update if neeeded
@@ -3206,9 +3206,9 @@ const drawEntity = (() => {
             let strokeStyle = context.strokeStyle;
             let fillStyle = context.fillStyle;
             if (stroke) {
-            context.fillStyle = strokeStyle;
-            context.arc(centerX, centerY, radius + ctx.lineWidth / 2, 0, 2 * Math.PI);
-            context.fill();
+                context.fillStyle = strokeStyle;
+                context.arc(centerX, centerY, radius + ctx.lineWidth / 2, 0, 2 * Math.PI);
+                context.fill();
             };
             ctx.closePath();
             ctx.beginPath();
@@ -3245,7 +3245,7 @@ const drawEntity = (() => {
         context.closePath();
         if (sides != 0) {
             if (stroke) context.stroke();
-                if (fill) {
+            if (fill) {
                 context.fill();
             }
         };
@@ -3293,84 +3293,84 @@ const drawEntity = (() => {
                     yy = context.canvas.height / 2 - drawSize * m.position.axis * m.position.middle.x * Math.sin(rot) / 4;
                     assignedContext = false
                 }
-            else if (.5 > fade * alpha) return;
+                else if (.5 > fade * alpha) return;
             "object" !== typeof context && (context = ctx);
             context.lineCap = "round";
             context.lineJoin = 'round';
             if (!isShadow) {
-            // Draw turrets beneath us
-            if (source.turrets.length === m.turrets.length) {
-                for (let i = 0; i < m.turrets.length; i++) {
-                    let t = m.turrets[i];
-                    if (t.layer === 0) {
-                        let ang = t.direction + t.angle + rot,
-                            len = t.offset * drawSize;
-                        drawEntity(
-                            xx + len * Math.cos(ang),
-                            yy + len * Math.sin(ang),
-                            t, ratio, alpha, drawSize / ratio / t.size * t.sizeFactor,
-                            source.turrets[i].facing + turretsObeyRot * rot,
-                            turretsObeyRot, context, source.turrets[i], render, isShadow
+                // Draw turrets beneath us
+                if (source.turrets.length === m.turrets.length) {
+                    for (let i = 0; i < m.turrets.length; i++) {
+                        let t = m.turrets[i];
+                        if (t.layer === 0) {
+                            let ang = t.direction + t.angle + rot,
+                                len = t.offset * drawSize;
+                            drawEntity(
+                                xx + len * Math.cos(ang),
+                                yy + len * Math.sin(ang),
+                                t, ratio, alpha, drawSize / ratio / t.size * t.sizeFactor,
+                                source.turrets[i].facing + turretsObeyRot * rot,
+                                turretsObeyRot, context, source.turrets[i], render, isShadow
+                            );
+                        }
+                    }
+                } else {
+                    throw new Error("Mismatch turret number with mockup.");
+                }
+                // Draw guns  
+                source.guns.update();
+                context.lineWidth = Math.max(config.graphical.mininumBorderChunk, ratio * config.graphical.borderChunk);
+                setColor(context, isShadow ? config.graphical.shadowColor : mixColors(color.grey, render.status.getColor(), render.status.getBlend()));
+                if (source.guns.length === m.guns.length) {
+                    let positions = source.guns.getPositions();
+                    for (let i = 0; i < m.guns.length; i++) {
+                        let g = m.guns[i],
+                            position = positions[i] / ((g.aspect === 1) ? 2 : 1),
+                            gx =
+                                g.offset * Math.cos(g.direction + g.angle + rot) +
+                                (g.length / 2 - position) * Math.cos(g.angle + rot),
+                            gy =
+                                g.offset * Math.sin(g.direction + g.angle + rot) +
+                                (g.length / 2 - position) * Math.sin(g.angle + rot);
+                        drawTrapezoid(
+                            context,
+                            xx + drawSize * gx,
+                            yy + drawSize * gy,
+                            drawSize * (g.length / 2 - ((g.aspect === 1) ? position * 2 : 0)),
+                            drawSize * g.width / 2,
+                            g.aspect,
+                            g.angle + rot,
+                            !isShadow
                         );
                     }
+                } else {
+                    throw new Error("Mismatch gun number with mockup.");
                 }
-            } else {
-                throw new Error("Mismatch turret number with mockup.");
-            }
-            // Draw guns  
-            source.guns.update();
-            context.lineWidth = Math.max(config.graphical.mininumBorderChunk, ratio * config.graphical.borderChunk);
-            setColor(context, isShadow ? config.graphical.shadowColor : mixColors(color.grey, render.status.getColor(), render.status.getBlend()));
-            if (source.guns.length === m.guns.length) {
-                let positions = source.guns.getPositions();
-                for (let i = 0; i < m.guns.length; i++) {
-                    let g = m.guns[i],
-                        position = positions[i] / ((g.aspect === 1) ? 2 : 1),
-                        gx =
-                        g.offset * Math.cos(g.direction + g.angle + rot) +
-                        (g.length / 2 - position) * Math.cos(g.angle + rot),
-                        gy =
-                        g.offset * Math.sin(g.direction + g.angle + rot) +
-                        (g.length / 2 - position) * Math.sin(g.angle + rot);
-                    drawTrapezoid(
-                        context,
-                        xx + drawSize * gx,
-                        yy + drawSize * gy,
-                        drawSize * (g.length / 2 - ((g.aspect === 1) ? position * 2 : 0)),
-                        drawSize * g.width / 2,
-                        g.aspect,
-                        g.angle + rot,
-                        !isShadow
-                    );
-                }
-            } else {
-                throw new Error("Mismatch gun number with mockup.");
-            }
             };
             // Draw body
             context.globalAlpha = 1;
-            setColor(context, isShadow ? config.graphical.shadowColor :  mixColors(getColor(instance.color), render.status.getColor(), render.status.getBlend()));
+            setColor(context, isShadow ? config.graphical.shadowColor : mixColors(getColor(instance.color), render.status.getColor(), render.status.getBlend()));
             drawPoly(context, xx, yy, drawSize / m.size * m.realSize, m.shape, rot, true, !isShadow);
             if (!isShadow) {
-            // Draw turrets above us
-            if (source.turrets.length === m.turrets.length) {
-                for (let i = 0; i < m.turrets.length; i++) {
-                    let t = m.turrets[i];
-                    if (t.layer === 1) {
-                        let ang = t.direction + t.angle + rot,
-                            len = t.offset * drawSize;
-                        drawEntity(
-                            xx + len * Math.cos(ang),
-                            yy + len * Math.sin(ang),
-                            t, ratio, alpha, drawSize / ratio / t.size * t.sizeFactor,
-                            source.turrets[i].facing + turretsObeyRot * rot,
-                            turretsObeyRot, context, source.turrets[i], render, isShadow
-                        );
+                // Draw turrets above us
+                if (source.turrets.length === m.turrets.length) {
+                    for (let i = 0; i < m.turrets.length; i++) {
+                        let t = m.turrets[i];
+                        if (t.layer === 1) {
+                            let ang = t.direction + t.angle + rot,
+                                len = t.offset * drawSize;
+                            drawEntity(
+                                xx + len * Math.cos(ang),
+                                yy + len * Math.sin(ang),
+                                t, ratio, alpha, drawSize / ratio / t.size * t.sizeFactor,
+                                source.turrets[i].facing + turretsObeyRot * rot,
+                                turretsObeyRot, context, source.turrets[i], render, isShadow
+                            );
+                        }
                     }
+                } else {
+                    throw new Error("Mismatch turret number with mockup.");
                 }
-            } else {
-                throw new Error("Mismatch turret number with mockup.");
-            }
             };
             assignedContext || context === ctx || (ctx.save(), ctx.globalAlpha = alpha * fade, ctx.drawImage(context.canvas, x - xx, y - yy), ctx.restore())
         }
@@ -3429,7 +3429,7 @@ window.requestAnimFrame = (() => {
         window.webkitRequestAnimationFrame ||
         window.mozRequestAnimationFrame ||
         window.msRequestAnimationFrame ||
-        function(callback) {
+        function (callback) {
             //window.setTimeout(callback, 1000 / 60);
         };
 })();
@@ -3487,7 +3487,7 @@ const gameDraw = (() => {
         }
         // Useful thing
         function angleDifference(sourceA, targetA) {
-            let mod = function(a, n) {
+            let mod = function (a, n) {
                 return (a % n + n) % n;
             };
             let a = targetA - sourceA;
@@ -3962,19 +3962,19 @@ const gameDraw = (() => {
             for (let entity of minimap.get()) {
                 ctx.fillStyle = mixColors(getColor(entity.color), color.black, 0.3);
                 2 === entity.type ? (drawGuiRect(
-                        x + ((entity.x - entity.size) / global.gameWidth) * len - 0.4,
-                        y + ((entity.y - entity.size) / global.gameWidth) * len - 1,
-                        ((2 * entity.size) / global.gameWidth) * len + 0.2,
-                        ((2 * entity.size) / global.gameWidth) * len + 0.2
-                    )) :
+                    x + ((entity.x - entity.size) / global.gameWidth) * len - 0.4,
+                    y + ((entity.y - entity.size) / global.gameWidth) * len - 1,
+                    ((2 * entity.size) / global.gameWidth) * len + 0.2,
+                    ((2 * entity.size) / global.gameWidth) * len + 0.2
+                )) :
                     1 === entity.type ?
-                    drawGuiCircle(
-                        x + (entity.x / global.gameWidth) * len,
-                        y + (entity.y / global.gameWidth) * len,
-                        (entity.size / global.gameWidth) * len + 0.2
-                    ) :
-                    entity.id !== gui.playerid &&
-                    drawGuiCircle(x + (entity.x / global.gameWidth) * len, y + (entity.y / global.gameWidth) * len, 2);
+                        drawGuiCircle(
+                            x + (entity.x / global.gameWidth) * len,
+                            y + (entity.y / global.gameWidth) * len,
+                            (entity.size / global.gameWidth) * len + 0.2
+                        ) :
+                        entity.id !== gui.playerid &&
+                        drawGuiCircle(x + (entity.x / global.gameWidth) * len, y + (entity.y / global.gameWidth) * len, 2);
             }
             ctx.globalAlpha = 1;
             ctx.lineWidth = 1;
@@ -3995,7 +3995,7 @@ const gameDraw = (() => {
             timingGraph(GRAPHDATA, x, y - 40, len, 30, color.yellow);*/
             // Text
             text.debug[3].draw(
-                'OpenArras Project',
+                'openarras-' + buildHash,
                 global.screenWidth / 2, 16,
                 12, color.guiwhite, 'center'
             );
@@ -4050,7 +4050,7 @@ const gameDraw = (() => {
             global.clickables.upgrade.hide();
             if (gui.upgrades.length > 0) {
                 global.canUpgrade = true;
-                var getClassUpgradeKey = function(number) {
+                var getClassUpgradeKey = function (number) {
                     switch (number) {
                         case 0:
                             return 'y';
@@ -4162,13 +4162,13 @@ const gameDrawDead = (() => {
         let finalKills = [Math.round(global.finalKills[0].get()), Math.round(global.finalKills[1].get()), Math.round(global.finalKills[2].get())];
         let b = finalKills[0] + 0.5 * finalKills[1] + 3 * finalKills[2];
         return ((b === 0) ? '🌼' :
-                (b < 4) ? '🎯' :
+            (b < 4) ? '🎯' :
                 (b < 8) ? '💥' :
-                (b < 15) ? '💢' :
-                (b < 25) ? '🔥' :
-                (b < 50) ? '💣' :
-                (b < 75) ? '👺' :
-                (b < 100) ? '🌶️' : '💯') +
+                    (b < 15) ? '💢' :
+                        (b < 25) ? '🔥' :
+                            (b < 50) ? '💣' :
+                                (b < 75) ? '👺' :
+                                    (b < 100) ? '🌶️' : '💯') +
             ((finalKills[0] || finalKills[1] || finalKills[2]) ?
                 ' ' +
                 ((finalKills[0]) ? finalKills[0] + ' kills' : '') +
@@ -4323,7 +4323,7 @@ function animloop() {
                 };
                 ctx.globalAlpha = 1;
             }
-            break
+                break
         };
     };
     if (global.state == 1) {
@@ -4335,13 +4335,13 @@ function animloop() {
     // Draw the game
 }
 animloop();
-setTimeout(function() {
+setTimeout(function () {
     global.animations.enterToStartActivated = true;
 }, 3000);
-setTimeout(function() {
+setTimeout(function () {
     global.animations.loading = true;
     //let mockupUrl = `${global.server.secure||isSecureProtocol?"https":"http"}://${global.server.at}/mockups.json`
-    let url = (global.secure ? (window.location.protocol + "//") : "http://")+global.server+"/versionInfo.json";
+    let url = (global.secure ? (window.location.protocol + "//") : "http://") + global.server + "/versionInfo.json";
     util.pullJSON(url).then(data => {
         console.log(data);
         global.serverVersion = data.version;
