@@ -61,52 +61,13 @@
                             <div style="height:110px;position:relative;top:10px;overflow:auto;" class="bottomHolder">
                             <a style="background:#799197" id="controls"><img src="./assets/controller.svg" style="filter:invert(1);" class="bottomHolderImage">Controls</a>
                             <a style="background:#5865f2" href="https://discord.com"><img src="./assets/discord.svg" style="filter:invert(1);" class="bottomHolderImage">Discord</a>
-
-                              
-                            <div class="optionsHeader">Themes &amp; Graphics</div>
-                            <select id="optColors" tabindex="-1">
-                                <option value="normal">Light Colors</option>
-                                <option value="dark">Dark Colors</option>
-                                <option value="natural">Natural</option>
-                                <option value="classic">Classic</option>
-                                <option value="forest">Forest (Fan-made)</option>
-                                <option value="midnight">Midnight (Fan-made)</option>
-                                <option value="pastel">Snow (Fan-made)</option>
-                                <option value="ocean">Coral Reef (Fan-made)</option>
-                                <option value="badlands">Badlands (Fan-made)</option>
-                                <option value="bleach">Bleach (Fan-made)</option>
-                            </select>
-                            <select id="optBorders" tabindex="-1">
-                                <option value="normal">Soft Borders</option>
-                                <option value="dark">Dark Borders</option>
-                                <option value="neon">Neon Mode</option>
-                                <option value="glass">Glass Mode</option>
-                            </select>
-                            <table>
-                                <tr>
-                                    <td><div>
-                                        <label class="container"><input id="optScreenshotMode" tabindex="-1" class="checkbox" type="checkbox" value=""><span class="checkmark"></span>Screenshot Mode</label>
-                                    </div></td>
-                                    <td><div>
-                                        <label class="container"><input id="optNoPointy" tabindex="-1" class="checkbox" type="checkbox" value=""><span class="checkmark"></span>Classic Traps</label>
-                                    </div></td>
-                                </tr><tr>
-                                    <td><div>
-                                        <label class="container"><input id="optFancy" tabindex="-1" class="checkbox" type="checkbox" value=""><span class="checkmark"></span>Low Graphics</label>
-                                    </div></td>
-                                    <td><div>
-                                        <label class="container"><input id="optPredictive" tabindex="-1" class="checkbox" type="checkbox" value=""><span class="checkmark"></span> Disable Hyperactivity</label>
-                                    </div></td>
-                                </tr><tr>
-                                </tr>
-                            </table>
-                        </div>    
+                            <a style="background:#F2BE58" id="graphics"><img src="./assets/mountain.svg" style="filter:invert(1);" class="bottomHolderImage">Graphics</a>
+                            </div>
                     </div>
-                    </div>
+                </div>
                     <div style="position: relative; bottom: -10px;">
                         <button id="startButton" tabindex="2">Play</button>
                     </div>
-                </div>
             </div>
         </div>
     </div>
@@ -130,6 +91,7 @@
     <script src="features.js"></script>
     <script src="changelogs.js"></script>
     <script src="controls.js"></script>
+    <script src="graphics.js"></script>
     <script>
         var clicked=true;
         document.getElementById("startMenuSlidingTrigger").onclick = function() {
@@ -153,5 +115,59 @@
             }
         });
     </script>
+
+<!-- A div that doesnt render, used to apply themes and what not -->
+<div id="invisDiv" style="display:none;">
+  <div id="graphicSection">
+   <div class="optionsHeader">Themes &amp; Graphics</div>
+   <select id="optColors" tabindex="-1">
+      <option value="normal">Light Colors</option>
+      <option value="dark">Dark Colors</option>
+      <option value="natural">Natural</option>
+      <option value="classic">Classic</option>
+      <option value="forest">Forest (Fan-made)</option>
+      <option value="midnight">Midnight (Fan-made)</option>
+      <option value="pastel">Snow (Fan-made)</option>
+      <option value="ocean">Coral Reef (Fan-made)</option>
+      <option value="badlands">Badlands (Fan-made)</option>
+      <option value="bleach">Bleach (Fan-made)</option>
+   </select>
+   <select id="optBorders" tabindex="-1">
+      <option value="normal">Soft Borders</option>
+      <option value="dark">Dark Borders</option>
+      <option value="neon">Neon Mode</option>
+      <option value="glass">Glass Mode</option>
+   </select>
+   <table>
+      <tr>
+         <td>
+            <div>
+               <label class="container"><input id="optScreenshotMode" tabindex="-1" class="checkbox" type="checkbox" value=""><span class="checkmark"></span>Screenshot Mode</label>
+            </div>
+         </td>
+         <td>
+            <div>
+               <label class="container"><input id="optNoPointy" tabindex="-1" class="checkbox" type="checkbox" value=""><span class="checkmark"></span>Classic Traps</label>
+            </div>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <div>
+               <label class="container"><input id="optFancy" tabindex="-1" class="checkbox" type="checkbox" value=""><span class="checkmark"></span>Low Graphics</label>
+            </div>
+         </td>
+         <td>
+            <div>
+               <label class="container"><input id="optPredictive" tabindex="-1" class="checkbox" type="checkbox" value=""><span class="checkmark"></span> Disable Hyperactivity</label>
+            </div>
+         </td>
+      </tr>
+      <tr>
+      </tr>
+   </table>
+</div>
+</div>
+</div>
 </body>
 </html>
