@@ -43,6 +43,8 @@ module.exports = {
       { from: "./clientSrc/main.css", to: "./" },
       { from: "./clientSrc/changelogs.js", to: "./" },
       { from: "./clientSrc/features.js", to: "./" },
+      { from: "./clientSrc/controls.js", to: "./" },
+
     ],
   })],
 };
