@@ -1,5 +1,17 @@
 let changelogArray = [
     {
+        name: "Ooo Pretty",
+        contributor: "Fluffy-hyena & Winquacks",
+        description: [
+        ['rgb(228,42,42)', '- Revamped the options menu.'],
+        ['rgb(235,87,87)', '-- Renamed the options menu to additional menu.'],
+        ['rgb(235,87,87)', '-- Re-did the controls section, so it now has its own pop-up.'],
+        ['rgb(235,87,87)', '-- Added a discord button, currently doesnt join a server.'],
+        ['black', '- Made minor changes with changelogs and features.'],
+        ['orange', '- Added a compiler to the project.'],
+        ]
+    },
+    {
         name: "Hungry Game",
         contributor: "Fluffy-hyena",
         description: [
