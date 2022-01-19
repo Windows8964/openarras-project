@@ -1,8 +1,8 @@
 dependencies:
   express: 4.17.2
   express-ws: 5.0.2
-  google-closure-library: 20180506.0.0
-  ws: 6.1.4
+  google-closure-library: 20200315.0.0
+  ws: 8.4.2
 devDependencies:
   closure-webpack-plugin: 2.5.0
   copy-webpack-plugin: 10.2.0
@@ -328,10 +328,6 @@ packages:
       node: '>=12'
     resolution:
       integrity: sha512-1OvF9IbWwaeiM9VhzYXVQacMibxpXOMYVNIvMtKRyX9SImBXpKcFr8XvFDeEslCyuH/t6KRt7HEO94AlP8Iatw==
-  /async-limiter/1.0.1:
-    dev: false
-    resolution:
-      integrity: sha512-csOlWGAcRFJaI6m+F2WKdnMKr4HhdhFVBk0H/QbJFMCr+uO2kwohwXQPxw/9OCxp05r5ghVBFSyioixx3gfkNQ==
   /body-parser/1.19.1:
     dependencies:
       bytes: 3.1.1
@@ -957,10 +953,10 @@ packages:
       google-closure-compiler-windows: 20220104.0.0
     resolution:
       integrity: sha512-8JQs1cWpJYjvqnAskMis1sQ/nm2wHYIt/Rd3HYyMOgfEzjNdqLkIiuzCXbz2flktHXS63mvdxU4+ZlJR72Kz8g==
-  /google-closure-library/20180506.0.0:
+  /google-closure-library/20200315.0.0:
     dev: false
     resolution:
-      integrity: sha1-LS2pLCfBDcADE//4ClFYtVTKmQg=
+      integrity: sha512-LdCecdztxDvA9K+8b6E9aE4Hw7ABdYokfA7d5qW1sd/iy8O1l0+eXLlddE2JtW62gf8UjcPskBua4fU4J5lmHA==
   /graceful-fs/4.2.9:
     dev: true
     resolution:
@@ -1980,12 +1976,6 @@ packages:
     dev: true
     resolution:
       integrity: sha512-JcKqAHLPxcdb9KM49dufGXn2x3ssnfjbcaQdLlfZsL9rH9wgDQjUtDxbo8NE0F6SFvydeu1VhZe7hZuHsB2/pw==
-  /ws/6.1.4:
-    dependencies:
-      async-limiter: 1.0.1
-    dev: false
-    resolution:
-      integrity: sha512-eqZfL+NE/YQc1/ZynhojeV8q+H050oR8AZ2uIev7RU10svA9ZnJUddHcOUZTJLinZ9yEfdA2kSATS2qZK5fhJA==
   /ws/7.5.6:
     dev: false
     engines:
@@ -1995,6 +1985,15 @@ packages:
       utf-8-validate: ^5.0.2
     resolution:
       integrity: sha512-6GLgCqo2cy2A2rjCNFlxQS6ZljG/coZfZXclldI8FB/1G3CCI36Zd8xy2HrFVACi8tfk5XrgLQEk+P0Tnz9UcA==
+  /ws/8.4.2:
+    dev: false
+    engines:
+      node: '>=10.0.0'
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: ^5.0.2
+    resolution:
+      integrity: sha512-Kbk4Nxyq7/ZWqr/tarI9yIt/+iNNFOjBXEWgTb4ydaNHBNGgvf2QHbS9fdfsndfjFlFwEd4Al+mw83YkaD10ZA==
 registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
@@ -2004,9 +2003,9 @@ specifiers:
   express: ^4.17.1
   express-ws: ^5.0.2
   google-closure-compiler: ^20220104.0.0
-  google-closure-library: 20180506.0.0
+  google-closure-library: ^20200315.0.0
   html-replace-webpack-plugin: ^2.6.0
   html-webpack-plugin: ^5.5.0
   webpack: ^5.66.0
   webpack-cli: ^4.9.1
-  ws: 6.1.x
+  ws: ^8.4.2

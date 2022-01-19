@@ -76,7 +76,7 @@ features.onclick = function () {
             h2.style = `font-weight:200;text-align:left;font-size:12.5px;margin-left:20px;margin-top: 3px;margin-bottom:0px;${feature.done ? "color:rgba(31,172,31,0.65);" : "color:rgba(255,0,0,0.65);"}`;
             h1.innerHTML = (feature.done ? "🗸  " : "✗  ") + feature.name + " - " + feature.contributor;
             h2.innerHTML = feature.description;
-            if (feature.important && feature.done) h1.style.color = "#fff000", h1.style.textShadow = "0px 0px 5px rgba(255, 229, 0, 1)";
+            if (feature.important && feature.done) h1.style.color = "#B3AF7C", h1.style.textShadow = "0px 0px 5px rgba(255, 229, 0, 1)";
             body.appendChild(h1)
             body.appendChild(h2)
             body.appendChild(document.createElement("br"))
