@@ -19,8 +19,8 @@ module.exports = {
           //
           // for debugging help, try these:
           //
-          //formatting: 'PRETTY_PRINT',
-          //debug: true,
+          // formatting: 'PRETTY_PRINT'
+          // debug: true,
           renaming: true
         })
       ]
@@ -44,6 +44,7 @@ module.exports = {
       { from: "./clientSrc/changelogs.js", to: "./" },
       { from: "./clientSrc/features.js", to: "./" },
       { from: "./clientSrc/controls.js", to: "./" },
+
     ],
   })],
 };
