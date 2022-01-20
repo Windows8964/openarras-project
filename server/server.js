@@ -4894,4 +4894,4 @@ response.on("end", function(){
 request.end();
 }
 console.log((gitdata.lastupdate+30)-datemins + " more mins till githubstats.json is updated.")
-}, 150000)//check every 2.5 mins, 150000 ms
+}, 300000)//check every 5 mins, 300000 ms
