@@ -48,20 +48,21 @@
                             <div class="bottomHolder">
                                 <a style="background:#44d362" id="features"><img src="./assets/check.svg" class="bottomHolderImage">Features</a>
                                 <a style="background:#FF0082" id="changelogs"><img src="./assets/scroll.svg" style="filter:invert(1);" class="bottomHolderImage">Change Logs</a>
-                                <a style="background:#171515" href="https://github.com/Windows8964/openarras-project"><img src="./assets/github.svg" style="filter:invert(1);" class="bottomHolderImage">Github</a>
+                                <a style="background:#171515" href="https://github.com/Windows8964/openarras-project" target="_blank" rel="noopener noreferrer"><img src="./assets/github.svg" style="filter:invert(1);" class="bottomHolderImage">Github</a>
                                 <!--<a style="background:#5865f2" href="(link here)"><img src="./assets/discord.svg" class="bottomHolderImage">Discord</a>-->
                               </div>
                             <input type="text" autofocus tabindex="1" spellcheck="false" placeholder="This is the tale of:" id="playerNameInput" maxlength="24" />
                             <input type="text" tabindex="1" placeholder="Token required." style="display:none" id="playerKeyInput" maxlength="64" />
                         </div>
                         <div class="slider" id="startMenuSlidingTrigger">
-                        <h3> <span id="viewOptionText">additional menu</span>&nbsp;&nbsp;<i class="arrow" id="optionArrow" style="transform:rotate(-45deg);-webkit-transform:rotate(-45deg)"></i> </h3>
+                        <h3> <span id="viewOptionText">additional menu</span>&nbsp;&nbsp;<i class="arrow" id="optionArrow" style="transform:rotate(45deg);-webkit-transform:rotate(45deg)"></i> </h3>
                      </div>
                         <div class="slider" id="startMenuSlidingContent">
                             <div style="height:110px;position:relative;top:10px;overflow:auto;" class="bottomHolder">
                             <a style="background:#799197" id="controls"><img src="./assets/controller.svg" style="filter:invert(1);" class="bottomHolderImage">Controls</a>
-                            <a style="background:#5865f2" href="https://discord.com"><img src="./assets/discord.svg" style="filter:invert(1);" class="bottomHolderImage">Discord</a>
                             <a style="background:#F2BE58" id="graphics"><img src="./assets/mountain.svg" style="filter:invert(1);" class="bottomHolderImage">Graphics</a>
+                            <a style="background:#5865f2" href="https://discord.com" target="_blank" rel="noopener noreferrer"><img src="./assets/discord.svg" style="filter:invert(1);" class="bottomHolderImage">Discord</a>
+                            <a style="background:#1FD5A8" id="contributors"><img src="./assets/contributors.svg" style="filter:invert(1);" class="bottomHolderImage">Contributors</a>
                             </div>
                     </div>
                 </div>
@@ -88,14 +89,15 @@
             }
         });*/
     </script>
-    <script src="features.js"></script>
-    <script src="changelogs.js"></script>
-    <script src="controls.js"></script>
-    <script src="graphics.js"></script>
+    <script src="/buttons/features.js"></script>
+    <script src="/buttons/changelogs.js"></script>
+    <script src="/buttons/controls.js"></script>
+    <script src="/buttons/graphics.js"></script>
+    <script src="/buttons/contributors.js"></script>
     <script>
         var clicked=true;
         document.getElementById("startMenuSlidingTrigger").onclick = function() {
-            document.getElementById("optionArrow").style.webkitTransform = clicked ? "translate(2px, -2px) rotate(45deg)" : "rotate(-45deg)";
+            document.getElementById("optionArrow").style.webkitTransform = clicked ? "translate(2px, -2px) rotate(-135deg)" : "rotate(45deg)";
             if (clicked) {
                 document.getElementsByClassName("sliderHolder")[0].classList.add("slided"); 
             } else {
@@ -119,7 +121,6 @@
 <!-- A div that doesnt render, used to apply themes and what not -->
 <div id="invisDiv" style="display:none;">
   <div id="graphicSection">
-   <div class="optionsHeader">Themes &amp; Graphics</div>
    <select id="optColors" tabindex="-1">
       <option value="normal">Light Colors</option>
       <option value="dark">Dark Colors</option>
