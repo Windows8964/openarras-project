@@ -4868,7 +4868,6 @@ let gitdata = JSON.parse(fs.readFileSync('./clientSrc/githubstats.json', 'utf8')
 let datemins = Math.round(Date.now()/60000)
 
 // if its been 30min or later after our lastest update, ping github and update the file
-console.log(datemins + " | " + gitdata.lastupdate+30)
 if(datemins>gitdata.lastupdate+30){
   let https = require('https')
   var options = {
@@ -4888,10 +4887,11 @@ response.on("end", function(){
     gitdata.lastupdate = datemins
     gitdata.gitdata = body
     fs.writeFileSync('./clientSrc/githubstats.json', JSON.stringify(gitdata));
+    fs.writeFileSync('./dist/githubstats.json', JSON.stringify(gitdata));
     console.log('Updated githubstats.json!')
     });
 });
 request.end();
 }
-console.log(datemins-gitdata.lastupdate+30 + " more mins till githubstats.json is updated.")
-}, 150000)//check every 2.5 mins
+console.log((gitdata.lastupdate+30)-datemins + " more mins till githubstats.json is updated.")
+}, 150000)//check every 2.5 mins, 150000 ms
