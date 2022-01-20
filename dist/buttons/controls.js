@@ -33,8 +33,18 @@ let controlArray = [
     }
 ]
 controls.onclick = function(){
+    if(document.getElementsByClassName('popupMenu').length){
+      let ele = document.getElementsByClassName('popupMenu');
+      ele[0].style.animation = "menuGo .5s";
+      ele[0].style.animationFillMode = "forward";
+      document.getElementById("invisDiv").appendChild(document.getElementById("graphicSection"))
+      setTimeout(function () {
+          ele[0].remove();
+      }, 500)
+    }
     let body = document.createElement("div");
     body.classList.add("startMenu");
+    body.classList.add("popupMenu");
     body.style.width = "500px";
     body.style.height = "300px";
     body.style.left = "calc(50% - 250px)";

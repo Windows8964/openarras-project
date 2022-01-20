@@ -41,10 +41,8 @@ module.exports = {
       { from: "./clientSrc/assets", to: "assets" },
       { from: "./clientSrc/favicons", to: "favicons" },
       { from: "./clientSrc/main.css", to: "./" },
-      { from: "./clientSrc/changelogs.js", to: "./" },
-      { from: "./clientSrc/features.js", to: "./" },
-      { from: "./clientSrc/controls.js", to: "./" },
-      { from: "./clientSrc/graphics.js", to: "./" },
+      { from: "./clientSrc/buttons", to: "buttons" },
+      { from: "./clientSrc/githubstats.json", to: "./"}
 
     ],
   })],
