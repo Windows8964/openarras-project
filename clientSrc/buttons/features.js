@@ -1,44 +1,66 @@
+// For the contributor spot spell the github users name exactally right or put their github id there
 let featuresArray = [
     {
+        name: "Improve menu loading",
+        description: "As the menus get longer and more complex they might take longer to load/open. This feature aims to fix that.",
+        contributor: "79679437",
+        important: true,
+        done: false,
+    },
+    {
         name: "New interpolation implementation",
-        description: "Creates a smoother gameplay expierence by predicting where and when things will happen",
-        contributor: "Winquacks",
+        description: "Creates a smoother gameplay expierence by predicting where and when things will happen.",
+        contributor: "63546466",
         important: true,
         done: true,
     },
     {
         name: "Features page",
-        description: "What youre currently looking at",
-        contributor: "Winquacks",
+        description: "What youre currently looking at.",
+        contributor: "63546466",//Windows8964 github id
         done: true,
     },
     {
         name: "Better food function",
-        description: "Makes food spawn out of no where in clumps rather than with mitiosis and leveling up",
-        contributor: "Fluffy-hyena",
+        description: "Makes food spawn out of no where in clumps rather than with mitiosis and leveling up.",
+        contributor: '79679437',//Fluffy-hyena github id
         done: true,
     },
     {
         name: "Discord Server",
-        description: "A server where people can talk about this project and other related ones",
-        contributor: "Winquacks",
+        description: "A server where people can talk about this project and other related ones.",
+        contributor: "63546466",
         done: false,
     },
     {
         name: "Change Logs",
-        description: "A tab to log all changes made to the game",
-        contributor: "Fluffy-hyena",
+        description: "A tab to log all changes made to the game.",
+        contributor: "79679437",
         important: true,
         done: true,
     },
     {
         name: "Better AIs",
-        description: 'Make all AIs work very very well',
-        contributor: "Fluffy-hyena",
+        description: 'Make all AIs work very very well.',
+        contributor: "79679437",
         important: true,
         done: false,
     }
 ]
+
+// load some github stuff
+async function gitdata(){let response = await fetch(`https://${window.location.hostname}/githubstats.json`);let data = await response.json();return JSON.parse(data.gitdata);}
+// put the github stuff into action!
+gitdata().then(github=>{
+for(let i=0; i<featuresArray.length; i++){
+  for(let a=0; a<github.length; a++){
+    if(featuresArray[i].contributor==github[a].login||featuresArray[i].contributor==github[a].id){
+      featuresArray[i].contributor = `<img src="${github[a].avatar_url}" style="width:18px;height:18px;"> <b><a style="${featuresArray[i].done ? "color:rgb(31,172,31);" : "color:rgb(255,0,0);"}" href="${github[a].html_url}" target="_blank" rel="noopener noreferrer">${github[a].login}</a></b>`;
+    }
+  }
+}})
+
+// click event
 features.onclick = function () {
     if(document.getElementsByClassName('popupMenu').length){
       let ele = document.getElementsByClassName('popupMenu');
@@ -70,12 +92,12 @@ features.onclick = function () {
     }
     body.appendChild(close);
     body.appendChild((function (h1 = document.createElement("h1")) {
-        h1.style = "text-align:left;font-size:25px;margin-left:10px;margin-top: 3px;margin-bottom:0px;";
+        h1.style = "text-align:middle;font-size:25px;margin-left:10px;margin-top: 3px;margin-bottom:0px;";
         h1.innerHTML = "OpenArras current features/plans";
         return h1;
     })());
     body.appendChild((function (h1 = document.createElement("h1")) {
-        h1.style = "text-align:left;font-size:25px;margin-left:10px;margin-top: 3px;margin-bottom:0px;";
+        h1.style = "text-align:middle;font-size:25px;margin-left:10px;margin-top: 3px;margin-bottom:0px;";
         h1.innerHTML = "(🗸: done, ✗: not done)";
         return h1;
     })())
@@ -87,6 +109,7 @@ features.onclick = function () {
             h1.innerHTML = (feature.done ? "🗸  " : "✗  ") + feature.name + " - " + feature.contributor;
             h2.innerHTML = feature.description;
             if (feature.important && feature.done) h1.style.color = "#B3AF7C", h1.style.textShadow = "0px 0px 5px rgba(255, 229, 0, 1)";
+            if (feature.important && !feature.done) h1.style.color = "#FF3B00", h1.style.textShadow = "0px 0px 5px rgb(255,0,0)";
             body.appendChild(h1)
             body.appendChild(h2)
             body.appendChild(document.createElement("br"))

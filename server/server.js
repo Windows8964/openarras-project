@@ -4860,3 +4860,38 @@ let websockets = (() => {
 setInterval(gameloop, room.cycleSpeed);
 setInterval(maintainloop, 50);
 setInterval(speedcheckloop, 1000);
+
+//see if we need to update the githubstats file
+setInterval(()=>{
+// get our files and time
+let gitdata = JSON.parse(fs.readFileSync('./clientSrc/githubstats.json', 'utf8'))
+let datemins = Math.round(Date.now()/60000)
+
+// if its been 30min or later after our lastest update, ping github and update the file
+console.log(datemins + " | " + gitdata.lastupdate+30)
+if(datemins>gitdata.lastupdate+30){
+  let https = require('https')
+  var options = {
+    host: 'api.github.com',
+    path: `/repos/${c.GITHUBPATH}/contributors`,
+    method: 'GET',
+    headers: {'user-agent': 'node.js'}
+};
+let request = https.request(options, function(response){
+let body = '';
+response.on("data", function(chunk){
+    body += chunk.toString('utf8');
+});
+response.on("end", function(){
+  
+  // Heres where we get and use all our data from github
+    gitdata.lastupdate = datemins
+    gitdata.gitdata = body
+    fs.writeFileSync('./clientSrc/githubstats.json', JSON.stringify(gitdata));
+    console.log('Updated githubstats.json!')
+    });
+});
+request.end();
+}
+console.log(datemins-gitdata.lastupdate+30 + " more mins till githubstats.json is updated.")
+}, 300000)//check every 5 mins

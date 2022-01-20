@@ -17,7 +17,8 @@
   "MODE": "ffa",
   "RANDOM_COLORS": false,
   "BANNED_CHARACTER_REGEX": "/[\uFDFD\u200E\u0000]/gi", 
-  "COMPILED_CLIENT": true,
+  "COMPILED_CLIENT": false,
+  "GITHUBPATH": "Windows8964/openarras-project",
   "ROOM_SETUP": [
     [ "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm" ],
     

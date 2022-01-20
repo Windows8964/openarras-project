@@ -1,7 +1,8 @@
 contributors.onclick = function(){
-fetch('https://api.github.com/repos/Windows8964/openarras-project/contributors')
-  .then(response => response.json())
-  .then(data => {
+// load some github stuff
+async function gitdata(){let response = await fetch(`https://${window.location.hostname}/githubstats.json`);let data = await response.json();return JSON.parse(data.gitdata);}
+// put the github stuff into action!
+gitdata().then(data=>{
     if(document.getElementsByClassName('popupMenu').length){
       let ele = document.getElementsByClassName('popupMenu');
       ele[0].style.animation = "menuGo .5s";
@@ -42,7 +43,6 @@ fetch('https://api.github.com/repos/Windows8964/openarras-project/contributors')
         return h1;
     })())*/
     for (let i = 0; i < data.length; i++) {
-        let control = data[i];
         function createLine(h1=document.createElement("h1")){
             h1.style=`font-weight:400;text-align:left;font-size:20px;margin-left:10px;margin-top: 10px;margin-bottom:0px;`;
             h1.innerHTML = `<img src="${data[i].avatar_url}" style="width:24px;height:24px;"> <b><a href="${data[i].html_url}" target="_blank" rel="noopener noreferrer">${data[i].login}</a></b> - ${data[i].contributions} commits`;
