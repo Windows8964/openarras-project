@@ -4255,7 +4255,49 @@ exports.miniboss = {
             ],
         };
     })();
-
+exports.sx1boss = {
+  PARENT: [exports.miniboss],
+  LABEL: 'SX-1',
+  COLOR: 15,
+  SHAPE: 5,
+  SIZE: 25,
+  VALUE: 100000,
+  BODY: {
+      FOV: 1.4,
+      SPEED: base.SPEED * 1.2,
+      HEALTH: base.HEALTH * 1.2,
+      SHIELD: base.SHIELD * 1.2,
+      REGEN: base.REGEN,
+      DAMAGE: base.DAMAGE * 2
+  },
+  TURRETS: [
+     { 
+      /*  SIZE     X       Y     ANGLE    ARC */
+      POSITION: [11, 8, 0, 36, 180, 0],
+      TYPE: exports.auto4gun
+    },
+    {
+      POSITION: [11, 8, 0, 108, 180, 0],
+      TYPE: exports.auto4gun
+    },
+    {
+      POSITION: [11, 8, 0, 180, 180, 0],
+      TYPE: exports.auto4gun
+    },
+    {
+      POSITION: [11, 8, 0, 252, 180, 0],
+      TYPE: exports.auto4gun
+    },
+    {
+      POSITION: [11, 8, 0, 324, 180, 0],
+      TYPE: exports.auto4gun
+    },
+    {
+      POSITION: [9.5, 0, 0, 0, 360, 1],
+      TYPE: exports.sniper3gun
+    }
+  ],
+}
 exports.bot = {
     AUTO_UPGRADE: 'random',
     FACING_TYPE: 'looseToTarget',
