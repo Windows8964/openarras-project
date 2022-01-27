@@ -37,6 +37,7 @@
     <div id="gameAreaWrapper">
         <canvas id="gameCanvas" tabindex="1" id="cvs" tabindex="1"></canvas>
     </div>
+<div id="menu">
     <div id="mainWrapper">
         <div id="startMenuWrapper" style="display:none">
             <div class="startMenu" id="startMenu">
@@ -61,7 +62,7 @@
                             <div style="height:110px;position:relative;top:10px;overflow:auto;" class="bottomHolder">
                             <a style="background:#799197" id="controls"><img src="./assets/controller.svg" style="filter:invert(1);" class="bottomHolderImage">Controls</a>
                             <a style="background:#F2BE58" id="graphics"><img src="./assets/mountain.svg" style="filter:invert(1);" class="bottomHolderImage">Graphics</a>
-                            <a style="background:#5865f2" href="https://discord.com" target="_blank" rel="noopener noreferrer"><img src="./assets/discord.svg" style="filter:invert(1);" class="bottomHolderImage">Discord</a>
+                            <a style="background:#5865f2" href="https://discord.gg/TrEwPctVyN" target="_blank" rel="noopener noreferrer"><img src="./assets/discord.svg" style="filter:invert(1);" class="bottomHolderImage">Discord</a>
                             <a style="background:#1FD5A8" id="contributors"><img src="./assets/contributors.svg" style="filter:invert(1);" class="bottomHolderImage">Contributors</a>
                             </div>
                     </div>
@@ -142,33 +143,29 @@
    <table>
       <tr>
          <td>
-            <div>
                <label class="container"><input id="optScreenshotMode" tabindex="-1" class="checkbox" type="checkbox" value=""><span class="checkmark"></span>Screenshot Mode</label>
-            </div>
          </td>
          <td>
-            <div>
                <label class="container"><input id="optNoPointy" tabindex="-1" class="checkbox" type="checkbox" value=""><span class="checkmark"></span>Classic Traps</label>
-            </div>
          </td>
       </tr>
       <tr>
          <td>
-            <div>
                <label class="container"><input id="optFancy" tabindex="-1" class="checkbox" type="checkbox" value=""><span class="checkmark"></span>Low Graphics</label>
-            </div>
          </td>
          <td>
-            <div>
-               <label class="container"><input id="optPredictive" tabindex="-1" class="checkbox" type="checkbox" value=""><span class="checkmark"></span> Disable Hyperactivity</label>
-            </div>
+               <label class="container"><input id="optPredictive" tabindex="-1" class="checkbox" type="checkbox" value=""><span class="checkmark"></span>Disable Hyperactivity</label>
          </td>
       </tr>
       <tr>
-      </tr>
+        <td>
+               <label class="container"><input id="optOpenScreen" tabindex="-1" class="checkbox" type="checkbox" value=""><span class="checkmark"></span>Disable Opening Screen</label>
+        </td>   
+     </tr>
    </table>
 </div>
 </div>
 </div>
+  </div>
 </body>
 </html>

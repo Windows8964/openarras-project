@@ -92,92 +92,21 @@ exports.chooseChance = (...arg) => {
     }
 };
 
-
+const { uniqueNamesGenerator, adjectives, colors, animals, names } = require('unique-names-generator');
 exports.chooseBotName = () => {
-    return exports.choose([
-        'Alice',
-        'Bob',
-        'Carmen',
-        'David',
-        'Edith',
-        'Freddy',
-        'Gustav',
-        'Helga',
-        'Janet',
-        'Lorenzo',
-        'Mary',
-        'Nora',
-        'Olivia',
-        'Peter',
-        'Queen',
-        'Roger',
-        'Suzanne',
-        'Tommy',
-        'Ursula',
-        'Vincent',
-        'Wilhelm',
-        'Xerxes',
-        'Yvonne',
-        'Zachary',
-        'Alpha',
-        'Bravo',
-        'Charlie',
-        'Delta',
-        'Echo',
-        'Foxtrot',
-        'Hotel',
-        'India',
-        'Juliet',
-        'Kilo',
-        'Lima',
-        'Mike',
-        'November',
-        'Oscar',
-        'Papa',
-        'Quebec',
-        'Romeo',
-        'Sierra',
-        'Tango',
-        'Uniform',
-        'Victor',
-        'Whiskey',
-        'X-Ray',
-        'Yankee',
-        'Zulu',
-    ]);
+  return uniqueNamesGenerator({
+  dictionaries: [(Math.random()>=0.5?colors:adjectives), (Math.random()>=0.5?names:animals)],
+  length: 2,
+  style: 'capital',
+  separator: ' '
+});
 };
 
-exports.chooseBossName = (code, n) => {
-    switch (code) {
-    case 'a':
-    return exports.chooseN([
-        'Archimedes',
-        'Akilina',
-        'Anastasios',
-        'Athena',
-        'Alkaios',
-        'Amyntas',
-        'Aniketos',
-        'Artemis',
-        'Anaxagoras',
-        'Apollon',
-    ], n);
-    case 'castle':
-    return exports.chooseN([
-        'Berezhany',
-        'Lutsk',
-        'Dobromyl',
-        'Akkerman',
-        'Palanok',
-        'Zolochiv',
-        'Palanok',
-        'Mangup',
-        'Olseko',
-        'Brody',
-        'Isiaslav',
-        'Kaffa',
-        'Bilhorod',
-    ], n);
-    default: return 'God';
-    }
+
+exports.chooseBossName = () => {
+return uniqueNamesGenerator({
+  dictionaries: [names],
+  length: 1,
+  style: 'capital',
+});
 };

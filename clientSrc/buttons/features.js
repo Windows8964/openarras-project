@@ -30,7 +30,7 @@ let featuresArray = [
         name: "Discord Server",
         description: "A server where people can talk about this project and other related ones.",
         contributor: "63546466",
-        done: false,
+        done: true,
     },
     {
         name: "Change Logs",
@@ -44,7 +44,7 @@ let featuresArray = [
         description: 'Make all AIs work very very well.',
         contributor: "79679437",
         important: true,
-        done: false,
+        done: true,
     }
 ]
 
