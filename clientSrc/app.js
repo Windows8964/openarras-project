@@ -88,6 +88,9 @@ var util = (function (exports = {}) {
         document.getElementById("startMenuWrapper").style.opacity = 1;
         document.getElementById("startMenuWrapper").style.top = "50px";
         document.getElementById("startMenuWrapper").style.display = "block";
+        document.getElementById("menu").style.opacity = 1;
+        document.getElementById("menu").style.top = "50px";
+        document.getElementById("menu").style.display = "block";
     }
     exports.lerp = function (v0, v1, t) {
         return v0 * (1 - t) + v1 * t
@@ -672,6 +675,7 @@ function getEntityImageFromMockup(index, color = mockups[index].color) {
             o.offset = t.offset;
             o.direction = t.direction;
             o.facing = t.direction + t.angle;
+            o.isheli = mockup.isheli
             return o;
         }),
     };
@@ -1197,6 +1201,7 @@ window.onload = () => {
     util.retrieveFromLocalStorage('optColors');
     util.retrieveFromLocalStorage('optNoPointy');
     util.retrieveFromLocalStorage('optBorders');
+    util.retrieveFromLocalStorage('optOpenScreen');
     // Set default theme
     if (document.getElementById('optColors').value === '') {
         document.getElementById('optColors').value = 'normal';
@@ -1474,6 +1479,7 @@ var c2 = document.createElement('canvas');
 var ctx2 = c2.getContext('2d');
 ctx2.imageSmoothingEnabled = false;
 document.getElementById("startMenuWrapper").style.opacity = 0;
+document.getElementById("menu").style.opacity = 0;
 document.getElementById("gameAreaWrapper").style.opacity = 1;
 
 // Animation things
@@ -2935,6 +2941,7 @@ function startGame(hideMenu = false) {
     util.submitToLocalStorage('optPredictive');
     config.lag.unresponsive = document.getElementById('optPredictive').checked;
     util.submitToLocalStorage('optBorders');
+    util.submitToLocalStorage('optOpenScreen');
     switch (document.getElementById('optBorders').value) {
         case 'normal':
             config.graphical.darkBorders = config.graphical.neon = false;
@@ -2968,8 +2975,11 @@ function startGame(hideMenu = false) {
     if (hideMenu) {
         document.getElementById("startMenuWrapper").style.top = "-60px";
         document.getElementById("startMenuWrapper").style.opacity = 0;
+        document.getElementById("menu").style.top = "-60px";
+        document.getElementById("menu").style.opacity = 0;
         setTimeout(function () {
             document.getElementById("startMenuWrapper").style.display = "none";
+            document.getElementById("menu").style.display = "none";
         }, 1000)
         global.inGame = true;
         global.animations.menuFade = 0;
@@ -2993,7 +3003,7 @@ function startGame(hideMenu = false) {
 }
 
 // Background clearing
-function clearScreen(clearColor, alpha) {
+function clearScreen(clearColor, alpha, blur) {
     ctx.fillStyle = clearColor;
     ctx.globalAlpha = alpha;
     ctx.fillRect(0, 0, global.screenWidth, global.screenHeight);
@@ -4296,6 +4306,7 @@ function animloop() {
         switch (global.state) {
             case 2:
             case 0: {
+              if(!document.getElementById('optOpenScreen').checked){
                 clearScreen(color.guiblack);
                 global.animations.logo = util.lerp(global.animations.logo, 1, 0.1);
                 if (global.animations.enterToStartActivated) global.animations.enterToStart = util.lerp(global.animations.enterToStart, 1, 0.1);
@@ -4319,17 +4330,23 @@ function animloop() {
                     ctx.globalAlpha = global.animations.enterToStart
                     ctx.fillText("(Press enter to continue)", global.screenWidth / 2, global.screenHeight / 2 + (global.animations.logo * 120));
                     ctx.globalAlpha /= 2;
-                    ctx.fillText("(Press P to never show this screen again)", global.screenWidth / 2, global.screenHeight / 2 + 120 + 30);
+                    ctx.fillText("(Disable this in the graphics section of the options menu)", global.screenWidth / 2, global.screenHeight / 2 + 120 + 30);
                 };
                 ctx.globalAlpha = 1;
+            }else{
+                global.state = 1; // Switch to menu!
+                util.restoreMenu();
+                startGame(false);
+                //return;
+            }
             }
                 break
         };
     };
     if (global.state == 1) {
         global.animations.menuFadeBlack = util.lerp(global.animations.menuFadeBlack, global.animations.menuFade, 0.1)
-        clearScreen(color.guiblack, global.animations.menuFadeBlack * 0.25);
-        global.animations.menu = util.lerp(global.animations.menu, 0, 0.1);
+        clearScreen(color.guiblack, global.animations.menuFadeBlack * 0.25, 4);
+        global.animations.menu = util.lerp(global.animations.menu, 0, 0.1, 4);
         clearScreen(color.guiwhite, global.animations.menu);
     };
     // Draw the game

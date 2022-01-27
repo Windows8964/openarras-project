@@ -86,6 +86,7 @@ const g = { // Gun info here
         auto: /*pure*/  [1.8,   0.75,  0.5,    0.8,    0.9,    0.6,    1.2,    1.1,    1,      0.8,    1.3,    1,      1.25],
             five:       [1.15,  1,     1,      1,      1,      1,      1,      1.05,   1.05,   1.1,    2,      1,      1],   
             autosnipe:  [1,     1,     1,      1.4,    2,      1,      1,      1,      1,      1,      1,      1,      1],   
+    heli:               [0.5,   1,     1,      1,      0.5,    1,      1.25,   1,      1,      1,      1,      2,      1],
     /***************** RELOAD RECOIL SHUDDER  SIZE   HEALTH  DAMAGE   PEN    SPEED    MAX    RANGE  DENSITY  SPRAY   RESIST  */ 
     pound:              [2,     1.6,   1,      1,      1,      2,      1,      0.85,   0.8,    1,      1.5,    1,      1.15], 
         destroy:        [2.2,   1.8,   0.5,    1,      2,      2,      1.2,    0.65,   0.5,    1,      2,      1,      3],
@@ -821,7 +822,42 @@ exports.genericTank = {
     DRAW_HEALTH: true,
 };
 let gun = { };
-
+exports.minion = {
+    PARENT: [exports.genericTank],
+    LABEL: 'Minion', 
+    TYPE: 'minion',
+    DAMAGE_CLASS: 0,
+    HITS_OWN_TYPE: 'hardWithBuffer',
+    FACING_TYPE: 'smoothToTarget',
+    BODY: {
+        FOV: 0.5,
+        SPEED: 3,
+        ACCELERATION: 0.4,
+        HEALTH: 5,
+        SHIELD: 0,
+        DAMAGE: 1.2,
+        RESIST: 1,
+        PENETRATION: 1,
+        DENSITY: 0.4,
+    },
+    AI: {
+        BLIND: true,
+    },
+    DRAW_HEALTH: false,
+    CLEAR_ON_MASTER_UPGRADE: true,
+    GIVE_KILL_MESSAGE: false,
+    CONTROLLERS: [
+        'nearestDifferentMaster', 'mapAltToFire', 'minion', 'canRepel', 'hangOutNearMaster'],
+    //CONTROLLERS: ['nearestDifferentMaster'],
+    GUNS: [ { /*** LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
+        POSITION: [  17,     9,      1,      0,      0,      0,      0,   ], 
+        PROPERTIES: {
+            SHOOT_SETTINGS: combineStats([g.basic, g.minion]),
+            WAIT_TO_CYCLE: true,
+            TYPE: exports.bullet,
+        }, }, 
+    ],
+};
 exports.autoTurret = {
     PARENT: [exports.genericTank],
     LABEL: 'Turret',
@@ -1057,6 +1093,314 @@ exports.tritrapgun = {
             }, },
     ],
 };
+exports.heliblade = {
+LABEL: '',
+CONTROLLERS: ['fastspin'],
+MAX_CHILDREN: 0,
+SHAPE: 0,
+COLOR: 16,
+    GUNS: [ { /*** LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
+        POSITION: [  50,     8,      1,      0,      0,      0,      0,], PROPERTIES: {},},{
+        POSITION: [  50,     8,      1,      0,      0,      90,      0,], PROPERTIES: {},},{
+        POSITION: [  50,     8,      1,      0,      0,      180,      0,], PROPERTIES: {},},{
+        POSITION: [  50,     8,      1,      0,      0,      270,      0,], PROPERTIES: {},
+    }, 
+    ],
+}
+exports.heliblade2 = {
+LABEL: '',
+CONTROLLERS: ['reversespin'],
+MAX_CHILDREN: 0,
+SHAPE: 0,
+COLOR: 16,
+    GUNS: [ { /*** LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
+        POSITION: [  50,     8,      1,      0,      0,      45,      0,], PROPERTIES: {},},{
+        POSITION: [  50,     8,      1,      0,      0,      135,      0,], PROPERTIES: {},},{
+        POSITION: [  50,     8,      1,      0,      0,      225,      0,], PROPERTIES: {},},{
+        POSITION: [  50,     8,      1,      0,      0,      315,      0,], PROPERTIES: {},
+    }, 
+    ],
+}
+exports.heli = {
+  PARENT: [exports.genericTank],
+  LABEL: 'Heli',
+  HOVER: true,
+  BODY:{
+  FOV: base.FOV*1.25
+  },
+  GUNS: [ { /*** LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
+  POSITION: [  30,     2,      1,      0,      -8.5,      192.5,      0,   ], PROPERTIES: {MAX_CHILDREN: 0,},},{
+  POSITION: [  30,     2,      1,      0,      8.5,      167.5,      0,   ], PROPERTIES: {MAX_CHILDREN: 0,},}, 
+  ],
+  TURRETS: [{ /** SIZE     X       Y     ANGLE    ARC */
+    POSITION: [ 8,    0,      0,      0,     360,  1], 
+    TYPE: exports.heliblade,
+  },{ /** SIZE     X       Y     ANGLE    ARC */
+  POSITION: [ 4,    -31,      0,      0,     360,  1], 
+  TYPE: exports.heliblade,
+  }],
+};  
+exports.doubleheli = {
+  PARENT: [exports.genericTank],
+  LABEL: 'Double-Heli',
+  HOVER: true,
+  BODY:{
+  FOV: base.FOV*1.35,
+  SPEED: base.SPEED*1.25
+  },
+  GUNS: [ { /*** LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
+  POSITION: [  30,     2,      1,      0,      -8.5,      192.5,      0,   ], PROPERTIES: {MAX_CHILDREN: 0,},},{
+  POSITION: [  30,     2,      1,      0,      8.5,      167.5,      0,   ], PROPERTIES: {MAX_CHILDREN: 0,},}, 
+  ],
+  TURRETS: [{ /** SIZE     X       Y     ANGLE    ARC */
+    POSITION: [ 8,    0,      0,      0,     360,  1], 
+    TYPE: exports.heliblade,
+  },{ /** SIZE     X       Y     ANGLE    ARC */
+  POSITION: [ 4,    -31,      0,      0,     360,  1], 
+  TYPE: exports.heliblade,
+  },{ /** SIZE     X       Y     ANGLE    ARC */
+    POSITION: [ 8,    0,      0,      0,     360,  1], 
+    TYPE: exports.heliblade2,
+    },{ /** SIZE     X       Y     ANGLE    ARC */
+    POSITION: [ 4,    -31,      0,      0,     360,  1], 
+    TYPE: exports.heliblade2,
+    }],
+}
+exports.bigheli = {
+  PARENT: [exports.genericTank],
+  LABEL: 'Big-Heli',
+  HOVER: true,
+  BODY:{
+  FOV: base.FOV*1.35
+  },
+  GUNS: [ { /*** LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
+  POSITION: [  30,     2,      1,      0,      -8.5,      192.5,      0,   ], PROPERTIES: {MAX_CHILDREN: 0,},},{
+  POSITION: [  30,     2,      1,      0,      8.5,      167.5,      0,   ], PROPERTIES: {MAX_CHILDREN: 0,},},{
+  POSITION: [  28,     3.5,      1,      0,      0,       90,      0,   ], PROPERTIES: {MAX_CHILDREN: 0,},},{
+  POSITION: [  28,     3.5,      1,      0,      0,      -90,      0,   ], PROPERTIES: {MAX_CHILDREN: 0,},}, 
+  ],
+  TURRETS: [{ /** SIZE     X       Y     ANGLE    ARC */
+    POSITION: [ 8,    0,      0,      0,     360,  1], 
+    TYPE: exports.heliblade,
+  },{ /** SIZE     X       Y     ANGLE    ARC */
+  POSITION: [ 4,    -31,      0,      0,     360,  1], 
+  TYPE: exports.heliblade,
+  },{ /** SIZE     X       Y     ANGLE    ARC */
+  POSITION: [ 5.25,    0,      28,      0,     360,  1], 
+  TYPE: exports.heliblade,
+  },{ /** SIZE     X       Y     ANGLE    ARC */
+  POSITION: [ 5.25,    0,      -28,      0,     360,  1], 
+  TYPE: exports.heliblade,
+  }],
+};  
+exports.heliminion = {
+  PARENT: [exports.heli],
+  LABEL: 'Heli-Squad Member',
+  TYPE: 'minion',
+  CONTROLLERS: ['nearestDifferentMaster','hangOutNearMaster'],
+    HITS_OWN_TYPE: 'hardWithBuffer',
+    FACING_TYPE: 'smoothToTarget',
+    BODY: {
+        FOV: 1,
+        SPEED: 4.5,
+        ACCELERATION: 0.4,
+        HEALTH: 3.25,
+        SHIELD: 2.25,
+        DAMAGE: 1.2,
+        RESIST: 1,
+        PENETRATION: 1,
+        DENSITY: 0.4,
+    },
+    AI: {
+        BLIND: true,
+    },
+    DRAW_HEALTH: false,
+    CLEAR_ON_MASTER_UPGRADE: true,
+    GIVE_KILL_MESSAGE: false,
+  GUNS:  [...exports.heli.GUNS, { /* LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
+            POSITION: [  16,     4,      1,      0,    0,     0,     0,  ], 
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.heli, g.slow]),
+                TYPE: exports.bullet,
+            }, },],
+}
+exports.helifactoryminion = {
+  PARENT: [exports.heliminion],
+  GUNS:  [...exports.bigheli.GUNS,{ /* LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
+            POSITION: [  12.5,     15,      1,      0,    0,     0,     0,  ], 
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.heli, g.slow]),
+                MAX_CHILDREN: 1,
+                TYPE: exports.heliminion,
+            }, }, { /* LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
+            POSITION: [  16,     4,      1,      0,    0,     0,     0,  ], 
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.heli, g.slow]),
+                TYPE: exports.bullet,
+            }, },],
+  TURRETS: [...exports.bigheli.TURRETS]
+}
+exports.helibasic = {
+  PARENT: [exports.heli],
+  LABEL: 'Heli-Basic',
+  GUNS:  [...exports.heli.GUNS, { /* LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
+            POSITION: [  16,     4,      1,      0,    0,     0,     0,  ], 
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.heli]),
+                TYPE: exports.bullet,
+            }, },]
+}
+exports.helisquad = {
+  PARENT: [exports.bigheli],
+  LABEL: 'Heli-Squad',
+  GUNS:  [...exports.bigheli.GUNS, { /* LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
+            POSITION: [  20,     6,      1,      0,    0,     0,     0,  ], 
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.bitlessspeed, g.heli]),
+                TYPE: exports.bullet,
+            }, },{ /* LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
+            POSITION: [  15,     15,      1,      0,    0,     0,     0,  ], 
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic]),
+                MAX_CHILDREN: 2,
+                TYPE: exports.heliminion,
+            }, },]
+}
+exports.heliproducer = {
+  PARENT: [exports.bigheli],
+  LABEL: 'Heli-Producer',
+  GUNS:  [...exports.bigheli.GUNS,{ /* LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
+            POSITION: [  1,     15,      1,      0,    0,     0,     0,  ], 
+            PROPERTIES: {
+                AUTOFIRE: true,
+                SHOOT_SETTINGS: combineStats([g.basic, g.halfreload, g.halfreload, g.bitlessspeed]),
+                MAX_CHILDREN: 4,
+                TYPE: exports.heliminion,
+            }, },]
+}
+exports.helimaster = {
+  PARENT: [exports.bigheli],
+  LABEL: 'Heli-Master',
+  GUNS:  [...exports.bigheli.GUNS,{ /* LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
+            POSITION: [  18,     15,      1,      0,    0,     0,     0,  ], 
+            PROPERTIES: {
+                AUTOFIRE: true,
+                SHOOT_SETTINGS: combineStats([g.basic, g.halfreload, g.halfreload, g.bitlessspeed]),
+                MAX_CHILDREN: 2,
+                TYPE: exports.helifactoryminion,
+            }, },]
+}
+exports.helicruiser = {
+  PARENT: [exports.heli],
+  LABEL: 'Heli-Cruiser',
+  BODY:{
+    SPEED: base.SPEED*1.25,
+  },
+  GUNS:  [...exports.heli.GUNS, { /* LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
+            POSITION: [  16,     4,      1,      0,    7,     0,     0,  ], 
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.heli]),
+                TYPE: exports.bullet,
+            }, },{ /* LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
+            POSITION: [  16,     4,      1,      0,    -7,     0,     0,  ], 
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.heli]),
+                TYPE: exports.bullet,
+            }, }]
+}
+exports.heliracer = {
+  PARENT: [exports.doubleheli],
+  LABEL: 'Heli-Racer',
+  BODY:{
+    FOV: base.FOV*1.515,
+    SPEED: base.SPEED*1.75,
+  },
+  GUNS:  [...exports.heli.GUNS, { /* LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
+            POSITION: [  16,     4,      1,      0,    7,     0,     0,  ], 
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.heli, g.morereload]),
+                TYPE: exports.bullet,
+            }, },{ /* LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
+            POSITION: [  16,     4,      1,      0,    -7,     0,     0,  ], 
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.heli, g.morereload]),
+                TYPE: exports.bullet,
+            }, }],
+}
+exports.triheli = {
+  PARENT: [exports.heli],
+  LABEL: 'Tri-Heli',
+  BODY:{
+    SPEED: base.SPEED*1.525,
+  },
+  GUNS:  [...exports.heli.GUNS, { /* LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
+            POSITION: [  16,     4,      1,      0,    7,     0,     0,  ], 
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.heli]),
+                TYPE: exports.bullet,
+            }, },{ /* LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
+            POSITION: [  16,     4,      1,      0,    -7,     0,     0,  ], 
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.heli]),
+                TYPE: exports.bullet,
+            }, },{ /* LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
+            POSITION: [  19,     6,      1,      0,    0,     0,     0.5,  ], 
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.heli]),
+                TYPE: exports.bullet,
+            }, }]
+}
+exports.heliflank = {
+  PARENT: [exports.heli],
+  LABEL: 'Heli-Flank',
+  GUNS:  [{
+            POSITION: [   20,     8,     1,    0,      0,     180,    0.5,  ], 
+            PROPERTIES: {
+            SHOOT_SETTINGS: combineStats([g.trap, g.morerecoil]),
+            TYPE: exports.trap, STAT_CALCULATOR: gunCalcNames.trap,
+            }, },...exports.heli.GUNS, { /* LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
+            POSITION: [  16,     4,      1,      0,    0,     0,     0,  ], 
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.heli]),
+                TYPE: exports.bullet,
+            }, },]
+}
+exports.helitrapper = {
+  PARENT: [exports.heli],
+  LABEL: 'Heli-Trapper',
+  GUNS:  [{POSITION: [   20,     8,     1,    0,      0,     180,    0.99,  ], 
+            PROPERTIES: {
+            SHOOT_SETTINGS: combineStats([g.trap, g.morerecoil, g.slow, g.slow, g.halfreload]),
+            TYPE: exports.trap, STAT_CALCULATOR: gunCalcNames.trap,
+            }, },{POSITION: [   18,     8,     1,    0,      0,     180,    0.66,  ], 
+            PROPERTIES: {
+            SHOOT_SETTINGS: combineStats([g.trap, g.morerecoil, g.slow, g.slow, g.halfreload]),
+            TYPE: exports.trap, STAT_CALCULATOR: gunCalcNames.trap,
+            }, },{POSITION: [   16,     8,     1,    0,      0,     180,    0.33,  ], 
+            PROPERTIES: {
+            SHOOT_SETTINGS: combineStats([g.trap, g.morerecoil, g.slow, g.slow, g.halfreload]),
+            TYPE: exports.trap, STAT_CALCULATOR: gunCalcNames.trap,
+            }, },...exports.heli.GUNS, { /* LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
+            POSITION: [  16,     4,      1,      0,    0,     0,     0,  ], 
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.heli]),
+                TYPE: exports.bullet,
+            }, },]
+}
+exports.autoheli = {
+  PARENT: [exports.heli],
+  LABEL: 'Auto-Heli',
+  TURRETS: [...exports.heli.TURRETS, { /** SIZE     X       Y     ANGLE    ARC */
+    POSITION: [ 10,    0,      0,      0,     360,  1], 
+    TYPE: exports.auto3gun,
+  },{ /** SIZE     X       Y     ANGLE    ARC */
+  POSITION: [ 6,    -31,      0,      0,     360,  1], 
+  TYPE: exports.auto3gun,
+  },{ /** SIZE     X       Y     ANGLE    ARC */
+  POSITION: [ 12,    7,      0,      0,     90,  0], 
+  TYPE: exports.auto3gun,
+  }],
+}
 exports.smasherBody = {
     LABEL: '',
     CONTROLLERS: ['spin'], 
@@ -1212,43 +1556,6 @@ exports.dominationBody = {
                 POSITION: [  4.5,   8.5,   -1.5,     7,      0,     315,     0,   ], }, 
             ],
         };
-
-exports.minion = {
-    PARENT: [exports.genericTank],
-    LABEL: 'Minion', 
-    TYPE: 'minion',
-    DAMAGE_CLASS: 0,
-    HITS_OWN_TYPE: 'hardWithBuffer',
-    FACING_TYPE: 'smoothToTarget',
-    BODY: {
-        FOV: 0.5,
-        SPEED: 3,
-        ACCELERATION: 0.4,
-        HEALTH: 5,
-        SHIELD: 0,
-        DAMAGE: 1.2,
-        RESIST: 1,
-        PENETRATION: 1,
-        DENSITY: 0.4,
-    },
-    AI: {
-        BLIND: true,
-    },
-    DRAW_HEALTH: false,
-    CLEAR_ON_MASTER_UPGRADE: true,
-    GIVE_KILL_MESSAGE: false,
-    CONTROLLERS: [
-        'nearestDifferentMaster', 'mapAltToFire', 'minion', 'canRepel', 'hangOutNearMaster'],
-    //CONTROLLERS: ['nearestDifferentMaster'],
-    GUNS: [ { /*** LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
-        POSITION: [  17,     9,      1,      0,      0,      0,      0,   ], 
-        PROPERTIES: {
-            SHOOT_SETTINGS: combineStats([g.basic, g.minion]),
-            WAIT_TO_CYCLE: true,
-            TYPE: exports.bullet,
-        }, }, 
-    ],
-};
 exports.pillboxTurret = {
     PARENT: [exports.genericTank],
     LABEL: '',
@@ -3882,11 +4189,15 @@ exports.testbed.UPGRADES_TIER_1 = [
     exports.hybridmini
 ];
 
-exports.basic.UPGRADES_TIER_1 = [exports.twin, exports.sniper, exports.machine, exports.flank, exports.director];
+exports.basic.UPGRADES_TIER_1 = [exports.twin, exports.sniper, exports.machine, exports.flank, exports.director, exports.helibasic];
         exports.basic.UPGRADES_TIER_3 = [exports.single];
-
     exports.basic.UPGRADES_TIER_2 = [exports.smash];
         exports.smash.UPGRADES_TIER_3 = [exports.megasmash, exports.spike, exports.autosmash];
+    
+    exports.helibasic.UPGRADES_TIER_2 = [exports.helisquad, exports.helicruiser, exports.heliflank]
+        exports.helisquad.UPGRADES_TIER_3 = [exports.heliproducer, exports.helimaster]
+        exports.helicruiser.UPGRADES_TIER_3 = [exports.heliracer, exports.triheli]
+        exports.heliflank.UPGRADES_TIER_3 = [exports.helitrapper, exports.autoheli]
 
     exports.twin.UPGRADES_TIER_2 = [exports.double, exports.bent, exports.gunner, exports.hexa];
         exports.twin.UPGRADES_TIER_3 = [exports.triple];
@@ -3953,6 +4264,7 @@ exports.crasher = {
     COLOR: 5,
     SHAPE: 3,
     SIZE: 5,
+    DANGER: 2,
     VARIES_IN_SIZE: true,
     CONTROLLERS: ['nearestDifferentMaster', 'mapTargetToGoal'],
     AI: { NO_LEAD: true, },
@@ -4264,9 +4576,8 @@ exports.bot = {
     },
     //COLOR: 17,
     NAME: "ai_",
-    CONTROLLERS: [
-        'nearestDifferentMaster', 'mapAltToFire', 'minion', 'fleeAtLowHealth'
-    ],
+    LABEL: 'BOT',
+    CONTROLLERS: ['nearestDifferentMaster', 'mapAltToFire', 'minion', 'fleeAtLowHealth', 'Wanderlust'],
     AI: { STRAFE: true, },
 };
 

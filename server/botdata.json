@@ -1,0 +1,97 @@
+{
+	"0": {
+		"score": 44356,
+		"kills": 1,
+		"skillset": [
+			6,
+			3,
+			2,
+			6,
+			4,
+			4,
+			5,
+			3,
+			4,
+			3
+		],
+		"index": 77,
+		"skill": 44356,
+		"tank": "Single"
+	},
+	"1": {
+		"score": 87611,
+		"kills": 1,
+		"skillset": [
+			2,
+			3,
+			3,
+			5,
+			3,
+			8,
+			0,
+			8,
+			6,
+			4
+		],
+		"index": 106,
+		"skill": 87611,
+		"tank": "Poacher"
+	},
+	"2": {
+		"score": 71986,
+		"kills": 1,
+		"skillset": [
+			8,
+			2,
+			2,
+			6,
+			6,
+			1,
+			5,
+			4,
+			2,
+			6
+		],
+		"index": 170,
+		"skill": 71986,
+		"tank": "Snipe Guard"
+	},
+	"3": {
+		"score": 71986,
+		"kills": 1,
+		"skillset": [
+			6,
+			6,
+			7,
+			4,
+			2,
+			3,
+			4,
+			5,
+			1,
+			4
+		],
+		"index": 77,
+		"skill": 71986,
+		"tank": "Single"
+	},
+	"num": 4,
+	"resettrigger": 185,
+	"averagetank": {
+		"score": 68984.75,
+		"kills": 1,
+		"skill": 68984.75,
+		"skillset": [
+			6,
+			4,
+			4,
+			5,
+			4,
+			4,
+			4,
+			5,
+			3,
+			4
+		]
+	}
+}

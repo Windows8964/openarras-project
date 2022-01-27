@@ -1,5 +1,16 @@
 let changelogArray = [
     {
+        name: ['rgb(255,15,132)', "Haha spiny things"],
+        contributor: "79679437",
+        description:[
+        ['purple', '- Added helicopter branch.'],
+        ['black', '- Once again made the menu look nicer.'],
+        ['black', '- Food will no longer spawn in lines.'],
+        ['black', '- More food spawns.'],
+        ['violet', '- Bots are now a thing and use an actaul ai system.']
+        ]
+    },
+    {
         name: ['rgb(109,107,107)', "Im becoming a literal god."],
         contributor: "79679437",
         description:[
