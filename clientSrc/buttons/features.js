@@ -1,18 +1,18 @@
 // For the contributor spot spell the github users name exactally right or put their github id there
 let featuresArray = [
     {
-        name: "Improve menu loading",
-        description: "As the menus get longer and more complex they might take longer to load/open. This feature aims to fix that.",
+        name: "Server Life Support",
+        description: "In an attempt to create a smoother experience if the server starts to get laggy this will reduce the amount of food on the map and the maxium amount of food thats able to spawn.",
         contributor: "79679437",
         important: true,
-        done: false,
+        done: true,
     },
     {
         name: "New interpolation implementation",
         description: "Creates a smoother gameplay expierence by predicting where and when things will happen.",
         contributor: "63546466",
         important: true,
-        done: true,
+        done: false,
     },
     {
         name: "Features page",
@@ -30,7 +30,7 @@ let featuresArray = [
         name: "Discord Server",
         description: "A server where people can talk about this project and other related ones.",
         contributor: "63546466",
-        done: false,
+        done: true,
     },
     {
         name: "Change Logs",
@@ -44,7 +44,7 @@ let featuresArray = [
         description: 'Make all AIs work very very well.',
         contributor: "79679437",
         important: true,
-        done: false,
+        done: true,
     }
 ]
 
@@ -104,12 +104,12 @@ features.onclick = function () {
     for (let i = 0; i < featuresArray.length; i++) {
         let feature = featuresArray[i];
         function createLine(h1 = document.createElement("h1"), h2 = document.createElement("h2")) {
-            h1.style = `font-weight:400;text-align:left;font-size:15px;margin-left:10px;margin-top: 3px;margin-bottom:0px;${feature.done ? "color:rgb(31,172,31);" : "color:rgb(255,0,0);"}`;
-            h2.style = `font-weight:200;text-align:left;font-size:12.5px;margin-left:20px;margin-top: 3px;margin-bottom:0px;${feature.done ? "color:rgba(31,172,31,0.65);" : "color:rgba(255,0,0,0.65);"}`;
+            h1.style = `font-weight:400;text-align:left;font-size:15px;margin-left:10px;margin-top: 3px;margin-bottom:0px;${feature.done ? "color:#1E9A1E;" : "color:#FF0000;"}`;
+            h2.style = `font-weight:200;text-align:left;font-size:12.5px;margin-left:20px;margin-top: 3px;margin-bottom:0px;${feature.done ? "color:#1E9A1ED8;" : "color:#FF0000D8;"}`;
             h1.innerHTML = (feature.done ? "🗸  " : "✗  ") + feature.name + " - " + feature.contributor;
             h2.innerHTML = feature.description;
-            if (feature.important && feature.done) h1.style.color = "#B3AF7C", h1.style.textShadow = "0px 0px 5px rgba(255, 229, 0, 1)";
-            if (feature.important && !feature.done) h1.style.color = "#FF3B00", h1.style.textShadow = "0px 0px 5px rgb(255,0,0)";
+            if (feature.important && feature.done) h1.style.color = "#1FAC1F", h1.style.textShadow = "0px 0px 5px #1FAC1FA5", h2.style.textShadow = "0px 0px 5px #1E9A1EA5";
+            if (feature.important && !feature.done) h1.style.color = "#FF3B00", h1.style.textShadow = "0px 0px 5px rgba(255,0,0,0.65)", h2.style.textShadow = "0px 0px 5px #FF0000A5";
             body.appendChild(h1)
             body.appendChild(h2)
             body.appendChild(document.createElement("br"))

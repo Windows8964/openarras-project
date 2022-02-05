@@ -17,7 +17,9 @@
   "MODE": "ffa",
   "RANDOM_COLORS": false,
   "BANNED_CHARACTER_REGEX": "/[\uFDFD\u200E\u0000]/gi", 
-  "COMPILED_CLIENT": true,
+  "COMPILED_CLIENT": false,
+  "SERVER_LIFESUPPORT": true,
+  "LIFESUPPORT_SENSITIVITY": 0,
   "GITHUBPATH": "Windows8964/openarras-project",
   "ROOM_SETUP": [
     [ "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm" ],
@@ -26,15 +28,15 @@
     
     [ "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm" ],
     
-    [ "norm", "norm", "norm", "norm", "nest", "nest", "nest", "norm", "norm", "norm", "norm" ],
+    [ "norm", "norm", "norm", "roid", "nest", "nest", "roid", "norm", "norm", "norm", "norm" ],
     
-    [ "norm", "norm", "norm", "nest", "nest", "nest", "nest", "nest", "norm", "norm", "norm" ],
+    [ "norm", "norm", "norm", "nest", "nest", "nest", "nest", "norm", "norm", "norm", "norm" ],
     
-    [ "norm", "norm", "norm", "nest", "nest", "nest", "nest", "nest", "norm", "norm", "norm" ],
+    [ "norm", "norm", "norm", "nest", "nest", "nest", "nest", "norm", "norm", "norm", "norm" ],
     
-    [ "norm", "norm", "norm", "nest", "nest", "nest", "nest", "nest", "norm", "norm", "norm" ],
+    [ "norm", "norm", "norm", "nest", "nest", "nest", "nest", "norm", "norm", "norm", "norm" ],
     
-    [ "norm", "norm", "norm", "norm", "nest", "nest", "nest", "norm", "norm", "norm", "norm" ],
+    [ "norm", "norm", "norm", "roid", "nest", "nest", "roid", "norm", "norm", "norm", "norm" ],
     
     [ "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm" ],
     
@@ -43,6 +45,7 @@
     [ "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm" ]
     
   ],
+  "RANDOM_ROIDS": true,
   "DAMAGE_CONSTANT": 14,
   "KNOCKBACK_CONSTANT": 1.5,
   "ROOM_BOUND_FORCE": 0.01,
@@ -50,19 +53,27 @@
   "MAX_FOOD": 200,
   "MAX_FOOD_CLUSTER": 5,
   "FOOD_CLUSTER_ADDITIVE": 5,
-
+  
+  "MAX_BOSSES": 3,
+  
   "MAX_SKILL": 9,
   "SOFT_MAX_SKILL": 0.59,
   "TIER_1": 10,
   "TIER_2": 25,
   "TIER_3": 45,
-  "SKILL_CAP": 60,
+  "SKILL_CAP": 45,
   "SKILL_SOFT_CAP": 0,
   "SKILL_CHEAT_CAP": 45,
   "SKILL_LEAK": 0,
+  "SKILL_PER_LV": 1.05,
   "STEALTH": 4,
   "MIN_SPEED": 0.001,
   "SKILL_BOOST": 5,
-  "BOTS": 0,
-  "GLASS_HEALTH_FACTOR": 2
+  "BOTS": 10,
+  "GLASS_HEALTH_FACTOR": 1,
+
+  "TOKENS": ["tbed"],
+  "RANDOMIZETOKENS": false, "if this is true look in console during start up to view the token(s)":0,
+  
+  "CHAT_CMD_PREFIX": "/"
 }
