@@ -11,6 +11,9 @@ let controlArray = [
       key: "Right Click/Shift",
       description: "secondary fire"
     },
+    { key: 'Enter',
+      description: "chat"
+    },
     {
       key: "E",
       description: "auto-fire"

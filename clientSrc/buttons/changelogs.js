@@ -1,5 +1,35 @@
 let changelogArray = [
     {
+        name: ['orange', 'I. AM. SPEED.'],
+        contributor: "79679437",
+        description:[
+          ['red', '- Added a new boss named the "Tempest", it a boss that harnesses the wind to surround your tank in high damaging drones.'],
+          ['blue', '- Heavily nerfed bosses.'],
+          ['black', '- Bosses now spawn faster,'],
+          ['black', '- Bosses have a 3 boss limit before they will stop spawning.'],
+          ['black', '- Fixed a bug with boss names.'],
+          ['purple', ' - Added a chat feature with some commands.'],
+          ['orange', '- Added some very much needed optimizations.'],
+          ['indigo', '- Bots now have somewhat of a bias and will choose bullet stats over body stats.. the bots are starting to get better than me at the game.'],
+          ['violet', '- Added "server Lifesupport" <s>thats actaully what its called in the code</s> this feature will reduce the amount of food if things get laggy.'],
+          ['black', '- Tried to balance helicopters.'],
+          ['black', '- Crashers and Sentries now spawn with food and are counted as a part of food.'],
+          ['black', '- Changed the Graphics section in the additional menu to a Settings section.'],
+          ['rgb(105,104,104)', '- Added a new way to tell the server speed called OSTSIFMP, youll never guess what it stands for :).'],
+        ]
+    },
+    {
+        name: ['rgb(255,15,132)', "Haha spiny things"],
+        contributor: "79679437",
+        description:[
+        ['purple', '- Added helicopter branch.'],
+        ['black', '- Once again made the menu look nicer.'],
+        ['black', '- Food will no longer spawn in lines.'],
+        ['black', '- More food spawns.'],
+        ['violet', '- Bots are now a thing and use an actaul ai system.']
+        ]
+    },
+    {
         name: ['rgb(109,107,107)', "Im becoming a literal god."],
         contributor: "79679437",
         description:[

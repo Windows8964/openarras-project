@@ -16,6 +16,14 @@ const util = require('./lib/util');
 const ran = require('./lib/random');
 const hshg = require('./lib/hshg');
 
+//Randomize the tokens
+if (c.RANDOMIZETOKENS === true) {
+  for (let i = 0; i < c.TOKENS.length; i++) {
+    c.TOKENS[i] = (Math.random().toString(16).substr(2));
+    util.log(`[TOKENS] Token number ${i} is ${c.TOKENS[i]}`);
+  }
+}
+
 // Let's get a cheaper array removal thing
 Array.prototype.remove = index => {
     if(index === this.length - 1){
@@ -53,16 +61,16 @@ const room = {
     room.findType = type => {
         let output = [];
         let j = 0;
-        room.setup.forEach(row => { 
+        for(let row of room.setup){
             let i = 0;
-            row.forEach(cell => {
+            for(let cell of row){
                 if (cell === type) { 
                     output.push({ x: (i + 0.5) * room.width / room.xgrid, y: (j + 0.5) * room.height / room.ygrid, });
                 }
                 i++;
-            });
+            };
             j++;
-        });
+        };
         room[type] = output;
     };
     room.findType('nest');
@@ -182,7 +190,17 @@ var Class = (() => {
     }
     return def;
 })();
-
+//Thank you 3love <3
+function classFromIndex(objIndex) {
+  let def = require('./lib/definitions'),
+      i = 0;
+  for (let k in def) {
+      if (!def.hasOwnProperty(k)) continue;
+      def[k].index = i++;
+      if (def[k].index == (objIndex ? objIndex : new Error('No entity provided'))) return def[k];
+  }
+return undefined;
+}
 // Define IOs (AI)
 function nearest(array, location, test = () => { return true; }) {
     let list = new goog.structs.PriorityQueue();
@@ -190,12 +208,12 @@ function nearest(array, location, test = () => { return true; }) {
     if (!array.length) {
         return undefined;
     }
-    array.forEach(function(instance) {
+    for(let instance of array) {
         d = Math.pow(instance.x - location.x, 2) + Math.pow(instance.y - location.y, 2);
         if (test(instance, d)) {
             list.enqueue(d, instance);
         }
-    });
+    };
     return list.dequeue();
 }
 function timeOfImpact(p, v, s) { 
@@ -213,6 +231,7 @@ function timeOfImpact(p, v, s) {
 
     return t*0.9;
 }
+const ioTypes = {};
 class IO {
     constructor(body) {
         this.body = body;
@@ -230,7 +249,7 @@ class IO {
         };
     }
 }
-class io_doNothing extends IO {
+ioTypes.doNothing = class extends IO {
     constructor(body) {
         super(body);
         this.acceptsFromTop = false;
@@ -248,11 +267,11 @@ class io_doNothing extends IO {
         };
     }
 }
-class io_moveInCircles extends IO {
+ioTypes.moveInCircles = class extends IO {
     constructor(body) {
         super(body);
         this.acceptsFromTop = false;
-        this.timer = ran.irandom(10) + 3;
+        this.timer = 30;
         this.goal = {
             x: this.body.x + 10*Math.cos(-this.body.facing),
             y: this.body.y + 10*Math.sin(-this.body.facing),
@@ -261,7 +280,7 @@ class io_moveInCircles extends IO {
 
     think() {
         if (!(this.timer--)) {
-            this.timer = 10;
+            this.timer = 30;
             this.goal = {
                 x: this.body.x + 10*Math.cos(-this.body.facing),
                 y: this.body.y + 10*Math.sin(-this.body.facing),
@@ -270,7 +289,7 @@ class io_moveInCircles extends IO {
         return { goal: this.goal };
     }
 }
-class io_listenToPlayer extends IO {
+ioTypes.listenToPlayer = class extends IO {
     constructor(b, p) {
         super(b);
         this.player = p;
@@ -309,7 +328,7 @@ class io_listenToPlayer extends IO {
         };
     }
 }
-class io_mapTargetToGoal extends IO {
+ioTypes.mapTargetToGoal = class extends IO {
     constructor(b) {
         super(b);
     }
@@ -326,7 +345,7 @@ class io_mapTargetToGoal extends IO {
         }
     }
 }
-class io_boomerang extends IO {
+ioTypes.boomerang = class extends IO {
     constructor(b) {
         super(b);
         this.r = 0;
@@ -359,7 +378,7 @@ class io_boomerang extends IO {
         }
     }
 }
-class io_goToMasterTarget extends IO {
+ioTypes.goToMasterTarget = class extends IO {
     constructor(body) {
         super(body);
         this.myGoal = {
@@ -381,7 +400,7 @@ class io_goToMasterTarget extends IO {
         }
     }
 }
-class io_canRepel extends IO {
+ioTypes.canRepel = class extends IO {
     constructor(b) {
         super(b);
     }
@@ -398,7 +417,7 @@ class io_canRepel extends IO {
         }
     }
 }
-class io_alwaysFire extends IO {
+ioTypes.alwaysFire = class extends IO {
     constructor(body) {
         super(body);
     }
@@ -409,7 +428,7 @@ class io_alwaysFire extends IO {
         };
     }
 }
-class io_targetSelf extends IO {
+ioTypes.targetSelf = class extends IO {
     constructor(body) {
         super(body);
     }
@@ -421,7 +440,7 @@ class io_targetSelf extends IO {
         };
     }
 }
-class io_mapAltToFire extends IO {
+ioTypes.mapAltToFire = class extends IO {
     constructor(body) {
         super(body);
     }
@@ -434,7 +453,7 @@ class io_mapAltToFire extends IO {
         }
     }
 }
-class io_onlyAcceptInArc extends IO {
+ioTypes.onlyAcceptInArc = class extends IO {
     constructor(body) {
         super(body);
     }
@@ -451,136 +470,246 @@ class io_onlyAcceptInArc extends IO {
         }
     }
 }
-class io_nearestDifferentMaster extends IO {
-    constructor(body) {
-        super(body);
-        this.targetLock = undefined;
-        this.tick = ran.irandom(30);
-        this.lead = 0;
-        this.validTargets = this.buildList(body.fov / 2);
-        this.oldHealth = body.health.display();
+ioTypes.Wanderlust = class extends IO {
+    constructor(b) {
+        super(b);
+        this.anyInRange //this presets what anyInRange is so that we can use it later in the code
+        this.wanderLoc
+        if (this.wanderLoc == undefined) {
+            this.wanderLoc = [null]
+        } // if this is the first time its being run, make the bot create a wander location to start the process
     }
-
-    buildList(range) {
-        // Establish whom we judge in reference to
-        let m = { x: this.body.x, y: this.body.y, },
-            mm = { x: this.body.master.master.x, y: this.body.master.master.y, },
+  
+    CheckArea(range) {
+        // This makes sure it checks around the controlled item
+        let m = {
+                x: this.body.x,
+                y: this.body.y,
+            },
+            mm = {
+                x: this.body.master.master.x,
+                y: this.body.master.master.y,
+            },
             mostDangerous = 0,
             sqrRange = range * range,
             keepTarget = false;
-        // Filter through everybody...
+        // Checks everything there
         let out = entities.map(e => {
-            // Only look at those within our view, and our parent's view, not dead, not our kind, not a bullet/trap/block etc
+                // makes sure it doesn't sense dumb stuff like itself for the scan
             if (e.health.amount > 0) {
-            if (!e.invuln) {
-            if (e.master.master.team !== this.body.master.master.team) {
-            if (e.master.master.team !== -101) {
-            if (e.type === 'tank' || e.type === 'crasher' || (!this.body.aiSettings.shapefriend && e.type === 'food')) {
-            if (Math.abs(e.x - m.x) < range && Math.abs(e.y - m.y) < range) {
-            if (!this.body.aiSettings.blind || (Math.abs(e.x - mm.x) < range && Math.abs(e.y - mm.y) < range)) return e;
-            } } } } } }
-        }).filter((e) => { return e; });
-        
-        if (!out.length) return [];
-
-        out = out.map((e) => {
-            // Only look at those within range and arc (more expensive, so we only do it on the few)
-            let yaboi = false;
-            if (Math.pow(this.body.x - e.x, 2) + Math.pow(this.body.y - e.y, 2) < sqrRange) {
-                if (this.body.firingArc == null || this.body.aiSettings.view360) {
-                    yaboi = true;
-                } else if (Math.abs(util.angleDifference(util.getDirection(this.body, e), this.body.firingArc[0])) < this.body.firingArc[1]) yaboi = true;
-            }
-            if (yaboi) {                
-                mostDangerous = Math.max(e.dangerValue, mostDangerous);
+                if (!e.invuln) {
+                    if (e.master.master.team !== this.body.master.master.team) {
+                        if (e.master.master.team !== -101) {
+                            if (e.type === 'tank' || e.type === 'crasher' || (!this.body.aiSettings.shapefriend && e.type === 'food')) {
+                                if (Math.abs(e.x - m.x) < range && Math.abs(e.y - m.y) < range) {
+                                                if (!this.body.aiSettings.blind || (Math.abs(e.x - mm.x) < range && Math.abs(e.y - mm.y) < range)) return e;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+            })
+            .filter((e) => {
                 return e;
-            }
-        }).filter((e) => { 
-            // Only return the highest tier of danger
-            if (e != null) { if (this.body.aiSettings.farm || e.dangerValue === mostDangerous) { 
-                if (this.targetLock) { if (e.id === this.targetLock.id) keepTarget = true; }
-                return e; 
-            } } 
-        }); 
-        // Reset target if it's not in there
-        if (!keepTarget) this.targetLock = undefined;
-        return out;
+            })
+        if (!out.length) {
+            return 'NoneInRange'
+        } else {
+            return 'ItemsInRange'
+        }
     }
 
     think(input) {
-        // Override target lock upon other commands
-        if (input.main || input.alt || this.body.master.autoOverride) {
-            this.targetLock = undefined; return {};
-        } 
-        // Otherwise, consider how fast we can either move to ram it or shoot at a potiential target.
-        let tracking = this.body.topSpeed,
-            range = this.body.fov / 2;
-        // Use whether we have functional guns to decide
-        for (let i=0; i<this.body.guns.length; i++) {
-            if (this.body.guns[i].canShoot && !this.body.aiSettings.skynet) {
-                let v = this.body.guns[i].getTracking();
-                tracking = v.speed;
-                range = Math.min(range, v.speed * v.range);
-                break;
-            }
-        }
-        // Check if my target's alive
-        if (this.targetLock) { if (this.targetLock.health.amount <= 0) {
-            this.targetLock = undefined;
-            this.tick = 100;
-        } }
-        // Think damn hard
-        if (this.tick++ > 15 * roomSpeed) {
-            this.tick = 0;
-            this.validTargets = this.buildList(range);
-            // Ditch our old target if it's invalid
-            if (this.targetLock && this.validTargets.indexOf(this.targetLock) === -1) {
-                this.targetLock = undefined;
-            }
-            // Lock new target if we still don't have one.
-            if (this.targetLock == null && this.validTargets.length) {
-                this.targetLock = (this.validTargets.length === 1) ? this.validTargets[0] : nearest(this.validTargets, { x: this.body.x, y: this.body.y });
-                this.tick = -90;
-            }
-        }
-        // Lock onto whoever's shooting me.
-        // let damageRef = (this.body.bond == null) ? this.body : this.body.bond;
-        // if (damageRef.collisionArray.length && damageRef.health.display() < this.oldHealth) {
-        //     this.oldHealth = damageRef.health.display();
-        //     if (this.validTargets.indexOf(damageRef.collisionArray[0]) === -1) {
-        //         this.targetLock = (damageRef.collisionArray[0].master.id === -1) ? damageRef.collisionArray[0].source : damageRef.collisionArray[0].master;
-        //     }
-        // }
-        // Consider how fast it's moving and shoot at it
-        if (this.targetLock != null) {
-            let radial = this.targetLock.velocity;
-            let diff = {
-                x: this.targetLock.x - this.body.x,
-                y: this.targetLock.y - this.body.y,
-            };
-            /// Refresh lead time
-            if (this.tick % 4 === 0) {
-                this.lead = 0;
-                // Find lead time (or don't)
-                if (!this.body.aiSettings.chase) {
-                    let toi = timeOfImpact(diff, radial, tracking);
-                    this.lead = toi;
-                }
-            }
-            // And return our aim
+        this.anyInRange = this.CheckArea(this.body.fov / 2.3) //checks if anything is around it that it should focus on instead, and then returns to run or not based on that
+        if (this.anyInRange == 'NoneInRange') {
+          let walkamount = 100
+            if ( //checks multiple things that it should remake a location for if they are true
+                this.wanderLoc[0] == null ||
+                //make a location if there is no location
+                ((this.wanderLoc[0] <= this.body.x + walkamount && this.wanderLoc[0] >= this.body.x - walkamount) && (this.wanderLoc[1] <= this.body.y + walkamount && this.wanderLoc[1] >= this.body.y - walkamount)) ||
+                // make a location if the bot arrived at the current location or at least close enough to it
+                (this.wanderLoc[0] > c.WIDTH || this.wanderLoc[1] > c.HEIGHT || this.wanderLoc[0] < 0 || this.wanderLoc[1] < 0) ||
+                //remake a location if the current one is out of bounds
+                (this.wanderLoc[2] >= 30)
+                //remake a location if it's been a while, so that it doesn't get caught on walls for eternity and stuff
+            ) {
+                this.wanderLoc = [ //creates a random location within 500 units of it in any direction, then resets what iteration it is for timing purposes
+                    this.body.x + ((Math.random() < 0.5 ? -1 : 1) * Math.floor(Math.random() * 2000)+750),
+                    this.body.y + ((Math.random() < 0.5 ? -1 : 1) * Math.floor(Math.random() * 2000)+750),
+                ]
+            } else {
+                if(this.wanderLoc[2]==undefined){this.wanderLoc[2] = 0}else{this.wanderLoc[2] += 1}
+                if(!this.wanderLoc[0]) this.wanderLoc[0] = this.body.x + ((Math.random() < 0.5 ? -1 : 1) * Math.floor(Math.random() * 2000)+750)
+                if(!this.wanderLoc[1]) this.wanderLoc[1] = this.body.y + ((Math.random() < 0.5 ? -1 : 1) * Math.floor(Math.random() * 2000)+750)
+            } //if the conditions for a new location aren't met, continue towards the current goal and increase the time spent
             return {
-                target: {
-                    x: diff.x + this.lead * radial.x,
-                    y: diff.y + this.lead * radial.y,
+                goal: { //go to the set location
+                    x: this.wanderLoc[0],
+                    y: this.wanderLoc[1],
                 },
-                fire: true,
-                main: true,
-            }; 
+                target: { //point the direction of the set location
+                    x: -this.body.x + this.wanderLoc[0],
+                    y: -this.body.y + this.wanderLoc[1],
+                },
+            };
         }
-        return {};
     }
 }
-class io_avoid extends IO {
+ioTypes.nearestDifferentMaster = class extends IO {
+  constructor(body) {
+    super(body);
+    this.targetLock = undefined;
+    this.tick = ran.irandom(30);
+    this.lead = 0;
+    this.validTargets = this.buildList(body.fov);
+    this.oldHealth = body.health.display();
+  }
+
+  buildList(range) {
+    // Establish whom we judge in reference to
+    let m = {
+        x: this.body.x,
+        y: this.body.y,
+      },
+      mm = {
+        x: this.body.master.master.x,
+        y: this.body.master.master.y,
+      },
+      mostDangerous = 0,
+      sqrRange = range * range,
+      keepTarget = false;
+    // Filter through everybody...
+    let out = entities.map(e => {
+      // Only look at those within our view, and our parent's view, not dead, not our kind, not a bullet/trap/block etc
+      if (e.health.amount > 0) {
+        if (!e.invuln) {
+          if (e.master.master.team !== this.body.master.master.team) {
+            if (e.master.master.team !== -101) {
+              if (e.type === 'tank' || e.type === 'crasher' || e.type === 'miniboss' || (!this.body.aiSettings.shapefriend && e.type === 'food')) {
+                if (Math.abs(e.x - m.x) < range && Math.abs(e.y - m.y) < range) {
+                  if (!this.body.aiSettings.blind || (Math.abs(e.x - mm.x) < range && Math.abs(e.y - mm.y) < range)) return e;
+                }
+              }
+            }
+          }
+        }
+      }
+    }).filter((e) => {
+      return e;
+    });
+
+    if (!out.length) return [];
+
+    out = out.map((e) => {
+      // Only look at those within range and arc (more expensive, so we only do it on the few)
+      let yaboi = false;
+      if (Math.pow(this.body.x - e.x, 2) + Math.pow(this.body.y - e.y, 2) < sqrRange) {
+        if (this.body.firingArc == null || this.body.aiSettings.view360) {
+          yaboi = true;
+        } else if (Math.abs(util.angleDifference(util.getDirection(this.body, e), this.body.firingArc[0])) < this.body.firingArc[1]) yaboi = true;
+      }
+      if (yaboi) {
+        mostDangerous = Math.max(e.dangerValue, mostDangerous);
+        return e;
+      }
+    }).filter((e) => {
+      // Only return the highest tier of danger
+      if (e != null) {
+        if (this.body.aiSettings.farm || e.dangerValue === mostDangerous) {
+          if (this.targetLock) {
+            if (e.id === this.targetLock.id) keepTarget = true;
+          }
+          return e;
+        }
+      }
+    });
+    // Reset target if it's not in there
+    if (!keepTarget) this.targetLock = undefined;
+    return out;
+  }
+
+  think(input) {
+    // Override target lock upon other commands
+    if (input.main || input.alt || this.body.master.autoOverride) {
+      this.targetLock = undefined;
+      return {};
+    }
+    // Otherwise, consider how fast we can either move to ram it or shoot at a potiential target.
+    let tracking = this.body.topSpeed,
+      range = this.body.fov;
+    // Use whether we have functional guns to decide
+    for (let i = 0; i < this.body.guns.length; i++) {
+      if (this.body.guns[i].canShoot && !this.body.aiSettings.skynet) {
+        let v = this.body.guns[i].getTracking();
+        tracking = v.speed;
+        if (true) range = 640 * this.body.FOV;
+        else range = Math.min(range, (v.speed || 1) * (v.range || 90));
+        break;
+      }
+    }
+    // Check if my target's alive
+    if (this.targetLock) {
+      if (this.targetLock.health.amount <= 0) {
+        this.targetLock = undefined;
+        this.tick = 100;
+      }
+    }
+    // Think damn hard
+    if (this.tick++ > 15 * roomSpeed) {
+      this.tick = 0;
+      this.validTargets = this.buildList(range);
+      // Ditch our old target if it's invalid
+      if (this.targetLock && this.validTargets.indexOf(this.targetLock) === -1) {
+        this.targetLock = undefined;
+      }
+      // Lock new target if we still don't have one.
+      if (this.targetLock == null && this.validTargets.length) {
+        this.targetLock = (this.validTargets.length === 1) ? this.validTargets[0] : nearest(this.validTargets, {
+          x: this.body.x,
+          y: this.body.y
+        });
+        this.tick = -90;
+      }
+    }
+    // Lock onto whoever's shooting me.
+    let damageRef = (this.body.bond == null) ? this.body : this.body.bond;
+    if (damageRef.collisionArray.length && damageRef.health.display() < this.oldHealth) {
+        this.oldHealth = damageRef.health.display();
+        if (this.validTargets.indexOf(damageRef.collisionArray[0]) === -1) {
+            this.targetLock = (damageRef.collisionArray[0].master.id === -1) ? damageRef.collisionArray[0].source : damageRef.collisionArray[0].master;
+        }
+    }
+    // Consider how fast it's moving and shoot at it
+    if (this.targetLock != null) {
+      let radial = this.targetLock.velocity;
+      let diff = {
+        x: this.targetLock.x - this.body.x,
+        y: this.targetLock.y - this.body.y,
+      };
+      /// Refresh lead time
+      if (this.tick % 4 === 0) {
+        this.lead = 0;
+        // Find lead time (or don't)
+        if (!this.body.aiSettings.chase) {
+          let toi = timeOfImpact(diff, radial, tracking);
+          this.lead = toi;
+        }
+      }
+      // And return our aim
+      return {
+        target: {
+          x: diff.x + this.lead * radial.x,
+          y: diff.y + this.lead * radial.y,
+        },
+        fire: true,
+        main: true,
+      };
+    }
+    return {};
+  }
+}
+ioTypes.avoid = class extends IO {
     constructor(body) {
         super(body);
     }
@@ -623,7 +752,7 @@ class io_avoid extends IO {
         }
     }
 }
-class io_minion extends IO {
+ioTypes.minion = class extends IO {
     constructor(body) {
         super(body);
         this.turnwise = 1;
@@ -678,7 +807,42 @@ class io_minion extends IO {
         }
     }
 }
-class io_hangOutNearMaster extends IO {
+ioTypes.swamper = class extends IO {
+    constructor(body) {
+        super(body);
+        this.turnwise = 1;
+    }
+
+    think(input) {
+        if (input.target != null && (input.alt || input.main)) {
+            let sizeFactor = Math.sqrt(this.body.master.size / this.body.master.SIZE);
+            let orbit = 220 * sizeFactor;
+            let goal;
+            let power = 5;
+            let target = new Vector(input.target.x, input.target.y);
+            let dir = target.direction + power;
+            if (input.alt) {
+              orbit /= 3
+              this.body.range -= 1
+            } else if (input.main) {
+                if (Math.abs(target.length - orbit) < this.body.size * 2) {
+                    power = 0.7;
+                }
+            }
+            // Orbit point
+                goal = {
+                    x: this.body.x + target.x - orbit * Math.cos(dir),
+                    y: this.body.y + target.y - orbit * Math.sin(dir), 
+                };
+            return { 
+                goal: goal,
+                power: power,
+            };
+        }
+    }
+}
+
+ioTypes.hangOutNearMaster = class extends IO {
     constructor(body) {
         super(body);
         this.acceptsFromTop = false;
@@ -720,7 +884,7 @@ class io_hangOutNearMaster extends IO {
         }
     }
 }
-class io_spin extends IO {
+ioTypes.spin = class extends IO {
     constructor(b) {
         super(b);
         this.a = 0;
@@ -741,7 +905,7 @@ class io_spin extends IO {
         };        
     }
 }
-class io_fastspin extends IO {
+ioTypes.fastspin = class extends IO {
     constructor(b) {
         super(b);
         this.a = 0;
@@ -762,7 +926,7 @@ class io_fastspin extends IO {
         };        
     }
 }
-class io_reversespin extends IO {
+ioTypes.reversespin = class extends IO {
     constructor(b) {
         super(b);
         this.a = 0;
@@ -783,7 +947,7 @@ class io_reversespin extends IO {
         };        
     }
 }
-class io_dontTurn extends IO {
+ioTypes.dontTurn = class extends IO {
     constructor(b) {
         super(b);
     }
@@ -798,7 +962,7 @@ class io_dontTurn extends IO {
         };        
     }
 }
-class io_fleeAtLowHealth extends IO {
+ioTypes.fleeAtLowHealth = class extends IO {
     constructor(b) {
         super(b);
         this.fear = util.clamp(ran.gauss(0.7, 0.15), 0.1, 0.9);
@@ -819,7 +983,7 @@ class io_fleeAtLowHealth extends IO {
 
 /***** ENTITIES *****/
 // Define skills
-const skcnv = {
+const skcnv = {// yoo Ive been looking for this lol
     rld: 0,
     pen: 1,
     str: 2,
@@ -911,7 +1075,7 @@ class Skill {
         } }
         this.rld = Math.pow(0.5, attrib[skcnv.rld]);
         this.pen = apply(2.5, attrib[skcnv.pen]);
-        this.str = apply(2, attrib[skcnv.str]);
+        this.str = apply(3, attrib[skcnv.str]);
         this.dam = apply(3, attrib[skcnv.dam]);
         this.spd = 0.5 + apply(1.5, attrib[skcnv.spd]);
 
@@ -920,9 +1084,9 @@ class Skill {
         this.rst = 0.5 * attrib[skcnv.str] + 2.5 * attrib[skcnv.pen];
         this.ghost = attrib[skcnv.pen];
         
-        this.shi = c.GLASS_HEALTH_FACTOR * apply(3 / c.GLASS_HEALTH_FACTOR - 1, attrib[skcnv.shi]);
+        this.shi = apply(0.75, attrib[skcnv.shi]);
         this.atk = apply(1, attrib[skcnv.atk]);
-        this.hlt = c.GLASS_HEALTH_FACTOR * apply(2 / c.GLASS_HEALTH_FACTOR - 1, attrib[skcnv.hlt]);
+        this.hlt = apply(0.5, attrib[skcnv.hlt]);
         this.mob = apply(0.8, attrib[skcnv.mob]); 
         this.rgn = apply(25, attrib[skcnv.rgn]);
 
@@ -962,7 +1126,7 @@ class Skill {
             if (this.score - this.deduction >= this.levelScore) {
                 this.deduction += this.levelScore;
                 this.level += 1;
-                this.points += this.levelPoints;
+                this.points += c.SKILL_PER_LV;
                 if (this.level == c.TIER_1 || this.level == c.TIER_2 || this.level == c.TIER_3) {
                     this.canUpgrade = true;
                 }
@@ -1005,7 +1169,7 @@ class Skill {
     }
 
     upgrade(stat) {
-        if (this.points && this.amount(stat) < this.cap(stat)) {
+        if (this.points>=1 && this.amount(stat) < this.cap(stat)) {
             this.change(stat, 1);
             this.points -= 1;
             return true;
@@ -1081,7 +1245,7 @@ class Gun {
             }
             // Pre-load bullet definitions so we don't have to recalculate them every shot
             let natural = {};
-            this.bulletTypes.forEach(function setNatural(type) {    
+            function setNatural(type) {    
                 if (type.PARENT != null) { // Make sure we load from the parents first
                     for (let i=0; i<type.PARENT.length; i++) {
                         setNatural(type.PARENT[i]);
@@ -1092,15 +1256,18 @@ class Gun {
                         natural[index] = type.BODY[index];
                     }
                 }
-            });
+              }
+            for(let type of this.bulletTypes){
+              setNatural(type)
+            };
             this.natural = natural; // Save it
             if (info.PROPERTIES.GUN_CONTROLLERS != null) { 
                 let toAdd = [];
                 let self = this;
-                info.PROPERTIES.GUN_CONTROLLERS.forEach(function(ioName) {
-                    toAdd.push(eval('new ' + ioName + '(self)'));
-                });
-                this.controllers = toAdd.concat(this.controllers);
+                for(let ioName of info.PROPERTIES.GUN_CONTROLLERS){
+                  toAdd.push(new ioTypes[ioName](self));
+                  this.controllers = toAdd.concat(this.controllers);
+                }
             }
             this.autofire = (info.PROPERTIES.AUTOFIRE == null) ?
                 false : info.PROPERTIES.AUTOFIRE;
@@ -1114,8 +1281,6 @@ class Gun {
                 false : info.PROPERTIES.WAIT_TO_CYCLE;
             this.bulletStats = (info.PROPERTIES.BULLET_STATS == null || info.PROPERTIES.BULLET_STATS == 'master') ?
                 'master' : new Skill(info.PROPERTIES.BULLET_STATS);
-            this.settings = (info.PROPERTIES.SHOOT_SETTINGS == null) ?
-                [] : info.PROPERTIES.SHOOT_SETTINGS;
             this.countsOwnKids = (info.PROPERTIES.MAX_CHILDREN == null) ?
                 false : info.PROPERTIES.MAX_CHILDREN;
             this.syncsSkills = (info.PROPERTIES.SYNCS_SKILLS == null) ?
@@ -1140,7 +1305,6 @@ class Gun {
             this.trueRecoil = this.settings.recoil;
         }
     }
-    
     recoil() {
         if (this.motion || this.position) {
             // Simulate recoil
@@ -1237,7 +1401,8 @@ class Gun {
     syncChildren() {
         if (this.syncsSkills) {
             let self = this;
-            this.children.forEach(function(o) {
+            for(let o in this.children){
+              (function(o) {
                 o.define({
                     BODY: self.interpret(), 
                     SKILL: self.getSkillRaw(),
@@ -1246,7 +1411,7 @@ class Gun {
             });
         }
     }
-
+}
     fire(gx, gy, sk) {
         // Recoil
         this.lastShot.time = util.time();
@@ -1293,7 +1458,7 @@ class Gun {
 
     bulletInit(o) {
         // Define it by its natural properties
-        this.bulletTypes.forEach(type => o.define(type));
+        for(let type of this.bulletTypes){o.define(type)};
         // Pass the gun attributes
         o.define({ 
             BODY: this.interpret(), 
@@ -1455,7 +1620,7 @@ var bringToLife = (() => {
             my.alpha = Math.min(1, my.alpha + my.invisible[0])
         }
         // So we start with my master's thoughts and then we filter them down through our control stack
-        my.controllers.forEach(AI => {
+        for(let AI of my.controllers){
             let a = AI.think(b);
             let passValue = passer(a, b, AI.acceptsFromTop);
             passValue('target');
@@ -1464,7 +1629,7 @@ var bringToLife = (() => {
             passValue('main');
             passValue('alt');
             passValue('power');
-        });        
+        };        
         my.control.target = (b.target == null) ? my.control.target : b.target;
         my.control.goal = b.goal;
         my.control.fire = b.fire;
@@ -1475,8 +1640,8 @@ var bringToLife = (() => {
         my.move(); 
         my.face();
         // Handle guns and turrets if we've got them
-        my.guns.forEach(gun => gun.live());
-        my.turrets.forEach(turret => turret.life());
+        for(let gun of my.guns){gun.live()}
+        for(let turret of my.turrets){turret.life()};
         if (my.skill.maintain()) my.refreshBodyAttributes();
     }; 
 })();
@@ -1577,21 +1742,26 @@ class Entity {
             let timer = ran.irandom(15);
             return {
                 update: () => {
-                    if (this.isDead()) return 0;
-                    // Check if I'm in anybody's view
-                    if (!active) { 
+                    if (this.isDead()) {
+                        return 0;
+                    }
+                    if (!active) {
                         this.removeFromGrid();
-                        // Remove bullets and swarm
-                        if (this.settings.diesAtRange) this.kill();
-                        // Still have limited update cycles but do it much more slowly.
-                        if (!(timer--)) active = true;
+                        if (this.settings.diesAtRange) {
+                            this.kill();
+                        }
+                        if (!(timer--)) {
+                            active = true;
+                        }
                     } else {
                         this.addToGrid();
                         timer = 15;
-                        active = views.some(v => v.check(this, 0.6));
+                        active = views.some(v => v.check(this, 0.6)) || this.alwaysActive;
                     }
                 },
-                check: () => { return active; }
+                check: () => {
+                    return active;
+                }
             };
         })();
         this.autoOverride = false;
@@ -1671,7 +1841,7 @@ class Entity {
         })();
         this.updateAABB(true);   
         entities.push(this); // everything else
-        views.forEach(v => v.add(this));
+        for(let v of views){v.add(this);this.activation.update();};
     }
     
     life() { bringToLife(this); }
@@ -1711,9 +1881,9 @@ class Entity {
         }   
         if (set.CONTROLLERS != null) { 
             let toAdd = [];
-            set.CONTROLLERS.forEach((ioName) => {
-                toAdd.push(eval('new io_' + ioName + '(this)'));
-            });
+            for(let ioName of set.CONTROLLERS){
+                toAdd.push(new ioTypes[ioName](this));
+            };
             this.addController(toAdd);
         }
         if (set.MOTION_TYPE != null) { 
@@ -1822,23 +1992,29 @@ class Entity {
             this.settings.variesInSize = set.VARIES_IN_SIZE; 
             this.squiggle = (this.settings.variesInSize) ? ran.randomRange(0.8, 1.2) : 1;
         }
+        if (set.HOVER != null) { 
+          this.hover = set.HOVER; 
+        }
+        if (set.MSG_ON_SPAWN) {
+          this.spawnMsg = set.MSG_ON_SPAWN
+        }
         if (set.RESET_UPGRADES) {
             this.upgrades = [];
         }
         if (set.UPGRADES_TIER_1 != null) { 
-            set.UPGRADES_TIER_1.forEach((e) => {
+            for(let e of set.UPGRADES_TIER_1){
                 this.upgrades.push({ class: e, tier: 1, level: c.TIER_1, index: e.index });
-            });
+            };
         }
         if (set.UPGRADES_TIER_2 != null) { 
-            set.UPGRADES_TIER_2.forEach((e) => {
+            for(let e of set.UPGRADES_TIER_2){
                 this.upgrades.push({ class: e, tier: 2, level: c.TIER_2, index: e.index });
-            });
+            };
         }
         if (set.UPGRADES_TIER_3 != null) { 
-            set.UPGRADES_TIER_3.forEach((e) => {
+            for(let e of set.UPGRADES_TIER_3){
                 this.upgrades.push({ class: e, tier: 3, level: c.TIER_3, index: e.index });
-            });
+            };
         }
         if (set.SIZE != null) {
             this.SIZE = set.SIZE * this.squiggle;
@@ -1874,19 +2050,13 @@ class Entity {
         }
         if (set.GUNS != null) { 
             let newGuns = [];
-            set.GUNS.forEach((gundef) => {
+            for(let gundef of set.GUNS){
                 newGuns.push(new Gun(this, gundef));
-            });
+            };
             this.guns = newGuns;
         }
         if (set.MAX_CHILDREN != null) { 
             this.maxChildren = set.MAX_CHILDREN; 
-        }
-        if (set.FOOD != null) {
-            if (set.FOOD.LEVEL != null) { 
-                this.foodLevel = set.FOOD.LEVEL; 
-                this.foodCountup = 0;
-            }
         }
         if (set.BODY != null) {
             if (set.BODY.ACCELERATION != null) { 
@@ -1938,13 +2108,13 @@ class Entity {
         }
         if (set.TURRETS != null) {
             let o;
-            this.turrets.forEach(o => o.destroy());
+            for(let o of this.turrets){o.destroy()};
             this.turrets = [];
-            set.TURRETS.forEach(def => {
+            for(let def of set.TURRETS){
                 o = new Entity(this, this.master);
-                    ((Array.isArray(def.TYPE)) ? def.TYPE : [def.TYPE]).forEach(type => o.define(type));
+                    for(let type of (Array.isArray(def.TYPE)) ? def.TYPE : [def.TYPE]){o.define(type)};
                     o.bindToMaster(def.POSITION, this);
-            });
+            };
         }
         if (set.mockup != null) {
             this.mockup = set.mockup;
@@ -2055,7 +2225,7 @@ class Entity {
             layer: (this.bond != null) ? this.bound.layer : 
                     (this.type === 'wall') ? 11 : 
                     (this.type === 'food') ? 10 : 
-                    (this.type === 'tank') ? 5 :
+                    (this.type === 'tank'||this.type === 'minion') ? (this.hover ? 12 : 5) :
                     (this.type === 'crasher') ? 1 :
                     0,
             color: this.color,
@@ -2070,9 +2240,9 @@ class Entity {
         let suc = this.skill.upgrade(stat);
         if (suc) {
             this.refreshBodyAttributes();
-            this.guns.forEach(function(gun) {
+            for(let gun of this.guns){
                 gun.syncChildren();
-            });
+            };
         }
         return suc;
     }
@@ -2084,11 +2254,11 @@ class Entity {
             this.define(saveMe);
             this.sendMessage('You have upgraded to ' + this.label + '.');
             let ID = this.id;
-            entities.forEach(instance => {
+            for(let instance of entities){
                 if (instance.settings.clearOnMasterUpgrade && instance.master.id === ID) {
                     instance.kill();
                 }
-            }); 
+            }; 
             this.skill.update();
             this.refreshBodyAttributes();
         }
@@ -2304,6 +2474,7 @@ class Entity {
     }
 
     contemplationOfMortality() {
+      if(this.spawnMsg)sockets.broadcast(this.spawnMsg);this.spawnMsg=0;
         if (this.invuln) {
             this.damageRecieved = 0;
             return 0;
@@ -2352,7 +2523,7 @@ class Entity {
             // Calculate the jackpot
             let jackpot = Math.ceil(util.getJackpot(this.skill.score) / this.collisionArray.length);
             // Now for each of the things that kill me...
-            this.collisionArray.forEach(instance => {
+            for(let instance of this.collisionArray){
                 if (instance.type === 'wall') return 0;
                 if (instance.master.settings.acceptsScore) { // If it's not food, give its master the score
                     if (instance.master.type === 'tank' || instance.master.type === 'miniboss') notJustFood = true;
@@ -2362,21 +2533,21 @@ class Entity {
                     instance.skill.score += jackpot;
                 }
                 killTools.push(instance); // Keep track of what actually killed me
-            });
+            };
             // Remove duplicates
             killers = killers.filter((elem, index, self) => { return index == self.indexOf(elem); });
             // If there's no valid killers (you were killed by food), change the message to be more passive
             let killText = (notJustFood) ? '' : "You have been killed by ",
                 dothISendAText = this.settings.givesKillMessage;
-            killers.forEach(instance => {
+            for(let instance of killers){
                 this.killCount.killers.push(instance.index);
                 if (this.type === 'tank') {
                     if (killers.length > 1) instance.killCount.assists++; else instance.killCount.solo++;
                 } else if (this.type === "miniboss") instance.killCount.bosses++;
-            });
+            };
             // Add the killers to our death message, also send them a message
             if (notJustFood) {
-                killers.forEach(instance => {
+                for(let instance of killers){
                     if (instance.master.type !== 'food' && instance.master.type !== 'crasher') {
                         killText += (instance.name == '') ? (killText == '') ? 'An unnamed player' : 'an unnamed player' : instance.name;
                         killText += ' and ';
@@ -2385,7 +2556,7 @@ class Entity {
                     if (dothISendAText) { 
                         instance.sendMessage('You killed ' + name + ((killers.length > 1) ? ' (with some help).' : '.')); 
                     }
-                });
+                };
                 // Prepare the next part of the next 
                 killText = killText.slice(0, -4);
                 killText += 'killed you with ';
@@ -2393,9 +2564,9 @@ class Entity {
             // Broadcast
             if (this.settings.broadcastMessage) sockets.broadcast(this.settings.broadcastMessage);
             // Add the implements to the message
-            killTools.forEach((instance) => {
+            for(let instance of killTools){
                 killText += util.addArticle(instance.label) + ' and ';
-            });
+            };
             // Prepare it and clear the collision array.
             killText = killText.slice(0, -5);
             if (killText === 'You have been kille') killText = 'You have died a stupid death';
@@ -2405,11 +2576,11 @@ class Entity {
                 let usurptText = (this.name === '') ? 'The leader': this.name;
                 if (notJustFood) { 
                     usurptText += ' has been usurped by';
-                    killers.forEach(instance => {
+                    for(let instance of killers){
                         usurptText += ' ';
                         usurptText += (instance.name === '') ? 'an unnamed player' : instance.name;
                         usurptText += ' and';
-                    });
+                    };
                     usurptText = usurptText.slice(0, -4);
                     usurptText += '!';
                 } else {
@@ -2430,7 +2601,8 @@ class Entity {
     sendMessage(message) { } // Dummy
 
     kill() {
-        this.health.amount = -1;
+        this.health.amount = -1000;
+        this.shield.amount = -1000;
     }
 
     destroy() {
@@ -2440,12 +2612,12 @@ class Entity {
         let i = minimap.findIndex(entry => { return entry[0] === this.id; });
         if (i != -1) util.remove(minimap, i);
         // Remove this from views
-        views.forEach(v => v.remove(this));
+        for(let v of views){v.remove(this)};
         // Remove from parent lists if needed
         if (this.parent != null) util.remove(this.parent.children, this.parent.children.indexOf(this));
         // Kill all of its children
         let ID = this.id;
-        entities.forEach(instance => {
+        for(let instance of entities){
             if (instance.source.id === this.id) {
                 if (instance.settings.persistsAfterDeath) {
                     instance.source = instance;
@@ -2460,9 +2632,9 @@ class Entity {
                 instance.kill();
                 instance.master = instance;
             }
-        });
+        };
         // Remove everything bound to it
-        this.turrets.forEach(t => t.destroy());
+        for(let t of this.turrets){t.destroy()};
         // Remove from the collision grid
         this.removeFromGrid();
         this.isGhost = true;
@@ -2603,7 +2775,7 @@ var http = require('http'),
                         endpoints.push({x: focus.x + scale * z * Math.cos(theta), y: focus.y + scale * z * Math.sin(theta)});
                     }
                 }
-                model.guns.forEach(function(gun) {
+                for(let gun of model.guns){
                     let h = (gun.aspect > 0) ? scale * gun.width / 2 * gun.aspect : scale * gun.width / 2;
                     let r = Math.atan2(h, scale * gun.length) + rot;
                     let l = Math.sqrt(scale * scale * gun.length * gun.length + h * h);
@@ -2625,14 +2797,14 @@ var http = require('http'),
                         x: x + l * Math.cos(gun.angle - r),
                         y: y + l * Math.sin(gun.angle - r),
                     });
-                });
-                model.turrets.forEach(function(turret) {
+                };
+                for(let turret of model.turrets){
                     pushEndpoints(
                         turret, turret.bound.size, 
                         { x: turret.bound.offset * Math.cos(turret.bound.angle), y: turret.bound.offset * Math.sin(turret.bound.angle) }, 
                         turret.bound.angle
                     );
-                });
+                };
             };
             pushEndpoints(entities, 1);
             // 2) Find their mass center
@@ -2800,9 +2972,9 @@ const sockets = (() => {
     let clients = [], players = [];
     return {
         broadcast: message => {
-            clients.forEach(socket => {
+            for(let socket of clients){
                 socket.talk('m', message);
-            });
+            };
         },
         connect: (() => {
             // Define shared functions
@@ -3072,6 +3244,170 @@ const sockets = (() => {
                         player.body.define(Class.testbed);
                     } }
                 } break;
+                  case "U":
+                    {
+                      // upgrade request
+                      if (m.length !== 1) {
+                        socket.kick("Ill-sized upgrade request.");
+                        return 1;
+                      }
+                      // Get data
+                      let number = m[0];
+                      // Verify the request
+                      if (typeof number != "number" || number < 0) {
+                        socket.kick("Bad upgrade request.");
+                        return 1;
+                      }
+                      // Upgrade it
+                      if (player.body != null) {
+                        player.body.upgrade(number); // Ask to upgrade
+                      }
+                    }
+                    break;
+                  case "x":
+                    {
+                      // skill upgrade request
+                      if (m.length !== 1) {
+                        socket.kick("Ill-sized skill request.");
+                        return 1;
+                      }
+                      let number = m[0],
+                        stat = "";
+                      // Verify the request
+                      if (typeof number != "number") {
+                        socket.kick("Weird stat upgrade request.");
+                        return 1;
+                      }
+                      // Decipher it
+                      switch (number) {
+                        case 0:
+                          stat = "atk";
+                          break;
+                        case 1:
+                          stat = "hlt";
+                          break;
+                        case 2:
+                          stat = "spd";
+                          break;
+                        case 3:
+                          stat = "str";
+                          break;
+                        case 4:
+                          stat = "pen";
+                          break;
+                        case 5:
+                          stat = "dam";
+                          break;
+                        case 6:
+                          stat = "rld";
+                          break;
+                        case 7:
+                          stat = "mob";
+                          break;
+                        case 8:
+                          stat = "rgn";
+                          break;
+                        case 9:
+                          stat = "shi";
+                          break;
+                        default:
+                          socket.kick("Unknown stat upgrade request.");
+                          return 1;
+                      }
+                      // Apply it
+                      if (player.body != null) {
+                        player.body.skillUp(stat); // Ask to upgrade a stat
+                      }
+                    }
+                    break;
+                  case "L":
+                    {
+                      // level up cheat
+                      if (m.length !== 0) {
+                        socket.kick("Ill-sized level-up request.");
+                        return 1;
+                      }
+                      // cheatingbois
+                      if (player.body != null) {
+                        if (
+                          player.body.skill.level < c.SKILL_CHEAT_CAP ||
+                          (socket.key === process.env.SECRET &&
+                            player.body.skill.level < 45)
+                        ) {
+                          player.body.skill.score +=
+                            player.body.skill.levelScore;
+                          player.body.skill.maintain();
+                          player.body.refreshBodyAttributes();
+                        }
+                      }
+                    }
+                    break;
+                  case "0":
+                    {
+                      // testbed cheat
+                      if (m.length !== 0) {
+                        socket.kick("Ill-sized testbed request.");
+                        return 1;
+                      }
+                      // cheatingbois
+                      if (player.body != null) {
+                        if (socket.key === process.env.SECRET) {
+                          player.body.define(Class.testbed);
+                        }
+                      }
+                    }
+                    break;
+                  case "h":
+                    {
+                      if (typeof m[0] != "string") {
+                        socket.kick("Da faq bro did they just send jack");
+                      }
+                      if (m.length !== 1) {
+                        socket.kick("Ill-sized chat request.");
+                        return 1;
+                      }
+                      if (player.body != null) {
+                        if (m[0].length < 1) {
+                          player.body.sendMessage("Uh... message too short?");
+                          return;
+                        }
+                        if (m[0].length > 75) {
+                          player.body.sendMessage("Your message is too long!");
+                          return;
+                        }
+                        if (m[0].startsWith(c.CHAT_CMD_PREFIX)) {
+                          if(!socket.key==c.TOKENS[0]) player.body.sendMessage('You dont have permission to use commands.'); return;
+                          //slight optimization using an if to determine if we need to check a massie switch
+                          let args = m[0].trim().split(/ +/g);
+                          let command = args[0]
+                            .slice(c.CHAT_CMD_PREFIX.length)
+                            .toLowerCase();
+                          
+                          // Enter chat commands in here
+                          switch (command) {
+                            case 'eval':
+                              util.warn(`Ran ${args[1]} due to /eval being used in game.`)
+                              eval(args[1])
+                            break;
+                            case 'summon':
+                            case 'spawn':
+                              let o = new Entity({x:player.body.x+Number(args[2]),y:player.body.y+Number(args[3])})
+                              o.define(Class[args[1]]);
+                            break;
+                            case 'godmode':
+                              player.body.HEALTH = 10000
+                              player.body.SHIELD = 10000
+                              player.body.REGEN = 10000
+                            break;
+                          }
+                          util.log(`Someone used ${m}`)
+                          player.body.sendMessage('Ran command')
+                          return 0;
+                        }
+                        sockets.broadcast(`${player.body.name?player.body.name:"Unnamed Player"}(${player.body.id}): ${m[0]}`);
+                      }
+                    }
+                    break;
                 default: socket.kick('Bad packet index.');
                 }
             }
@@ -3158,34 +3494,34 @@ const sockets = (() => {
                             out = [],
                             statnames = ['atk', 'hlt', 'spd', 'str', 'pen', 'dam', 'rld', 'mob', 'rgn', 'shi'];
                         // Load everything (b/c I'm too lazy to do it manually)
-                        statnames.forEach(a => {
+                        for(let a of statnames){
                             vars.push(floppy());
                             vars.push(floppy());
                             vars.push(floppy());
-                        });
+                        };
                         return {
                             update: () => {
                                 let needsupdate = false, i = 0;
                                 // Update the things
-                                statnames.forEach(a => {
+                                for(let a of statnames){
                                     vars[i++].update(skills.title(a));
                                     vars[i++].update(skills.cap(a));
                                     vars[i++].update(skills.cap(a, true));
-                                });
+                                };
                                 /* This is a forEach and not a find because we need
                                 * each floppy cyles or if there's multiple changes 
                                 * (there will be), we'll end up pushing a bunch of 
                                 * excessive updates long after the first and only 
                                 * needed one as it slowly hits each updated value
                                 */
-                                vars.forEach(e => { if (e.publish() != null) needsupdate = true; }); 
+                                for(let e of vars){ if (e.publish() != null) needsupdate = true; }; 
                                 if (needsupdate) {
                                     // Update everything
-                                    statnames.forEach(a => {
+                                    for(let a of statnames){
                                         out.push(skills.title(a));
                                         out.push(skills.cap(a));
                                         out.push(skills.cap(a, true));
-                                    });
+                                    };
                                 }
                             },
                             /* The reason these are seperate is because if we can 
@@ -3227,14 +3563,14 @@ const sockets = (() => {
                         gui.color.update(gui.master.teamColor);
                         gui.label.update(b.index);
                         gui.score.update(b.skill.score);
-                        gui.points.update(b.skill.points);
+                        gui.points.update(Math.round(b.skill.points));
                         // Update the upgrades
                         let upgrades = [];
-                        b.upgrades.forEach(function(e) {
+                        for(let e of b.upgrades){
                             if (b.skill.level >= e.level) { 
                                 upgrades.push(e.index);
                             }
-                        });
+                        };
                         gui.upgrades.update(upgrades);
                         // Update the stats and skills
                         gui.stats.update();
@@ -3311,10 +3647,10 @@ const sockets = (() => {
                         case "tdm": {
                             // Count how many others there are
                             let census = [1, 1, 1, 1], scoreCensus = [1, 1, 1, 1];
-                            players.forEach(p => { 
+                            for(let p of players){ 
                                 census[p.team - 1]++; 
                                 if (p.body != null) { scoreCensus[p.team - 1] += p.body.skill.score; }
-                            });
+                            };
                             let possiblities = [];
                             for (let i=0, m=0; i<4; i++) {
                                 let v = Math.round(1000000 * (room['bas'+(i+1)].length + 1) / (census[i] + 1) / scoreCensus[i]);
@@ -3342,7 +3678,7 @@ const sockets = (() => {
                             body.name = "\u200b" + body.name;
                             body.define({ CAN_BE_ON_LEADERBOARD: false, });
                         }                        
-                        body.addController(new io_listenToPlayer(body, player)); // Make it listen
+                        body.addController(new ioTypes.listenToPlayer(body, player)); // Make it listen
                         body.sendMessage = content => messenger(socket, content); // Make it speak
                         body.invuln = true; // Make it safe
                     player.body = body;
@@ -3465,13 +3801,13 @@ const sockets = (() => {
                     }
                     // Add the gun data to the array
                     let gundata = [data.guns.length];
-                    data.guns.forEach(lastShot => {
+                    for(let lastShot of data.guns){
                         gundata.push(lastShot.time, lastShot.power);
-                    });
+                    };
                     output.push(...gundata);
                     // For each turret, add their own output
                     let turdata = [data.turrets.length];
-                    data.turrets.forEach(turret => { turdata.push(...flatten(turret)); });
+                    for(let turret of data.turrets){ turdata.push(...flatten(turret)); };
                     // Push all that to the array
                     output.push(...turdata);
                     // Return it
@@ -3577,7 +3913,7 @@ const sockets = (() => {
                             // Spread it for upload
                             let numberInView = visible.length,
                                 view = [];
-                            visible.forEach(e => { view.push(...e); });     
+                            for(let e of visible){view.push(...e); }     
                             // Update the gui
                             player.gui.update();
                             // Send it to the player
@@ -4143,7 +4479,7 @@ var gameloop = (() => {
                 n.accel.x -= repel * (item1.x - item2.x) / dist;
                 n.accel.y -= repel * (item1.y - item2.y) / dist;
             }
-            while (dist <= my.realSize + n.realSize && !(strike1 && strike2)) {
+            if (dist <= my.realSize + n.realSize && !(strike1 && strike2)) {
                 strike1 = false; strike2 = false;
                 if (my.velocity.length <= s1) {
                     my.velocity.x -= 0.05 * (item2.x - item1.x) / dist / roomSpeed;
@@ -4254,7 +4590,7 @@ var gameloop = (() => {
                         depth = {
                             _me: util.clamp((combinedRadius - diff.length) / (2 * my.size), 0, 1), //1: I am totally within it
                             _n: util.clamp((combinedRadius - diff.length) / (2 * n.size), 0, 1), //1: It is totally within me
-                        },
+                        },                                                                         //69: we're in each other ( ͡° ͜ʖ ͡°)
                         combinedDepth = {
                             up: depth._me * depth._n,
                             down: (1-depth._me) * (1-depth._n),
@@ -4424,6 +4760,7 @@ var gameloop = (() => {
             if (!instance.activation.check() && !other.activation.check()) { util.warn('Tried to collide with an inactive instance.'); return 0; }
             // Handle walls
             if (instance.type === 'wall' || other.type === 'wall') {
+              if (instance.hover) return;
                 let a = (instance.type === 'bullet' || other.type === 'bullet') ? 
                     1 + 10 / (Math.max(instance.velocity.length, other.velocity.length) + 10) : 
                     1;
@@ -4439,13 +4776,13 @@ var gameloop = (() => {
                 advancedcollide(instance, other, true, true);
             } else 
             // Ignore them if either has asked to be
-            if (instance.settings.hitsOwnType == 'never' || other.settings.hitsOwnType == 'never') {
+            /*if (instance.settings.hitsOwnType == 'never' || other.settings.hitsOwnType == 'never') {
                 // Do jack                    
-            } else 
+            } else */
             // Standard collision resolution
             if (instance.settings.hitsOwnType === other.settings.hitsOwnType) {
                 switch (instance.settings.hitsOwnType) {
-                case 'push': advancedcollide(instance, other, false, false); break;
+                case 'push':
                 case 'hard': firmcollide(instance, other); break;
                 case 'hardWithBuffer': firmcollide(instance, other, 30); break;
                 case 'repel': simplecollide(instance, other); break;
@@ -4461,11 +4798,11 @@ var gameloop = (() => {
         my.activation.update();
         my.updateAABB(my.activation.check()); 
     }
-    function entitiesliveloop (my) {
-        // Consider death.  
+    function entitiesliveloop(my) {
+        // Consider death.
         if (my.contemplationOfMortality()) my.destroy();
         else {
-            if (my.bond == null) { 
+            if (my.bond == null) {
                 // Resolve the physical behavior from the last collision cycle.
                 logs.physics.set();
                 my.physics();
@@ -4484,31 +4821,34 @@ var gameloop = (() => {
                 my.takeSelfie();
                 logs.selfie.mark();
             }
+            logs.activation.set();
+            entitiesactivationloop(my); // Activate it for the next loop if we are gonna live...
+            logs.activation.mark();
         }
         // Update collisions.
-        my.collisionArray = []; 
+        my.collisionArray = [];
     }
     let time;
     // Return the loop function
     return () => {
         logs.loops.tally();
         logs.master.set();
-        logs.activation.set();
-            entities.forEach(e => entitiesactivationloop(e));
-        logs.activation.mark();
-        // Do collisions
-        logs.collide.set();
+        //logs.activation.set();
+        //for(let e of entities){entitiesactivationloop(e)};
+        //logs.activation.mark();
+        // Do entities life
+        logs.entities.set();
+            for(let e of entities){entitiesliveloop(e)};
+        logs.entities.mark();
+      // Do collisions
+      logs.collide.set();
         if (entities.length > 1) {
             // Load the grid
             grid.update();
             // Run collisions in each grid
-            grid.queryForCollisionPairs().forEach(collision => collide(collision));
+            for(let collision of grid.queryForCollisionPairs()){collide(collision)};
         }
         logs.collide.mark();
-        // Do entities life
-        logs.entities.set();
-            entities.forEach(e => entitiesliveloop(e));
-        logs.entities.mark();
         logs.master.mark();
         // Remove dead entities
         purgeEntities();
@@ -4519,6 +4859,10 @@ var gameloop = (() => {
     //roomSpeed = c.gameSpeed * alphaFactor;
     //setTimeout(moveloop, 1000 / roomSpeed / 30 - delta); 
 })();
+
+// Used to regulate the amount of bots and food
+let ostsifmp = 0; // ostsifmp = OH SHIT THE SERVER IS FUCKING MELTING percent
+
 // A less important loop. Runs at an actual 5Hz regardless of game speed.
 var maintainloop = (() => {
     // Place obstacles
@@ -4546,6 +4890,9 @@ var maintainloop = (() => {
         for (let i=Math.ceil(roidcount * 0.3); i; i--) { count++; placeRoid('roid', Class.babyObstacle); }
         for (let i=Math.ceil(rockcount * 0.8); i; i--) { count++; placeRoid('rock', Class.obstacle); }
         for (let i=Math.ceil(rockcount * 0.5); i; i--) { count++; placeRoid('rock', Class.babyObstacle); }
+        if(c.RANDOM_ROIDS){
+          for (let i=Math.ceil(roidcount * 5); i; i--) { count++; placeRoid('norm', Class.obstacle); }
+        }
         util.log('Placing ' + count + ' obstacles!');
     }
     placeRoids();
@@ -4575,16 +4922,19 @@ var maintainloop = (() => {
                     n = number;
                     bois = classArray;
                     loc = typeOfLocation;
-                    names = ran.chooseBossName(nameClass, number);
+                    names = []
+                    for(let i=0; i<n; i++){
+                    names.push(ran.chooseBossName())
+                    }
                     i = 0;
                     if (n === 1) {
                         begin = 'A visitor is coming.';
-                        arrival = names[0] + ' has arrived.'; 
+                        arrival = names[0] + ' the ' + classArray[0].LABEL + ' has arrived.'; 
                     } else {
                         begin = 'Visitors are coming.';
                         arrival = '';
-                        for (let i=0; i<n-2; i++) arrival += names[i] + ', ';
-                        arrival += names[n-2] + ' and ' + names[n-1] + ' have arrived.';
+                        for (let i=0; i<n-2; i++) arrival += names[i] + ' the ' + classArray[i].LABEL + ', ';
+                        arrival += names[n-2] + ' the ' + classArray[n-2].LABEL + ' and ' + names[n-1] + ' the ' + classArray[n-1].LABEL + ' have arrived.';
                     }
                 },
                 spawn: () => {
@@ -4599,18 +4949,20 @@ var maintainloop = (() => {
             };
         })();
         return census => {
-            if (timer > 6000 && ran.dice(16000 - timer)) {
+            if (timer > 500 && ran.dice(800 - timer) && census.miniboss < c.MAX_BOSSES) {
                 util.log('[SPAWN] Preparing to spawn...');
                 timer = 0;
                 let choice = [];
-                switch (ran.chooseChance(40, 1)) {
+                switch (ran.chooseChance(20, 20, 10)) {
                     case 0: 
                         choice = [[Class.elite_destroyer], 2, 'a', 'nest'];
                         break;
                     case 1: 
                         choice = [[Class.palisade], 1, 'castle', 'norm']; 
-                        sockets.broadcast('A strange trembling...');
                         break;
+                    case 2:
+                        choice = [[Class.tempest], 1, 'elemental', 'norm'];
+                    break;
                 }
                 boss.prepareToSpawn(...choice);
                 setTimeout(boss.spawn, 3000);
@@ -4618,17 +4970,56 @@ var maintainloop = (() => {
             } else if (!census.miniboss) timer++;
         };
     })();
-    let spawnCrasher = census => {
-        if (ran.chance(1 -  0.5 * census.crasher / room.maxFood*3)) {
-            let spot, i = 30;
-            do { spot = room.randomType('nest'); i--; if (!i) return 0; } while (dirtyCheck(spot, 100));
-            let type = (ran.dice(80)) ? ran.choose([Class.sentryGun, Class.sentrySwarm, Class.sentryTrap]) : Class.crasher;
-            let o = new Entity(spot);
-                o.define(type);
-                o.team = -100;
-        }
-    };
-    // The NPC function
+// This is the fun function that regulates the amount of food and if things get really bad, bots  
+  // bot removal is gone, turns out bots actaully dont lag the game too much
+let bots = [];
+let Food = [];
+c.MAX_FOOD_savedvalue = c.MAX_FOOD
+c.BOTS_savedvalue = c.BOTS
+function serverLifesupport(){
+//If shits bad or Food is over do something
+  if(ostsifmp>50-c.LIFESUPPORT_SENSITIVITY){
+    c.MAX_FOOD = Math.round(c.MAX_FOOD/Math.ceil(ostsifmp/100))
+    // Lose some weight
+    while(Food.length>c.MAX_FOOD){
+      Food[0].kill()
+      Food = Food.filter(e => {return !e.isDead();});
+    }
+    if(c.OLD_FOOD_VALUE!==c.MAX_FOOD)util.warn('Reduced the amount of food ('+ Food.length +') to keep the server alive. MAX VALUE: '+c.MAX_FOOD_savedvalue+' CURRENT MAX: '+c.MAX_FOOD+', That is ' + Math.round(c.MAX_FOOD/c.MAX_FOOD_savedvalue*100)+'% of the orignal capacity.'+(ostsifmp>100?' !CRITCAL OSTSIFMP!: ' +ostsifmp+'%':''))
+    c.OLD_FOOD_VALUE = c.MAX_FOOD
+//If shits realllll bad get rid of some bots
+/*  if(ostsifmp>125-c.LIFESUPPORT_SENSITIVITY){
+    c.BOTS = Math.round(c.BOTS/Math.ceil(ostsifmp/100))
+    // Lose some weight
+    while(bots.length>c.BOTS){
+      bots[0].kill()
+      bots = bots.filter(e => {return !e.isDead();});
+    }
+    if(c.OLD_BOT_VALUE!==c.BOTS)util.error('!!!CRITICAL!!! Reduced the amount of Bots ('+ bots.length +') to keep the server alive. MAX VALUE: '+c.BOTS_savedvalue+' CURRENT MAX: '+c.BOTS+', That is ' + Math.round(c.BOTS/c.BOTS_savedvalue*100)+'% of the orignal capacity.'+(ostsifmp>100?' !CRITCAL OSTSIFMP!: ' +ostsifmp+'%':''))
+    c.OLD_BOTS_VALUE = c.BOTS  
+  }*/
+    return true;
+  }else{
+    if(!(c.MAX_FOOD_savedvalue===c.MAX_FOOD)){
+      c.MAX_FOOD += (Math.random()>=0.5?1:0)
+      if(c.MAX_FOOD_savedvalue===c.MAX_FOOD) util.log('Max Food is back at its orignal value ('+c.MAX_FOOD+').')
+    }
+    /*if(!(c.BOTS_savedvalue===c.BOTS)){
+      c.BOTS = c.BOTS_savedvalue
+      util.log('Bots is back at its orignal value ('+c.BOTS+').')
+    }*/
+    return false;
+  }
+}
+  
+// The NPC function
+// used for bots
+  let def = require('./lib/definitions');
+  let totalindex = 0;
+  for (let k in def) {
+      if (!def.hasOwnProperty(k)) continue;
+      def[k].index = totalindex++;
+  }
     let makenpcs = (() => {
         // Make base protectors if needed.
             /*let f = (loc, team) => { 
@@ -4641,7 +5032,6 @@ var maintainloop = (() => {
                 room['bas' + i].forEach((loc) => { f(loc, i); }); 
             }*/
         // Return the spawning function
-        let bots = [];
         return () => {
             let census = {
                 crasher: 0,
@@ -4655,39 +5045,193 @@ var maintainloop = (() => {
                 }
             }).filter(e => { return e; });    
             // Spawning
-            spawnCrasher(census);
             spawnBosses(census);
-            /*/ Bots
-                if (bots.length < c.BOTS) {
-                    let o = new Entity(room.random());
-                    o.color = 17;
-                    o.define(Class.bot);
-                    o.define(Class.basic);
-                    o.name += ran.chooseBotName();
-                    o.refreshBodyAttributes();
-                    o.color = 17;
-                    bots.push(o);
+          	  // Bots
+            if (bots.length < c.BOTS) {
+                // get data and if theres enough use it
+                let botdata = []
+                let data = JSON.parse(fs.readFileSync('./server/botdata.json', (err)=> {if(err){console.log(err)}}))
+                if(!(totalindex===data.resettrigger)){
+                  fs.writeFileSync('./server/botdata.json', JSON.stringify({"num":0,"resettrigger":totalindex}, null, "\t"))
+                  data = JSON.parse(fs.readFileSync('./server/botdata.json', (err)=> {if(err){console.log(err)}}))
+                  console.warn('We had to reset botdata.json because there was an index change')
                 }
-                // Remove dead ones
-                bots = bots.filter(e => { return !e.isDead(); });
-                // Slowly upgrade them
-                bots.forEach(o => {
-                    if (o.skill.level < 45) {
-                        o.skill.score += 35;
+                if(data.num){
+                for(let i = 0, skilllv=0, runs=0, tank, num; i<data.num; i++){
+                  if(skilllv<data[i].skill){
+                  skilllv = data[i].skill
+                  tank = data[i]
+                  num = i
+                  }
+                  if(i+1 == data.num){
+                    //log the tank
+                    botdata.push(tank)
+                    //remove it from the cylce
+                    data[num].skill = 0
+                    //cylce again
+                    skilllv=0
+                    runs++
+                    if(runs>7){
+                      i=data.num
+                    }else{
+                      i=0
+                    }
+                  }
+                }
+                }
+                //console.log("[BOTS] Number of bots: "+bots.length)
+                let o = new Entity(room.random());
+                o.define(Class.bot);
+                o.color = 12;
+                if(data.num){
+                // have rannum sepreately so tank genes are consitent
+                let rannum = Math.floor(Math.random()*botdata.length)
+                //apply the tank genes
+                if(Math.floor(Math.random()*4)>1){
+                  // 2/3 chance to pick an older tank
+                  o.define(classFromIndex(botdata[rannum].index))
+                }else{
+                o.define(Class.basic);
+                }
+                //apply the stat genes
+                if(Math.floor(Math.random()*4)>1){
+                  // 2/3 chance to pick older stats
+                 for(let i = 0; i < botdata[rannum].skillset.length; i++){
+                    if(botdata[rannum].skillset[i]>3)botdata[rannum].skillset[i]-=3
+                    if(i+1 == botdata[rannum].skillset.length){
+                    o.skillset = botdata[rannum].skillset
+                    o.skill.points -= util.sumArray(botdata[rannum].skillset)
+                    }
+                  }
+                }
+                }else{
+                  o.define(Class.basic);
+                }
+                o.name = ran.chooseBotName();
+                o.refreshBodyAttributes();
+                if (c.RANDOM_COLORS) o.color = Math.floor(Math.random() * 20);
+                if (c.MODE === "tdm") {
+                    let TEAMS = [];
+                    for (let i = 0; i < (c.TEAMS || 4); i++) TEAMS.push([-i - 1, 0]);
+                    for (let o of bots) {
+                        if (o.isDead()) continue;
+                        for (let team of TEAMS) {
+                            if (o.team === team[0]) team[1]++;
+                        }
+                    }
+                    TEAMS = TEAMS.sort(function(a, b) {
+                        return a[1] - b[1]
+                    });
+                    o.team = TEAMS[0][0];
+                    o.color = [10, 11, 12, 15][-o.team - 1];
+                }
+                bots.push(o);
+            }
+            // Slowly upgrade them
+            for(let o of bots){
+              //lv up
+                    if (o.skill.level < c.SKILL_CAP) {
+                        o.skill.score += 1000;
                         o.skill.maintain();
                     }
-                });
-            */
+              //skill up
+                    if (o.skill.points > 0){
+                        if (!o.skillset) o.skillset = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                        /*
+-- Bullets
+    rld: 0,
+    pen: 1,
+    str: 2,
+    dam: 3,
+    spd: 4,
+-- Body
+    shi: 5,
+    atk: 6,
+    hlt: 7,
+    rgn: 8,
+    mob: 9,
+                                Adjust skill bias as needed
+                        */
+                        let random = ran.biasRan(o.skillset, [0.5, 0.5, 0.5, 0.5, 0.5, 0.25, 0.35, 0.25, 0.25, 0.5], true)
+                        if(o.skillset[random]<c.MAX_SKILL){
+                        o.skillset[random]++
+                        o.skill.points--
+                        }
+                        while(util.sumArray(o.skillset)>c.SKILL_CAP*c.SKILL_PER_LV){
+                          o.skillset[Math.floor(Math.random()*o.skillset.length)]--
+                        }
+                      }else if(o.skill.level>=c.SKILL_CAP&&!util.sumArray(o.skill.raw)){
+                        o.skill.set(o.skillset)
+                      }
+              //tank up
+                    if (o.skill.level>=45&&o.upgrades.length){
+                      o.upgrade(Math.floor(Math.random() * o.upgrades.length))
+                    }
+            };
+            // Remove dead ones and consider their skill at the game
+            bots = bots.filter(e => {
+              if (e.isDead()){
+                // if they have a skill issue, if they do erase them from history
+                if (e.killCount.solo == 0) {/*util.log(`${e.name} is a LOSER and had a SKILL ISSUE so they will be forever forgotten`);*/return;}
+                //util.log(`${e.name} had a minor skill issue`)
+                // read the data
+                let data = JSON.parse(fs.readFileSync('./server/botdata.json', (err)=> {if(err){console.log(err)}}))
+                // process it
+                if(!data.num) data.num = 0
+                data[data.num] = {'score': e.skill.score, 'kills': e.killCount.solo, 'skillset': e.skillset, 'index': e.index, 'skill': e.skill.score*e.killCount.solo, 'tank': e.label}
+                data.num++
+                
+                // find out what the average tank looks like
+                let score = []
+                let kills = []
+                let skill = []
+                let skillset = []
+                for(let i = 0; i < data.num; i++){
+                  if(score.length < data.num){
+                    score.push(data[i].score)
+                    kills.push(data[i].kills)
+                    skill.push(data[i].skill)
+                    skillset.push(data[i].skillset)
+                  }
+                  //skill set calculation
+                  if(i+1 == data.num){
+                     // average of each value in each array combined into 1 to get the average skill set.. interestingly the combined value is not 45 (the normal skill cap)
+                    let skillset2 = []
+                    for(let a = 0; a < skillset[0].length; a++){
+                      let num = 0;
+                        for(var b = 0; b < skillset.length; b++){ 
+                          num += skillset[b][a];
+                        }
+                      skillset2.push(Math.round(num / skillset.length));
+                  }
+                    data.averagetank = {
+                        'score': util.averageArray(score),
+                        'kills': util.averageArray(kills),
+                        'skill': util.averageArray(skill),
+                        'skillset': skillset2,
+                                      }
+                    // logs what the average tank looks like
+                    //util.log(data.averagetank)
+                  }
+                }
+                // write it
+                fs.writeFileSync('./server/botdata.json', JSON.stringify(data, null, "\t"))
+              }
+              // rest in peace
+              return !e.isDead();
+            });
         };
     })();
 //Food functions
-  let Food = []
-  function sendfood(place, type=[]){
+  //placing food function
+  function sendfood(place='norm', type=[]){
   let pos = room.randomType(place)
-  while(dirtyCheck(pos, 300)){
+  while(dirtyCheck(pos, 125)){
     pos = room.randomType(place)
   }
   for(let i = 0; i < type.length; i++){
+    pos.x += Math.floor(Math.random()*5)
+    pos.y += Math.floor(Math.random()*5)
     let o = new Entity(pos)
     if(type[i].PARENT&&type[i].PARENT[0].TYPE==="food")type[i].BODY.ACCELERATION = 0.001
     o.define(type[i]);
@@ -4701,7 +5245,7 @@ var maintainloop = (() => {
       let type = []
       let place; 
       let zonetype = ran.chooseChance(
-      50, // Norm
+      75, // Norm
       25, // Nest
       );
     for(let i = 0; i < (Math.floor(Math.random() * c.MAX_FOOD_CLUSTER))+c.FOOD_CLUSTER_ADDITIVE; i++){
@@ -4727,10 +5271,14 @@ var maintainloop = (() => {
         80, // Pentagon 
         5, // Big Pentagon
         2.5, // HUGEEEEE Pentagon
+        50, // Crasher
+        0.5, // Sentry
       )){
         case 0: {type.push(Class.pentagon)}; break;
         case 1: {type.push(Class.bigPentagon)}; break;
         case 2: {type.push(Class.hugePentagon)}; break;
+        case 3: {type.push(Class.crasher)}; break;
+        case 4: {type.push(Math.random()>=0.5?Class.sentryGun:Math.random()>=0.5?Class.sentrySwarm:Class.sentryGun)}; break;
       }
       place = 'nest'
        break;
@@ -4744,7 +5292,9 @@ var maintainloop = (() => {
 }
     // Define food and food spawning
     return () => {
-        // Do stuff
+        // Check if the server needs some life support
+        if(c.SERVER_LIFESUPPORT)serverLifesupport();
+        // Make some children
         makenpcs();      
         // Clear dead shit first
         Food = Food.filter(e => {
@@ -4753,14 +5303,14 @@ var maintainloop = (() => {
         // Then Make some babies
         makefood(); 
         // Regen health and update the grid
-        entities.forEach(instance => {
+        for(let instance of entities){
             if (instance.shield.max) {
                 instance.shield.regenerate();
             }
             if (instance.health.amount) {
                 instance.health.regenerate(instance.shield.max && instance.shield.max === instance.shield.amount);
             }
-        });
+        };
     };
 })();
 // This is the checking loop. Runs at 1Hz.
@@ -4780,6 +5330,7 @@ var speedcheckloop = (() => {
         let loops = logs.loops.count(),
             active = logs.entities.count();
         global.fps = (1000/sum).toFixed(2);
+        ostsifmp = Math.round((sum/(1000/ roomSpeed /30))*100)
         if (sum > 1000 / roomSpeed / 30) { 
             //fails++;
             util.warn('~~ LOOPS: ' + loops + '. ENTITY #: ' + entities.length + '//' + Math.round(active/loops) + '. VIEW #: ' + views.length + '. BACKLOGGED :: ' + (sum * roomSpeed * 3).toFixed(3) + '%! ~~');
@@ -4792,6 +5343,7 @@ var speedcheckloop = (() => {
             util.warn('Total entity life+thought cycle time: ' + lifetime);
             util.warn('Total entity selfie-taking time: ' + selfietime);
             util.warn('Total time: ' + (activationtime + collidetime + movetime + playertime + maptime + physicstime + lifetime + selfietime));
+            util.warn('OH SHIT THE SERVER IS FUCKING MELTING percent: '+ostsifmp+'%')
             if (fails > 60) {
                 util.error("FAILURE!");
                 //process.exit(1);
@@ -4868,7 +5420,6 @@ let gitdata = JSON.parse(fs.readFileSync('./clientSrc/githubstats.json', 'utf8')
 let datemins = Math.round(Date.now()/60000)
 
 // if its been 30min or later after our lastest update, ping github and update the file
-console.log(datemins + " | " + gitdata.lastupdate+30)
 if(datemins>gitdata.lastupdate+30){
   let https = require('https')
   var options = {
@@ -4888,10 +5439,11 @@ response.on("end", function(){
     gitdata.lastupdate = datemins
     gitdata.gitdata = body
     fs.writeFileSync('./clientSrc/githubstats.json', JSON.stringify(gitdata));
+    fs.writeFileSync('./dist/githubstats.json', JSON.stringify(gitdata));
     console.log('Updated githubstats.json!')
     });
 });
 request.end();
 }
-console.log(datemins-gitdata.lastupdate+30 + " more mins till githubstats.json is updated.")
-}, 300000)//check every 5 mins
+console.log((gitdata.lastupdate+30)-datemins + " more mins till githubstats.json is updated.")
+}, 300000)//check every 5 mins, 300000 ms

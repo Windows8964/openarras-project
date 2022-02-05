@@ -1,9 +1,9 @@
-graphics.onclick = function(){
+settings.onclick = function(){
     if(document.getElementsByClassName('popupMenu').length){
       let ele = document.getElementsByClassName('popupMenu');
       ele[0].style.animation = "menuGo .5s";
       ele[0].style.animationFillMode = "forward";
-      document.getElementById("invisDiv").appendChild(document.getElementById("graphicSection"))
+      document.getElementById("invisDiv").appendChild(document.getElementById("settingsSection"))
       setTimeout(function () {
           ele[0].remove();
       }, 500)
@@ -24,14 +24,14 @@ graphics.onclick = function(){
         body.style.animationFillMode = "forward";
         body.style.pointerEvents = "none";
         setTimeout(function(){
-            document.getElementById("invisDiv").appendChild(document.getElementById("graphicSection"))
+            document.getElementById("invisDiv").appendChild(document.getElementById("settingsSection"))
             body.remove();
         }, 500)
     }
     body.appendChild(close);
     body.appendChild((function(h1=document.createElement("h1")){
         h1.style="text-align:middle;font-size:25px;margin-left:10px;margin-top: 3px;margin-bottom:0px;";
-        h1.innerHTML = "OpenArras Graphics";
+        h1.innerHTML = "OpenArras Settings";
         return h1;
     })());
     /*body.appendChild((function(h1=document.createElement("h1")){
@@ -39,7 +39,7 @@ graphics.onclick = function(){
         h1.innerHTML = "(🗸: done, ✗: not done)";
         return h1;
     })())*/
-    let ele1 = document.getElementById("graphicSection")
+    let ele1 = document.getElementById("settingsSection")
     ele1.style.display = "initial"
     body.appendChild(ele1)
     startMenuWrapper.appendChild(body);

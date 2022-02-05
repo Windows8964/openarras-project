@@ -1,0 +1,268 @@
+{
+	"0": {
+		"score": 100572,
+		"kills": 2,
+		"skillset": [
+			5,
+			6,
+			7,
+			7,
+			6,
+			6,
+			2,
+			1,
+			3,
+			4
+		],
+		"index": 152,
+		"skill": 201144,
+		"tank": "Octo Tank"
+	},
+	"1": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			5,
+			5,
+			7,
+			6,
+			5,
+			3,
+			4,
+			4,
+			4,
+			4
+		],
+		"index": 77,
+		"skill": 70786,
+		"tank": "Single"
+	},
+	"2": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			7,
+			7,
+			7,
+			4,
+			4,
+			4,
+			2,
+			3,
+			4,
+			5
+		],
+		"index": 159,
+		"skill": 70786,
+		"tank": "Bomber"
+	},
+	"3": {
+		"score": 76233,
+		"kills": 1,
+		"skillset": [
+			8,
+			7,
+			4,
+			5,
+			6,
+			2,
+			6,
+			1,
+			3,
+			5
+		],
+		"index": 102,
+		"skill": 76233,
+		"tank": "Ranger"
+	},
+	"4": {
+		"score": 110897,
+		"kills": 2,
+		"skillset": [
+			4,
+			5,
+			8,
+			8,
+			4,
+			3,
+			8,
+			1,
+			-1,
+			7
+		],
+		"index": 54,
+		"skill": 221794,
+		"tank": "Heli-Producer"
+	},
+	"5": {
+		"score": 142298,
+		"kills": 3,
+		"skillset": [
+			9,
+			5,
+			3,
+			4,
+			9,
+			2,
+			2,
+			4,
+			4,
+			5
+		],
+		"index": 159,
+		"skill": 426894,
+		"tank": "Bomber"
+	},
+	"6": {
+		"score": 87474,
+		"kills": 1,
+		"skillset": [
+			8,
+			6,
+			8,
+			6,
+			2,
+			4,
+			4,
+			3,
+			2,
+			4
+		],
+		"index": 77,
+		"skill": 87474,
+		"tank": "Single"
+	},
+	"7": {
+		"score": 83011,
+		"kills": 2,
+		"skillset": [
+			9,
+			7,
+			4,
+			6,
+			9,
+			0,
+			7,
+			1,
+			3,
+			1
+		],
+		"index": 159,
+		"skill": 166022,
+		"tank": "Bomber"
+	},
+	"8": {
+		"score": 109452,
+		"kills": 2,
+		"skillset": [
+			9,
+			4,
+			7,
+			6,
+			6,
+			3,
+			4,
+			2,
+			2,
+			4
+		],
+		"index": 77,
+		"skill": 218904,
+		"tank": "Single"
+	},
+	"9": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			4,
+			8,
+			8,
+			5,
+			4,
+			6,
+			2,
+			3,
+			1,
+			6
+		],
+		"index": 77,
+		"skill": 70786,
+		"tank": "Single"
+	},
+	"10": {
+		"score": 100572,
+		"kills": 2,
+		"skillset": [
+			2,
+			6,
+			8,
+			6,
+			6,
+			5,
+			4,
+			5,
+			2,
+			3
+		],
+		"index": 77,
+		"skill": 201144,
+		"tank": "Single"
+	},
+	"11": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			5,
+			9,
+			5,
+			8,
+			8,
+			2,
+			5,
+			0,
+			3,
+			2
+		],
+		"index": 77,
+		"skill": 70786,
+		"tank": "Single"
+	},
+	"12": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			5,
+			7,
+			6,
+			5,
+			5,
+			5,
+			5,
+			2,
+			4,
+			3
+		],
+		"index": 77,
+		"skill": 70786,
+		"tank": "Single"
+	},
+	"num": 13,
+	"resettrigger": 187,
+	"averagetank": {
+		"score": 89572.23076923077,
+		"kills": 1.5384615384615385,
+		"skill": 150272.23076923078,
+		"skillset": [
+			6,
+			6,
+			6,
+			6,
+			6,
+			3,
+			4,
+			2,
+			3,
+			4
+		]
+	}
+}
