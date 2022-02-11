@@ -86,7 +86,7 @@ const g = { // Gun info here
         auto: /*pure*/  [1.8,   0.75,  0.5,    0.8,    0.9,    0.6,    1.2,    1.1,    1,      0.8,    1.3,    1,      1.25],
             five:       [1.15,  1,     1,      1,      1,      1,      1,      1.05,   1.05,   1.1,    2,      1,      1],   
             autosnipe:  [1,     1,     1,      1.4,    2,      1,      1,      1,      1,      1,      1,      1,      1],   
-    heli:               [0.5,   1,     1,      1,      0.5,    1,      1.25,   1,      1,      1,      1,      2,      1],
+    heli:               [0.5,   1,     1,      1,      0.5,    0.45,  1.25,   1,      1,      1,      1,      2,      1.5],
     /***************** RELOAD RECOIL SHUDDER  SIZE   HEALTH  DAMAGE   PEN    SPEED    MAX    RANGE  DENSITY  SPRAY   RESIST  */ 
     pound:              [2,     1.6,   1,      1,      1,      2,      1,      0.85,   0.8,    1,      1.5,    1,      1.15], 
         destroy:        [2.2,   1.8,   0.5,    1,      2,      2,      1.2,    0.65,   0.5,    1,      2,      1,      3],
@@ -234,9 +234,6 @@ exports.genericEntity = {
         PUSHABILITY: 1,        
         HETERO: 2,
     },    
-    FOOD: {
-        LEVEL: -1,
-    },
 };
 
 // FOOD
@@ -546,7 +543,7 @@ exports.trap = {
     SHAPE: -3, 
     MOTION_TYPE: 'glide', // def
     FACING_TYPE: 'turnWithSpeed',
-    HITS_OWN_TYPE: 'push',
+    HITS_OWN_TYPE: 'repel',
     DIE_AT_RANGE: true,
     BODY: {
         HEALTH: 1 * wepHealthFactor,
@@ -1125,6 +1122,7 @@ exports.heli = {
   PARENT: [exports.genericTank],
   LABEL: 'Heli',
   HOVER: true,
+  HAS_NO_RECOIL: true,
   BODY:{
   FOV: base.FOV*1.25
   },
@@ -1144,6 +1142,7 @@ exports.doubleheli = {
   PARENT: [exports.genericTank],
   LABEL: 'Double-Heli',
   HOVER: true,
+  HAS_NO_RECOIL: true,
   BODY:{
   FOV: base.FOV*1.35,
   SPEED: base.SPEED*1.25
@@ -1170,6 +1169,7 @@ exports.bigheli = {
   PARENT: [exports.genericTank],
   LABEL: 'Big-Heli',
   HOVER: true,
+  HAS_NO_RECOIL: true,
   BODY:{
   FOV: base.FOV*1.35
   },
@@ -1336,12 +1336,12 @@ exports.triheli = {
   GUNS:  [...exports.heli.GUNS, { /* LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
             POSITION: [  16,     4,      1,      0,    7,     0,     0,  ], 
             PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.basic, g.heli]),
+                SHOOT_SETTINGS: combineStats([g.basic, g.heli, g.slow, g.lessreload]),
                 TYPE: exports.bullet,
             }, },{ /* LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
             POSITION: [  16,     4,      1,      0,    -7,     0,     0,  ], 
             PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.basic, g.heli]),
+                SHOOT_SETTINGS: combineStats([g.basic, g.heli, g.slow, g.lessreload]),
                 TYPE: exports.bullet,
             }, },{ /* LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
             POSITION: [  19,     6,      1,      0,    0,     0,     0.5,  ], 
@@ -4359,9 +4359,12 @@ exports.sentrySwarm = {
 exports.sentryGun = makeAuto(exports.sentry, 'Sentry', { type: exports.heavy3gun, size: 12, });
 exports.sentryTrap = makeAuto(exports.sentry, 'Sentry', { type: exports.trapTurret, size: 12, });
 
+//BOSSES
+
 exports.miniboss = {
     PARENT: [exports.genericTank],
     TYPE: 'miniboss',
+    NAME: '',
     DANGER: 6,
     SKILL: skillSet({
         rld: 0.7,
@@ -4369,10 +4372,10 @@ exports.miniboss = {
         pen: 0.8,
         str: 0.8,
         spd: 0.2,
-        atk: 0.3,
-        hlt: 1,
-        shi: 0.7,
-        rgn: 0.7,
+        atk: 0.7,
+        hlt: 0.65,
+        shi: 0.25,
+        rgn: 0,
         mob: 0,        
     }),
     LEVEL: 45,
@@ -4413,8 +4416,7 @@ exports.miniboss = {
         BODY: {
             FOV: 1.3,
             SPEED: base.SPEED * 0.25,
-            HEALTH: base.HEALTH * 1.5,
-            SHIELD: base.SHIELD * 1.25,
+            HEALTH: base.HEALTH,
             REGEN: base.REGEN,
             DAMAGE: base.DAMAGE * 2.5,
         },
@@ -4567,6 +4569,78 @@ exports.miniboss = {
             ],
         };
     })();
+    exports.tempestswarm = {
+    LABEL: 'Tempest Drone',
+    TYPE: 'swarm',
+    CONTROLLERS: ['swamper', 'canRepel'],
+    ACCEPTS_SCORE: false,
+    SHAPE: 3,
+    MOTION_TYPE: 'swarm',
+    FACING_TYPE: 'smoothWithMotion',
+    CRAVES_ATTENTION: true,
+    BODY: {
+        ACCELERATION: 3,
+        PENETRATION: 1.5,
+        HEALTH: 0.225 * wepHealthFactor,
+        DAMAGE: 1.75 * wepDamageFactor,
+        SPEED: 6,
+        RESIST: 1.6,
+        RANGE: 225,
+        DENSITY: 12,
+        PUSHABILITY: 0.5,
+        FOV: 1.5,
+    },
+    DIE_AT_RANGE: true,
+    BUFF_VS_FOOD: true,      
+    }
+    exports.tempest = {
+        PARENT: [exports.miniboss],
+        LABEL: 'Tempest',
+        COLOR: 6,
+        SHAPE: 4,
+        SIZE: 28,
+        VARIES_IN_SIZE: true,
+        VALUE: 150000,
+        MAX_CHILDREN: 65,
+        BODY: {
+            FOV: 1.3,
+            SPEED: base.SPEED * 0.05,
+            HEALTH: base.HEALTH*1.25,
+            SHIELD: base.SHIELD * 1.25,
+            REGEN: base.REGEN*0.5,
+            DAMAGE: base.DAMAGE * 2.5,
+        },
+        GUNS: [ { /*** LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
+                    POSITION: [   7,    7.5,    0.6,     7,      0,      0,      0,   ], 
+                        PROPERTIES: {
+                            AUTOFIRE:true,
+                            SHOOT_SETTINGS: combineStats([g.swarm, g.battle, g.carrier, g.doublereload]),
+                            TYPE: exports.tempestswarm,
+                            STAT_CALCULATOR: gunCalcNames.swarm,          
+                        }, }, {
+                    POSITION: [   7,    7.5,    0.6,     7,      0,      90,    0.5,  ], 
+                        PROPERTIES: {
+                                                      AUTOFIRE:true,
+                            SHOOT_SETTINGS: combineStats([g.swarm, g.battle, g.carrier, g.doublereload]),
+                            TYPE: exports.tempestswarm,
+                            STAT_CALCULATOR: gunCalcNames.swarm,    
+                        }, }, {
+                    POSITION: [   7,    7.5,    0.6,     7,     0,     270,    0.5,  ], 
+                        PROPERTIES: {
+                                                      AUTOFIRE:true,
+                            SHOOT_SETTINGS: combineStats([g.swarm, g.battle, g.carrier, g.doublereload]),
+                            TYPE: exports.tempestswarm,
+                            STAT_CALCULATOR: gunCalcNames.swarm,    
+                        }, }, {
+                       POSITION: [   7,    7.5,    0.6,     7,     0,     180,    0.5,  ], 
+                        PROPERTIES: {
+                                                      AUTOFIRE:true,
+                            SHOOT_SETTINGS: combineStats([g.swarm, g.battle, g.carrier, g.doublereload]),
+                            TYPE: exports.tempestswarm,
+                            STAT_CALCULATOR: gunCalcNames.swarm,    
+                        }, }
+        ],
+    };
 
 exports.bot = {
     AUTO_UPGRADE: 'random',

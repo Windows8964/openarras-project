@@ -100,7 +100,7 @@ let encode = message => {
         contentSize += block.length + 1
       }
     } else {
-      console.error('Unencodable data type', block)
+      console.error('Unencodable data type', block);
       throw new Error('Unencodable data type')
     }
     headers.push(typeCode)
@@ -426,7 +426,7 @@ let encodeLegacy = (() => {
     let output = arr.shift()
     if (typeof output !== 'string')
       throw new Error('No identification code!')
-    arr.forEach(value => output += typeEncoder(findType(value), value))
+    for(let value of arr){output += typeEncoder(findType(value), value)}
     let len = output.length
     let buffer = new ArrayBuffer(len)
     let integerView = new Uint8Array(buffer)

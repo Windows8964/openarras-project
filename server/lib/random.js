@@ -84,7 +84,7 @@ exports.chooseN = (arr, n) => {
 
 exports.chooseChance = (...arg) => {
     let totalProb = 0;
-    arg.forEach(function(value) { totalProb += value; });
+    for(let value of arg){ totalProb += value; };
     let answer = exports.random(totalProb);
     for (let i=0; i<arg.length; i++) {
         if (answer<arg[i]) return i;
@@ -92,6 +92,33 @@ exports.chooseChance = (...arg) => {
     }
 };
 
+ exports.biasRan = (list, weight, returnarraypos) => {
+    var total_weight = weight.reduce(function (prev, cur, i, arr) {
+        return prev + cur;
+    });
+     
+    var random_num = Math.random()*(total_weight-0) + 0;
+    var weight_sum = 0;
+    //console.log(random_num)
+     
+    for (var i = 0; i < list.length; i++) {
+        weight_sum += weight[i];
+        weight_sum = +weight_sum.toFixed(2);
+         
+        if (random_num <= weight_sum) {
+          if(returnarraypos) return i
+            return list[i];
+        }
+    }
+     
+    // end of function
+};
+/* BIASRAN EXAMPLE
+biasRan([1,2,3], [0.2, 0.8, 0.3])
+1 - Returned 20% of the time
+2 - Returned 80% of the time
+3 - Returned 30% of the time
+*/
 const { uniqueNamesGenerator, adjectives, colors, animals, names } = require('unique-names-generator');
 exports.chooseBotName = () => {
   return uniqueNamesGenerator({
@@ -102,11 +129,25 @@ exports.chooseBotName = () => {
 });
 };
 
-
 exports.chooseBossName = () => {
+const customAdjectives = [
+'big',
+'large',
+'huge',
+'godly',
+'scary',
+'ginormous',
+'enormous',
+'colossal',
+'fat',
+'unholy',
+'divine'
+]
 return uniqueNamesGenerator({
-  dictionaries: [names],
-  length: 1,
+  dictionaries: [customAdjectives,names],
+  length: 2,
   style: 'capital',
+  separator: '-'
 });
 };
+

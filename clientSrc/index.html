@@ -52,8 +52,7 @@
                                 <a style="background:#171515" href="https://github.com/Windows8964/openarras-project" target="_blank" rel="noopener noreferrer"><img src="./assets/github.svg" style="filter:invert(1);" class="bottomHolderImage">Github</a>
                                 <!--<a style="background:#5865f2" href="(link here)"><img src="./assets/discord.svg" class="bottomHolderImage">Discord</a>-->
                               </div>
-                            <input type="text" autofocus tabindex="1" spellcheck="false" placeholder="This is the tale of:" id="playerNameInput" maxlength="24" />
-                            <input type="text" tabindex="1" placeholder="Token required." style="display:none" id="playerKeyInput" maxlength="64" />
+                            <input type="text" tabindex="1" spellcheck="false" placeholder="This is the tale of:" id="playerNameInput" maxlength="24" />
                         </div>
                         <div class="slider" id="startMenuSlidingTrigger">
                         <h3> <span id="viewOptionText">additional menu</span>&nbsp;&nbsp;<i class="arrow" id="optionArrow" style="transform:rotate(45deg);-webkit-transform:rotate(45deg)"></i> </h3>
@@ -61,7 +60,7 @@
                         <div class="slider" id="startMenuSlidingContent">
                             <div style="height:110px;position:relative;top:10px;overflow:auto;" class="bottomHolder">
                             <a style="background:#799197" id="controls"><img src="./assets/controller.svg" style="filter:invert(1);" class="bottomHolderImage">Controls</a>
-                            <a style="background:#F2BE58" id="graphics"><img src="./assets/mountain.svg" style="filter:invert(1);" class="bottomHolderImage">Graphics</a>
+                            <a style="background:#F2BE58" id="settings"><img src="./assets/cog.svg" style="filter:invert(1);" class="bottomHolderImage">Settings</a>
                             <a style="background:#5865f2" href="https://discord.gg/TrEwPctVyN" target="_blank" rel="noopener noreferrer"><img src="./assets/discord.svg" style="filter:invert(1);" class="bottomHolderImage">Discord</a>
                             <a style="background:#1FD5A8" id="contributors"><img src="./assets/contributors.svg" style="filter:invert(1);" class="bottomHolderImage">Contributors</a>
                             </div>
@@ -93,7 +92,7 @@
     <script src="/buttons/features.js"></script>
     <script src="/buttons/changelogs.js"></script>
     <script src="/buttons/controls.js"></script>
-    <script src="/buttons/graphics.js"></script>
+    <script src="/buttons/settings.js"></script>
     <script src="/buttons/contributors.js"></script>
     <script>
         var clicked=true;
@@ -121,7 +120,103 @@
 
 <!-- A div that doesnt render, used to apply themes and what not -->
 <div id="invisDiv" style="display:none;">
-  <div id="graphicSection">
+  <div id="chat" class="startMenu" style="width:25%;height:10%;top:85%;left:37.5%;">
+    <input id="chatbox" placeholder="Enter your message here:" style="width:79.5%;height:80%;" onkeydown="testEnter()"><button class="chatbutton" id="chatbutton" style="margin-left:2%;width:17.5%;height:80%;">Send</button>
+    <script>
+    function testEnter() {
+      if(event.key === 'Enter') {
+        document.getElementById('chatbutton').click()       
+      }
+    }
+    </script>
+  </div>
+  <div id="devmenu" class="startMenu" style="width:50%;height:45%;top:25%;left:25%;overflow:auto;">
+    <h1 style="text-align:middle;font-size:25px;margin-left:10px;margin-top: 3px;margin-bottom:0px;">OpenArras Dev Tools</h1>
+    <p style="text-align:middle;left:25%;position:relative;">To use your selected settings press the Q key with this menu closed.</p>
+    <hr>
+    <label for="devkeyFunct">Dev Key Function:</label><select onchange="htmlchanged('devkeyFunct')" id="devkeyFunct">
+      <option value="spawn">Spawn</option>
+      <option value="clone">Clone (Yourself)</option>
+      <option value="drag">Drag (mouse)</option>
+      <option value="delete">Delete (mouse)</option>
+    </select>
+    <label for="devkeyPos">Dev Key Result:</label><select onchange="htmlchanged('devkeyPos')" id="devkeyPos">
+      <option value="mouse">Mouse</option>
+      <option value="neartank">Near Your Tank</option>
+      <option value="tankoffset">Offset From Tank</option>
+      <option value="custom">Custom</option>
+    </select>
+    <input id="devkeyPosOffsetX" placeholder="X" type="number" style="display:none;">
+    <input id="devkeyPosOffsetY" placeholder="Y" type="number" style="display:none;">
+    <input id="devkeyOptions" placeholder="Additional Dev Key Settings" style="display:none;">
+    <hr>
+      <label class="container" style="margin-right:5px;"><span> - Godmode </span><input id="devGodmode" class="checkbox" type="checkbox"><span class="checkmark"></span></label>
+      <label class="container" style="margin-right:5px;"><span> - Invisible </span><input id="devInvisible" class="checkbox" type="checkbox"><span class="checkmark"></span></label>
+      <label class="container" style="margin-right:5px;"><span> - Hover</span><input id="devHover" class="checkbox" type="checkbox"><span class="checkmark"></span></label>
+    <hr>
+      <label for="devSetScore">Set Score:</label><input style="width:20%" id="devSetScore" type="number">
+      <label for="devSetSkillpoints">Set Skill Points:</label><input style="width:20%" id="devSetSkillpoints" type="number">
+      <label for="devSetHealth">Set Health:</label><input style="width:20%" id="devSetHealth" type="number">
+      <label for="devSetSpeed">Set Speed:</label><input style="width:20%" id="devSetSpeed" type="number">
+    <script>
+      // on page load to fix some things
+      htmlchanged('devkeyFunct');
+      // for when certain elements are changed
+      function htmlchanged(element) {
+        //alert(element)
+        let ele;
+        switch (element) {
+          case "devkeyFunct":
+            ele = document.getElementById("devkeyFunct");
+            switch(ele.value){
+              case 'spawn':
+                document.getElementById("devkeyOptions").style.display = 'block'
+                document.getElementById("devkeyOptions").placeholder = 'Syntax: <entity (egg)> <amount (1)>'
+                document.getElementById("devkeyPos").disabled = false
+              break;
+              case 'drag':
+              case 'delete':
+                document.getElementById("devkeyOptions").style.display = 'none'
+                document.getElementById("devkeyPos").value = 'mouse'
+                document.getElementById("devkeyPos").disabled = true
+                htmlchanged('devkeyPos')
+              break;
+              case 'clone':
+                document.getElementById("devkeyOptions").style.display = 'none'
+                document.getElementById("devkeyPos").disabled = false
+              break;
+            }
+            break;
+            case 'devkeyPos':
+              ele = document.getElementById("devkeyPos");
+              switch(ele.value){
+                case 'tankoffset':
+                  document.getElementById("devkeyPosOffsetX").style.display = 'block'
+                  document.getElementById("devkeyPosOffsetX").placeholder = 'Offset from your tank (X)'
+                  document.getElementById("devkeyPosOffsetY").style.display = 'block'
+                  document.getElementById("devkeyPosOffsetY").placeholder = 'Offset from your tank (Y)'
+                break;
+                case 'custom':
+                  document.getElementById("devkeyPosOffsetX").style.display = 'block'
+                  document.getElementById("devkeyPosOffsetX").placeholder = 'X coordinate'
+                  document.getElementById("devkeyPosOffsetY").style.display = 'block'
+                  document.getElementById("devkeyPosOffsetY").placeholder = 'Y coordinate'
+                break;
+                case 'mouse':
+                case 'neartank':
+                  document.getElementById("devkeyPosOffsetX").style.display = 'none'
+                  document.getElementById("devkeyPosOffsetX").placeholder = 'X'
+                  document.getElementById("devkeyPosOffsetY").style.display = 'none'
+                  document.getElementById("devkeyPosOffsetY").placeholder = 'Y'
+                break;
+              }
+            break;
+        }
+      }
+    </script>
+  </div>
+  <div id="settingsSection">
+  <input type="text" tabindex="1" placeholder="Enter Token Here:" id="playerKeyInput" maxlength="64" />
    <select id="optColors" tabindex="-1">
       <option value="normal">Light Colors</option>
       <option value="dark">Dark Colors</option>
