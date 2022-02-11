@@ -289,6 +289,7 @@ ioTypes.moveInCircles = class extends IO {
         return { goal: this.goal };
     }
 }
+let n = 0
 ioTypes.listenToPlayer = class extends IO {
     constructor(b, p) {
         super(b);
@@ -310,7 +311,7 @@ ioTypes.listenToPlayer = class extends IO {
                 y: 100 * Math.sin(kk),
             };
         }
-        if (this.body.invuln) {
+        if (!this.player.godmode&&this.body.invuln) {
             if (this.player.command.right || this.player.command.left || this.player.command.up || this.player.command.down || this.player.command.lmb) {
                 this.body.invuln = false;
             }
@@ -841,7 +842,6 @@ ioTypes.swamper = class extends IO {
         }
     }
 }
-
 ioTypes.hangOutNearMaster = class extends IO {
     constructor(body) {
         super(body);
@@ -1360,9 +1360,9 @@ class Gun {
                     this.body.maxChildren > this.body.children.length * ((this.calculator == 'necro') ? sk.rld : 1)
                 : true;                
             // Override in invuln
-            if (this.body.master.invuln) {
-                shootPermission = false;
-            }
+            /*if (this.body.master.invuln) {
+              shootPermission = false;
+            }*/
             // Cycle up if we should
             if (shootPermission || !this.waitToCycle) {
                 if (this.cycle < 1) {
@@ -1575,7 +1575,7 @@ class Gun {
 var minimap = [];
 var views = [];
 var entitiesToAvoid = [];
-const dirtyCheck = (p, r) => { return entitiesToAvoid.some(e => { return Math.abs(p.x - e.x) < r + e.size && Math.abs(p.y - e.y) < r + e.size; }); };
+const dirtyCheck = (loc, radius) => { return entitiesToAvoid.some(entity => { return Math.abs(loc.x - entity.x) < radius + entity.size && Math.abs(loc.y - entity.y) < radius + entity.size; }); };
 const grid = new hshg.HSHG();
 var entitiesIdLog = 0;
 var entities = [];
@@ -1995,25 +1995,22 @@ class Entity {
         if (set.HOVER != null) { 
           this.hover = set.HOVER; 
         }
-        if (set.MSG_ON_SPAWN) {
-          this.spawnMsg = set.MSG_ON_SPAWN
-        }
         if (set.RESET_UPGRADES) {
             this.upgrades = [];
         }
         if (set.UPGRADES_TIER_1 != null) { 
             for(let e of set.UPGRADES_TIER_1){
-                this.upgrades.push({ class: e, tier: 1, level: c.TIER_1, index: e.index });
+                this.upgrades.push({ tier: 1, level: c.TIER_1, index: e.index });
             };
         }
         if (set.UPGRADES_TIER_2 != null) { 
             for(let e of set.UPGRADES_TIER_2){
-                this.upgrades.push({ class: e, tier: 2, level: c.TIER_2, index: e.index });
+                this.upgrades.push({ tier: 2, level: c.TIER_2, index: e.index });
             };
         }
         if (set.UPGRADES_TIER_3 != null) { 
             for(let e of set.UPGRADES_TIER_3){
-                this.upgrades.push({ class: e, tier: 3, level: c.TIER_3, index: e.index });
+                this.upgrades.push({  tier: 3, level: c.TIER_3, index: e.index });
             };
         }
         if (set.SIZE != null) {
@@ -2249,7 +2246,7 @@ class Entity {
 
     upgrade(number) {
         if (number < this.upgrades.length && this.skill.level >= this.upgrades[number].level) {     
-            let saveMe = this.upgrades[number].class;           
+            let saveMe = classFromIndex(this.upgrades[number].index);           
             this.upgrades = [];
             this.define(saveMe);
             this.sendMessage('You have upgraded to ' + this.label + '.');
@@ -2474,7 +2471,6 @@ class Entity {
     }
 
     contemplationOfMortality() {
-      if(this.spawnMsg)sockets.broadcast(this.spawnMsg);this.spawnMsg=0;
         if (this.invuln) {
             this.damageRecieved = 0;
             return 0;
@@ -2971,9 +2967,9 @@ const sockets = (() => {
     const protocol = require('./lib/fasttalk');
     let clients = [], players = [];
     return {
-        broadcast: message => {
+        broadcast: (message,alpha=0,backgroundcolor="",textcolor="") => {
             for(let socket of clients){
-                socket.talk('m', message);
+                socket.talk('m', message, alpha, backgroundcolor, textcolor);
             };
         },
         connect: (() => {
@@ -3238,11 +3234,149 @@ const sockets = (() => {
                     } }
                 } break;
                 case '0': { // testbed cheat
-                    if (m.length !== 0) { socket.kick('Ill-sized testbed request.'); return 1; }
-                    // cheatingbois
-                    if (player.body != null) { if (socket.key === process.env.SECRET) {
-                        player.body.define(Class.testbed);
-                    } }
+                  if(socket.key!==c.TOKENS[0])return;
+                  switch(m[0]){
+                    case 'settings':
+                  /*
+                let devOpts = {
+                  keyFunct: document.getElementById('devkeyFunct').value,
+                  keyPos: document.getElementById('devkeyPos').value,
+                  keyPosOffsetX: document.getElementById("devkeyPosOffsetX").value,
+                  keyPosOffsetY: document.getElementById("devkeyPosOffsetY").value,
+                  keyOptions: document.getElementById('devkeyOptions').value,
+                  godmode: document.getElementById('devGodmode').value,
+                  invisible: document.getElementById('devInvisible').checked,
+                  hover: document.getElementById('devHover').checked,
+                  setScore: document.getElementById('devSetScore').value,
+                  setSkillpoints: document.getElementById('devSetSkillpoints').value,
+                  setHealth: document.getElementById('devSetHealth').value,
+                  setSpeed: document.getElementById('devSetSpeed').value,
+                }
+                  */
+                  socket.devOpts={
+                    keyFunct: m[1],
+                    keyPos: m[2],
+                    keyPosOffset: {x:Number(m[3]),y:Number(m[4])},
+                    keyOptions: m[5]?m[5].split(' '):m[5],
+                    godmode: m[6],
+                    invisible: m[7],
+                    hover: m[8],
+                    setScore: m[9],
+                    setSkillpoints: m[10],
+                    setHealth: m[11],
+                    setSpeed: m[12]
+                  }
+                  // set all checks and other things here 
+                  if(!player.body) return;
+                    // god mode toggle
+                  if(socket.devOpts.godmode){
+                    player.body.invuln = true
+                    player.godmode = 1
+                  }else{
+                    player.body.invuln = false
+                    player.godmode = 0
+                  }
+                    // invis toggle
+                  if(socket.devOpts.invisible){
+                    player.body.alpha = 0
+                  }else{
+                    player.body.alpha = 1
+                  }
+                    // hover toggle
+                  if(socket.devOpts.hover){
+                    player.body.hover = true
+                  }else{
+                    player.body.hover = false
+                  }
+                    // set score
+                  player.body.skill.score = Number(socket.devOpts.setScore)?Number(socket.devOpts.setScore):player.body.skill.score
+                    // set skill points
+                  player.body.skill.points = Number(socket.devOpts.setSkillpoints)?Number(socket.devOpts.setSkillpoints):player.body.skill.points
+                    // set health
+                  player.body.HEALTH = Number(socket.devOpts.setHealth)?Number(socket.devOpts.setHealth):player.body.HEALTH
+                    // set speed
+                  player.body.SPEED = Number(socket.devOpts.setSpeed)?Number(socket.devOpts.setSpeed):player.body.SPEED
+
+
+                    break;
+                    case 'activate':
+                      if(!player.body) return;
+                      if(!socket.devOpts) return player.body.sendMessage('You dont have a dev key action set.',0,"#FFD700","#ADD8E6");
+                      switch(socket.devOpts.keyFunct){
+                        case 'spawn':
+                          for(let i=0;i<(Number(socket.devOpts.keyOptions[1])?Number(socket.devOpts.keyOptions[1]):1);i++){
+                            let o;
+                            switch(socket.devOpts.keyPos){
+                              case 'mouse':
+                                o = new Entity({x:player.body.x+player.target.x,y:player.body.y+player.target.y})
+                              break;
+                              case 'neartank':
+                                o = new Entity({x:player.body.x+Math.floor(Math.random() * (100 - -100 + 1)) + -100,y:player.body.y+Math.floor(Math.random() * (100 - -100 + 1)) + -100})
+                              break;
+                              case 'tankoffset':
+                                o = new Entity({x:player.body.x+socket.devOpts.keyPosOffset.x,y:player.body.y+socket.devOpts.keyPosOffset.y})
+                              break;
+                              case 'custom':
+                                o = new Entity({x:socket.devOpts.keyPosOffset.x,y:socket.devOpts.keyPosOffset.y})
+                              break;
+                            }
+                              o.define(Class[socket.devOpts.keyOptions[0]?socket.devOpts.keyOptions[0]:'egg']);
+                              o.team = -100
+                          }
+                        break;
+                        case 'clone':
+                          let o;
+                          switch(socket.devOpts.keyPos){
+                            case 'mouse':
+                              o = new Entity({x:player.body.x+player.target.x,y:player.body.y+player.target.y})
+                            break;
+                            case 'neartank':
+                              o = new Entity({x:player.body.x+Math.floor(Math.random() * (100 - -100 + 1)) + -100,y:player.body.y+Math.floor(Math.random() * (100 - -100 + 1)) + -100})
+                            break;
+                            case 'tankoffset':
+                              o = new Entity({x:player.body.x+socket.devOpts.keyPosOffset.x,y:socket.body.y+socket.devOpts.keyPosOffset.y})
+                            break;
+                            case 'custom':
+                              o = new Entity({x:socket.devOpts.keyPosOffset.x,y:socket.devOpts.keyPosOffset.y})
+                            break;
+                          }
+                          o.define(classFromIndex(player.body.index));
+                          o.controllers = [new ioTypes.listenToPlayer(o, player)]
+                          o.team = player.body.team
+                          o.color = player.teamColor
+                          o.skill = player.body.skill
+                        break;
+                        case 'drag':
+                          for(let entity of entities){
+                            if(entity.id!=player.body.id&&(Math.abs(player.body.x+player.target.x - entity.x) <entity.size+100 && Math.abs(player.body.y+player.target.y - entity.y) < entity.size+100)){
+                              entity.x = player.body.x+player.target.x
+                              entity.y = player.body.y+player.target.y
+                            }
+                          }
+                        break;
+                        case 'delete':
+                          for(let entity of entities){
+                            if(entity.id!=player.body.id&&(Math.abs(player.body.x+player.target.x - entity.x) <entity.size+10 && Math.abs(player.body.y+player.target.y - entity.y) < entity.size+10)){
+                              entity.kill();
+                            }
+                          }
+                        break;
+                      }
+                    break;
+                  }
+                  /*if(!player.key==c.TOKENS[0])return;
+                  if(!player.devkeySetting){player.body.sendMessage('You dont have a dev key action set.',0,"#FFD700","#ADD8E6"); return;}
+                  switch(player.devkeySetting){
+                    case 'clone':
+                      let o = new Entity({x:player.body.x+Math.floor(Math.random() * (100 - -100 + 1)) + -100,y:player.body.y+Math.floor(Math.random() * (100 - -100 + 1)) + -100})
+                      o.define(classFromIndex(player.body.index));
+                      o.controllers = [new ioTypes.listenToPlayer(o, player)]
+                      o.team = player.body.team
+                      o.color = player.teamColor
+                      o.skill = player.body.skill
+                    break;
+                    default: player.body.sendMessage('There is no devkey action for "'+player.devkeySetting+'"',0,"#FFD700","#ADD8E6");break;
+                  }*/
                 } break;
                   case "U":
                     {
@@ -3368,7 +3502,6 @@ const sockets = (() => {
                       }
                       if (player.body != null) {
                         if (m[0].length < 1) {
-                          player.body.sendMessage("Uh... message too short?");
                           return;
                         }
                         if (m[0].length > 75) {
@@ -3376,35 +3509,32 @@ const sockets = (() => {
                           return;
                         }
                         if (m[0].startsWith(c.CHAT_CMD_PREFIX)) {
-                          if(!socket.key==c.TOKENS[0]) player.body.sendMessage('You dont have permission to use commands.'); return;
+                          if(socket.key!==c.TOKENS[0]){player.body.sendMessage('You dont have permission to use commands.'); return;}
                           //slight optimization using an if to determine if we need to check a massie switch
                           let args = m[0].trim().split(/ +/g);
                           let command = args[0]
                             .slice(c.CHAT_CMD_PREFIX.length)
                             .toLowerCase();
-                          
+                          let response = {
+                            text:'Ran command.',
+                            alpha: 0,
+                            background: "", 
+                            textcolor: ""
+                          }
                           // Enter chat commands in here
                           switch (command) {
                             case 'eval':
                               util.warn(`Ran ${args[1]} due to /eval being used in game.`)
                               eval(args[1])
                             break;
-                            case 'summon':
-                            case 'spawn':
-                              let o = new Entity({x:player.body.x+Number(args[2]),y:player.body.y+Number(args[3])})
-                              o.define(Class[args[1]]);
-                            break;
-                            case 'godmode':
-                              player.body.HEALTH = 10000
-                              player.body.SHIELD = 10000
-                              player.body.REGEN = 10000
-                            break;
                           }
-                          util.log(`Someone used ${m}`)
-                          player.body.sendMessage('Ran command')
-                          return 0;
+                          return;
                         }
-                        sockets.broadcast(`${player.body.name?player.body.name:"Unnamed Player"}(${player.body.id}): ${m[0]}`);
+                        if(socket.key==c.TOKENS[0]){
+                          sockets.broadcast(`${player.body.name?player.body.name:"Unnamed Player"}(${player.body.id}): ${m[0]}`,0.25,'#303030','#93E9BE');
+                        }else{
+                          sockets.broadcast(`${player.body.name?player.body.name:"Unnamed Player"}(${player.body.id}): ${m[0]}`);
+                        }
                       }
                     }
                     break;
@@ -3635,9 +3765,9 @@ const sockets = (() => {
                     };
                 })();
                 // Define the entities messaging function
-                function messenger(socket, content) {
-                    socket.talk('m', content);
-                }
+        function messenger(socket, content, alpha=0, backgroundcolor="", textcolor="") {
+          socket.talk('m', content, alpha, backgroundcolor, textcolor);
+        }
                 // The returned player definition function
                 return (socket, name) => {
                     let player = {}, loc = {};
@@ -3679,7 +3809,7 @@ const sockets = (() => {
                             body.define({ CAN_BE_ON_LEADERBOARD: false, });
                         }                        
                         body.addController(new ioTypes.listenToPlayer(body, player)); // Make it listen
-                        body.sendMessage = content => messenger(socket, content); // Make it speak
+                        body.sendMessage = (content, alpha, background, textcolor) =>messenger(socket, content, alpha, background, textcolor); // Make it speak
                         body.invuln = true; // Make it safe
                     player.body = body;
                     // Decide how to color and team the body
@@ -3738,7 +3868,7 @@ const sockets = (() => {
                     socket.camera.x = body.x; socket.camera.y = body.y; socket.camera.fov = 2000;
                     // Mark it as spawned
                     socket.status.hasSpawned = true;
-                    body.sendMessage('You have spawned! Welcome to the game.');
+                    //body.sendMessage('You have spawned! Welcome to the game.');
                     body.sendMessage('You will be invulnerable until you move or shoot.');
                     // Move the client camera
                     socket.talk('c', socket.camera.x, socket.camera.y, socket.camera.fov);
@@ -4906,7 +5036,18 @@ var maintainloop = (() => {
                 n = 0,
                 begin = 'yo some shit is about to move to a lower position',
                 arrival = 'Something happened lol u should probably let Neph know this broke',
+                message = ['oh fuck this isnt supposed to happen'],
                 loc = 'norm';
+                if(n>1){
+                  n--
+                  begin = ''
+                  arrival = ''
+                  message = ''
+                }else{
+                  begin = 'yo some shit is about to move to a lower position'
+                  arrival = 'Something happened lol u should probably let Neph know this broke'
+                  message = ['oh fuck this isnt supposed to happen']
+                }
             let spawn = () => {
                 let spot, m = 0;
                 do {
@@ -4918,53 +5059,54 @@ var maintainloop = (() => {
                     o.name = names[i++];
             };
             return {
-                prepareToSpawn: (classArray, number, nameClass, typeOfLocation = 'norm') => {
+                prepareToSpawn: (classArray, number, nameClass, typeOfLocation = 'norm', messageFunct) => {
+                    bois = classArray
                     n = number;
-                    bois = classArray;
                     loc = typeOfLocation;
-                    names = []
-                    for(let i=0; i<n; i++){
-                    names.push(ran.chooseBossName())
-                    }
-                    i = 0;
-                    if (n === 1) {
-                        begin = 'A visitor is coming.';
-                        arrival = names[0] + ' the ' + classArray[0].LABEL + ' has arrived.'; 
-                    } else {
-                        begin = 'Visitors are coming.';
-                        arrival = '';
-                        for (let i=0; i<n-2; i++) arrival += names[i] + ' the ' + classArray[i].LABEL + ', ';
-                        arrival += names[n-2] + ' the ' + classArray[n-2].LABEL + ' and ' + names[n-1] + ' the ' + classArray[n-1].LABEL + ' have arrived.';
+                    begin = `${n*bois.length} visitor${(n*bois.length>1?'s are':' is')} coming.`;
+                    names = [];
+                    arrival = '';
+                    message = messageFunct;
+                    for (let i=0; i<n; i++){
+                      for (let a=0; a<bois.length; a++){
+                      names.push(ran.chooseBossName())
+                      arrival += names[names.length-1] + ' the ' + (bois[a].LABEL?bois[a].LABEL:bois[a].PARENT[0].LABEL) + (i==n-2||a==bois.length-2?' and ':(i==n-1||a==bois.length-1)?' ':', ');
+                      }
+                    if(i==n-1) arrival += (n>1?'have':'has') + ' arrived.'
                     }
                 },
                 spawn: () => {
-                    sockets.broadcast(begin);
-                    for (let i=0; i<n; i++) {
-                        setTimeout(spawn, ran.randomRange(3500, 5000));
+                    sockets.broadcast(begin, 0.25, '#55007d', '#ffe559');
+                    setTimeout(()=>sockets.broadcast(message[0],message[1],message[2],message[3]),4000)
+                    for (let i=0; i<n*bois.length; i++) {
+                        setTimeout(spawn, ran.randomRange(3500, 4000));
                     }
                     // Wrap things up.
-                    setTimeout(() => sockets.broadcast(arrival), 5000);
+                    setTimeout(() => sockets.broadcast(arrival, 0.25, '#55007d', '#FFD700'), 7500);
                     util.log('[SPAWN] ' + arrival);
                 },
             };
         })();
         return census => {
-            if (timer > 500 && ran.dice(800 - timer) && census.miniboss < c.MAX_BOSSES) {
+            if (timer > 2000 && ran.dice(8000 - timer) && census.miniboss < c.MAX_BOSSES) {
                 util.log('[SPAWN] Preparing to spawn...');
                 timer = 0;
                 let choice = [];
+                let message = ['You dont stand a chance..', 0.25, '#55007d', '#ffee91']
                 switch (ran.chooseChance(20, 20, 10)) {
-                    case 0: 
-                        choice = [[Class.elite_destroyer], 2, 'a', 'nest'];
-                        break;
-                    case 1: 
-                        choice = [[Class.palisade], 1, 'castle', 'norm']; 
-                        break;
-                    case 2:
-                        choice = [[Class.tempest], 1, 'elemental', 'norm'];
+                    case 0:
+                      choice = [[Class.elite_destroyer], 2, 'crasher', 'nest'];
+                      message=['The crashers feel stronger..', 0.25, '#55007d', '#ffee91']
                     break;
-                }
-                boss.prepareToSpawn(...choice);
+                    case 1: 
+                      choice = [[Class.palisade], 1, 'castle', 'norm']; 
+                      message=['A strange trembling..', 0.25, '#55007d', '#ffee91']
+                    break;
+                    case 2:
+                      choice = [[Class.tempest], 1, 'elemental', 'norm'];
+                      message=['You notice the winds picking up..', 0.25, '#55007d', '#ffee91']
+                    break;                }
+                boss.prepareToSpawn(...choice, message);
                 setTimeout(boss.spawn, 3000);
                 // Set the timeout for the spawn functions
             } else if (!census.miniboss) timer++;
@@ -5447,3 +5589,4 @@ request.end();
 }
 console.log((gitdata.lastupdate+30)-datemins + " more mins till githubstats.json is updated.")
 }, 300000)//check every 5 mins, 300000 ms
+ 

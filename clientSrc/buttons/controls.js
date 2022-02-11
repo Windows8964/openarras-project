@@ -33,6 +33,14 @@ let controlArray = [
     {
       key: "M + statkey",
       description: "maxes out pressed stat"
+    },
+    {
+      key: "`",
+      description: "(Developer/Staff only) opens the Dev Menu"
+    },
+    {
+      key:"Q",
+      description: "(Developer/Staff only) activates the selected Dev function"
     }
 ]
 controls.onclick = function(){

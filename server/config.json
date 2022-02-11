@@ -54,8 +54,9 @@
   "MAX_FOOD_CLUSTER": 5,
   "FOOD_CLUSTER_ADDITIVE": 5,
   
-  "MAX_BOSSES": 3,
-  
+  "MAX_BOSSES": 1,
+  "BOTS": 10,
+
   "MAX_SKILL": 9,
   "SOFT_MAX_SKILL": 0.59,
   "TIER_1": 10,
@@ -69,8 +70,6 @@
   "STEALTH": 4,
   "MIN_SPEED": 0.001,
   "SKILL_BOOST": 5,
-  "BOTS": 10,
-  "GLASS_HEALTH_FACTOR": 1,
 
   "TOKENS": ["tbed"],
   "RANDOMIZETOKENS": false, "if this is true look in console during start up to view the token(s)":0,

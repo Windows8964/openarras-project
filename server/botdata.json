@@ -246,22 +246,6349 @@
 		"skill": 70786,
 		"tank": "Single"
 	},
-	"num": 13,
-	"resettrigger": 187,
-	"averagetank": {
-		"score": 89572.23076923077,
-		"kills": 1.5384615384615385,
-		"skill": 150272.23076923078,
+	"13": {
+		"score": 70793,
+		"kills": 1,
+		"skillset": [
+			4,
+			7,
+			7,
+			6,
+			5,
+			2,
+			6,
+			2,
+			2,
+			6
+		],
+		"index": 96,
+		"skill": 70793,
+		"tank": "Triplet"
+	},
+	"14": {
+		"score": 60334,
+		"kills": 1,
+		"skillset": [
+			3,
+			9,
+			9,
+			5,
+			7,
+			4,
+			1,
+			1,
+			2,
+			6
+		],
+		"index": 102,
+		"skill": 60334,
+		"tank": "Ranger"
+	},
+	"15": {
+		"score": 91728,
+		"kills": 2,
+		"skillset": [
+			9,
+			3,
+			8,
+			5,
+			4,
+			5,
+			1,
+			5,
+			2,
+			5
+		],
+		"index": 58,
+		"skill": 183456,
+		"tank": "Tri-Heli"
+	},
+	"16": {
+		"score": 70799,
+		"kills": 1,
+		"skillset": [
+			4,
+			5,
+			8,
+			5,
+			6,
+			5,
+			2,
+			3,
+			5,
+			4
+		],
+		"index": 77,
+		"skill": 70799,
+		"tank": "Single"
+	},
+	"17": {
+		"score": 76236,
+		"kills": 1,
+		"skillset": [
+			9,
+			5,
+			3,
+			5,
+			8,
+			2,
+			6,
+			1,
+			5,
+			3
+		],
+		"index": 159,
+		"skill": 76236,
+		"tank": "Bomber"
+	},
+	"18": {
+		"score": 71194,
+		"kills": 1,
+		"skillset": [
+			2,
+			5,
+			9,
+			1,
+			9,
+			3,
+			4,
+			3,
+			2,
+			9
+		],
+		"index": 159,
+		"skill": 71194,
+		"tank": "Bomber"
+	},
+	"19": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			2,
+			4,
+			7,
+			7,
+			3,
+			5,
+			9,
+			2,
+			0,
+			8
+		],
+		"index": 87,
+		"skill": 70786,
+		"tank": "Nailgun"
+	},
+	"20": {
+		"score": 70813,
+		"kills": 1,
+		"skillset": [
+			7,
+			5,
+			7,
+			1,
+			9,
+			2,
+			3,
+			6,
+			2,
+			5
+		],
+		"index": 159,
+		"skill": 70813,
+		"tank": "Bomber"
+	},
+	"21": {
+		"score": 59877,
+		"kills": 1,
+		"skillset": [
+			9,
+			5,
+			6,
+			7,
+			3,
+			2,
+			4,
+			3,
+			2,
+			6
+		],
+		"index": 58,
+		"skill": 59877,
+		"tank": "Tri-Heli"
+	},
+	"22": {
+		"score": 95218,
+		"kills": 1,
+		"skillset": [
+			4,
+			9,
+			6,
+			6,
+			3,
+			3,
+			7,
+			4,
+			3,
+			2
+		],
+		"index": 170,
+		"skill": 95218,
+		"tank": "Snipe Guard"
+	},
+	"23": {
+		"score": 63822,
+		"kills": 1,
+		"skillset": [
+			6,
+			7,
+			3,
+			3,
+			5,
+			4,
+			5,
+			1,
+			4,
+			9
+		],
+		"index": 58,
+		"skill": 63822,
+		"tank": "Tri-Heli"
+	},
+	"24": {
+		"score": 75107,
+		"kills": 1,
+		"skillset": [
+			8,
+			4,
+			4,
+			5,
+			9,
+			5,
+			5,
+			2,
+			2,
+			3
+		],
+		"index": 137,
+		"skill": 75107,
+		"tank": "Shotgun"
+	},
+	"25": {
+		"score": 90074,
+		"kills": 2,
+		"skillset": [
+			8,
+			7,
+			6,
+			6,
+			6,
+			2,
+			2,
+			5,
+			1,
+			4
+		],
+		"index": 144,
+		"skill": 180148,
+		"tank": "Boomer"
+	},
+	"26": {
+		"score": 71021,
+		"kills": 1,
+		"skillset": [
+			9,
+			7,
+			5,
+			3,
+			9,
+			3,
+			3,
+			1,
+			1,
+			6
+		],
+		"index": 159,
+		"skill": 71021,
+		"tank": "Bomber"
+	},
+	"27": {
+		"score": 45099,
+		"kills": 1,
+		"skillset": [
+			5,
+			8,
+			7,
+			5,
+			4,
+			2,
+			3,
+			2,
+			2,
+			9
+		],
+		"index": 115,
+		"skill": 45099,
+		"tank": "Overgunner"
+	},
+	"28": {
+		"score": 59000,
+		"kills": 1,
+		"skillset": [
+			5,
+			2,
+			7,
+			8,
+			4,
+			1,
+			7,
+			6,
+			-1,
+			8
+		],
+		"index": 79,
+		"skill": 59000,
+		"tank": "Mega-Smasher"
+	},
+	"29": {
+		"score": 140970,
+		"kills": 3,
+		"skillset": [
+			5,
+			9,
+			9,
+			6,
+			5,
+			3,
+			2,
+			3,
+			1,
+			4
+		],
+		"index": 77,
+		"skill": 422910,
+		"tank": "Single"
+	},
+	"30": {
+		"score": 82168,
+		"kills": 1,
+		"skillset": [
+			7,
+			8,
+			9,
+			7,
+			5,
+			-1,
+			3,
+			0,
+			0,
+			9
+		],
+		"index": 80,
+		"skill": 82168,
+		"tank": "Spike"
+	},
+	"31": {
+		"score": 59819,
+		"kills": 1,
+		"skillset": [
+			9,
+			3,
+			5,
+			7,
+			6,
+			6,
+			2,
+			3,
+			1,
+			5
+		],
+		"index": 82,
+		"skill": 59819,
+		"tank": "Auto-Smasher"
+	},
+	"32": {
+		"score": 58935,
+		"kills": 1,
+		"skillset": [
+			8,
+			3,
+			6,
+			4,
+			9,
+			2,
+			5,
+			1,
+			3,
+			6
+		],
+		"index": 77,
+		"skill": 58935,
+		"tank": "Single"
+	},
+	"33": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			3,
+			4,
+			6,
+			8,
+			6,
+			4,
+			5,
+			4,
+			0,
+			7
+		],
+		"index": 159,
+		"skill": 70786,
+		"tank": "Bomber"
+	},
+	"34": {
+		"score": 76233,
+		"kills": 1,
+		"skillset": [
+			4,
+			9,
+			9,
+			6,
+			2,
+			4,
+			4,
+			6,
+			1,
+			2
+		],
+		"index": 77,
+		"skill": 76233,
+		"tank": "Single"
+	},
+	"35": {
+		"score": 48281,
+		"kills": 1,
+		"skillset": [
+			5,
+			4,
+			9,
+			5,
+			7,
+			2,
+			7,
+			2,
+			3,
+			3
+		],
+		"index": 58,
+		"skill": 48281,
+		"tank": "Tri-Heli"
+	},
+	"36": {
+		"score": 456556,
+		"kills": 23,
+		"skillset": [
+			8,
+			8,
+			4,
+			6,
+			8,
+			1,
+			4,
+			1,
+			6,
+			1
+		],
+		"index": 77,
+		"skill": 10500788,
+		"tank": "Single"
+	},
+	"37": {
+		"score": 84218,
+		"kills": 1,
+		"skillset": [
+			4,
+			7,
+			2,
+			5,
+			7,
+			6,
+			3,
+			2,
+			4,
+			7
+		],
+		"index": 77,
+		"skill": 84218,
+		"tank": "Single"
+	},
+	"38": {
+		"score": 100724,
+		"kills": 2,
+		"skillset": [
+			8,
+			9,
+			8,
+			6,
+			2,
+			3,
+			5,
+			3,
+			1,
+			2
+		],
+		"index": 77,
+		"skill": 201448,
+		"tank": "Single"
+	},
+	"39": {
+		"score": 477628,
+		"kills": 12,
+		"skillset": [
+			7,
+			8,
+			5,
+			4,
+			5,
+			3,
+			6,
+			2,
+			4,
+			3
+		],
+		"index": 77,
+		"skill": 5731536,
+		"tank": "Single"
+	},
+	"40": {
+		"score": 201447,
+		"kills": 3,
+		"skillset": [
+			5,
+			8,
+			5,
+			7,
+			7,
+			1,
+			6,
+			3,
+			4,
+			1
+		],
+		"index": 147,
+		"skill": 604341,
+		"tank": "Mortar"
+	},
+	"41": {
+		"score": 70890,
+		"kills": 85,
+		"skillset": [
+			5,
+			7,
+			9,
+			5,
+			6,
+			3,
+			2,
+			4,
+			1,
+			5
+		],
+		"index": 77,
+		"skill": 6025650,
+		"tank": "Single"
+	},
+	"42": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			3,
+			7,
+			9,
+			4,
+			5,
+			4,
+			7,
+			5,
+			3,
+			0
+		],
+		"index": 77,
+		"skill": 70786,
+		"tank": "Single"
+	},
+	"43": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			9,
+			8,
+			2,
+			8,
+			6,
+			4,
+			3,
+			2,
+			1,
+			4
+		],
+		"index": 156,
+		"skill": 70786,
+		"tank": "Booster"
+	},
+	"44": {
+		"score": 72103,
+		"kills": 1,
+		"skillset": [
+			5,
+			7,
+			2,
+			6,
+			7,
+			5,
+			3,
+			1,
+			3,
+			8
+		],
+		"index": 118,
+		"skill": 72103,
+		"tank": "Battleship"
+	},
+	"45": {
+		"score": 159813,
+		"kills": 3,
+		"skillset": [
+			6,
+			6,
+			9,
+			8,
+			9,
+			2,
+			3,
+			3,
+			1,
+			0
+		],
+		"index": 154,
+		"skill": 479439,
+		"tank": "Hexa-Trapper"
+	},
+	"46": {
+		"score": 73186,
+		"kills": 1,
+		"skillset": [
+			9,
+			5,
+			7,
+			4,
+			9,
+			2,
+			4,
+			2,
+			1,
+			4
+		],
+		"index": 159,
+		"skill": 73186,
+		"tank": "Bomber"
+	},
+	"47": {
+		"score": 59511,
+		"kills": 1,
+		"skillset": [
+			6,
+			5,
+			7,
+			4,
+			9,
+			3,
+			6,
+			1,
+			2,
+			4
+		],
+		"index": 159,
+		"skill": 59511,
+		"tank": "Bomber"
+	},
+	"48": {
+		"score": 173929,
+		"kills": 8,
+		"skillset": [
+			2,
+			3,
+			8,
+			8,
+			5,
+			5,
+			9,
+			1,
+			-1,
+			7
+		],
+		"index": 54,
+		"skill": 1391432,
+		"tank": "Heli-Producer"
+	},
+	"49": {
+		"score": 889704,
+		"kills": 47,
+		"skillset": [
+			4,
+			7,
+			5,
+			6,
+			9,
+			1,
+			4,
+			3,
+			4,
+			4
+		],
+		"index": 147,
+		"skill": 41816088,
+		"tank": "Mortar"
+	},
+	"50": {
+		"score": 70856,
+		"kills": 1,
+		"skillset": [
+			5,
+			5,
+			4,
+			9,
+			8,
+			3,
+			2,
+			2,
+			2,
+			7
+		],
+		"index": 163,
+		"skill": 70856,
+		"tank": "Auto-5"
+	},
+	"51": {
+		"score": 1115671,
+		"kills": 10,
+		"skillset": [
+			9,
+			9,
+			5,
+			4,
+			6,
+			3,
+			1,
+			2,
+			6,
+			2
+		],
+		"index": 121,
+		"skill": 11156710,
+		"tank": "Fortress"
+	},
+	"52": {
+		"score": 137945,
+		"kills": 4,
+		"skillset": [
+			4,
+			8,
+			9,
+			6,
+			4,
+			1,
+			8,
+			2,
+			1,
+			4
+		],
+		"index": 121,
+		"skill": 551780,
+		"tank": "Fortress"
+	},
+	"53": {
+		"score": 49985,
+		"kills": 1,
+		"skillset": [
+			1,
+			8,
+			7,
+			4,
+			5,
+			3,
+			6,
+			4,
+			2,
+			7
+		],
+		"index": 121,
+		"skill": 49985,
+		"tank": "Fortress"
+	},
+	"54": {
+		"score": 60872,
+		"kills": 1,
+		"skillset": [
+			6,
+			4,
+			9,
+			4,
+			4,
+			5,
+			2,
+			3,
+			4,
+			6
+		],
+		"index": 105,
+		"skill": 60872,
+		"tank": "Predator"
+	},
+	"55": {
+		"score": 146234,
+		"kills": 6,
+		"skillset": [
+			5,
+			6,
+			6,
+			5,
+			6,
+			4,
+			9,
+			2,
+			0,
+			4
+		],
+		"index": 106,
+		"skill": 877404,
+		"tank": "Poacher"
+	},
+	"56": {
+		"score": 143241,
+		"kills": 6,
+		"skillset": [
+			8,
+			6,
+			5,
+			5,
+			9,
+			1,
+			4,
+			2,
+			3,
+			4
+		],
+		"index": 127,
+		"skill": 859446,
+		"tank": "Sprayer"
+	},
+	"57": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			7,
+			7,
+			3,
+			8,
+			7,
+			4,
+			3,
+			3,
+			3,
+			2
+		],
+		"index": 147,
+		"skill": 70786,
+		"tank": "Mortar"
+	},
+	"58": {
+		"score": 69116,
+		"kills": 1,
+		"skillset": [
+			8,
+			5,
+			5,
+			2,
+			6,
+			4,
+			1,
+			7,
+			1,
+			8
+		],
+		"index": 121,
+		"skill": 69116,
+		"tank": "Fortress"
+	},
+	"59": {
+		"score": 59012,
+		"kills": 1,
+		"skillset": [
+			4,
+			5,
+			4,
+			7,
+			8,
+			5,
+			1,
+			3,
+			1,
+			9
+		],
+		"index": 55,
+		"skill": 59012,
+		"tank": "Heli-Master"
+	},
+	"60": {
+		"score": 58258,
+		"kills": 1,
+		"skillset": [
+			4,
+			4,
+			5,
+			7,
+			6,
+			2,
+			3,
+			3,
+			4,
+			9
+		],
+		"index": 77,
+		"skill": 58258,
+		"tank": "Single"
+	},
+	"61": {
+		"score": 60881,
+		"kills": 1,
+		"skillset": [
+			6,
+			6,
+			2,
+			4,
+			7,
+			4,
+			9,
+			2,
+			1,
+			6
+		],
+		"index": 57,
+		"skill": 60881,
+		"tank": "Heli-Racer"
+	},
+	"62": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			9,
+			4,
+			9,
+			6,
+			4,
+			3,
+			5,
+			3,
+			2,
+			2
+		],
+		"index": 77,
+		"skill": 70786,
+		"tank": "Single"
+	},
+	"63": {
+		"score": 56786,
+		"kills": 1,
+		"skillset": [
+			5,
+			4,
+			7,
+			9,
+			4,
+			4,
+			8,
+			2,
+			-1,
+			5
+		],
+		"index": 54,
+		"skill": 56786,
+		"tank": "Heli-Producer"
+	},
+	"64": {
+		"score": 67786,
+		"kills": 1,
+		"skillset": [
+			6,
+			6,
+			5,
+			9,
+			4,
+			1,
+			4,
+			5,
+			-2,
+			9
+		],
+		"index": 79,
+		"skill": 67786,
+		"tank": "Mega-Smasher"
+	},
+	"65": {
+		"score": 72062,
+		"kills": 1,
+		"skillset": [
+			7,
+			6,
+			4,
+			3,
+			8,
+			2,
+			5,
+			3,
+			4,
+			5
+		],
+		"index": 94,
+		"skill": 72062,
+		"tank": "Penta Shot"
+	},
+	"66": {
+		"score": 41539,
+		"kills": 2,
+		"skillset": [
+			5,
+			9,
+			4,
+			5,
+			9,
+			2,
+			1,
+			2,
+			6,
+			4
+		],
+		"index": 77,
+		"skill": 83078,
+		"tank": "Single"
+	},
+	"67": {
+		"score": 59000,
+		"kills": 1,
+		"skillset": [
+			7,
+			6,
+			9,
+			6,
+			6,
+			4,
+			2,
+			1,
+			2,
+			4
+		],
+		"index": 160,
+		"skill": 59000,
+		"tank": "Auto-Tri-Angle"
+	},
+	"68": {
+		"score": 76550,
+		"kills": 1,
+		"skillset": [
+			6,
+			4,
+			6,
+			6,
+			9,
+			4,
+			1,
+			2,
+			6,
+			3
+		],
+		"index": 127,
+		"skill": 76550,
+		"tank": "Sprayer"
+	},
+	"69": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			9,
+			8,
+			4,
+			4,
+			4,
+			4,
+			3,
+			4,
+			4,
+			3
+		],
+		"index": 147,
+		"skill": 70786,
+		"tank": "Mortar"
+	},
+	"70": {
+		"score": 71940,
+		"kills": 1,
+		"skillset": [
+			9,
+			8,
+			5,
+			4,
+			8,
+			4,
+			2,
+			1,
+			4,
+			2
+		],
+		"index": 80,
+		"skill": 71940,
+		"tank": "Spike"
+	},
+	"71": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			5,
+			8,
+			7,
+			8,
+			6,
+			1,
+			3,
+			0,
+			5,
+			4
+		],
+		"index": 77,
+		"skill": 70786,
+		"tank": "Single"
+	},
+	"72": {
+		"score": 76233,
+		"kills": 1,
+		"skillset": [
+			7,
+			4,
+			8,
+			6,
+			8,
+			3,
+			2,
+			3,
+			0,
+			6
+		],
+		"index": 60,
+		"skill": 76233,
+		"tank": "Heli-Trapper"
+	},
+	"73": {
+		"score": 71842,
+		"kills": 1,
+		"skillset": [
+			7,
+			5,
+			6,
+			8,
+			5,
+			2,
+			4,
+			4,
+			3,
+			3
+		],
+		"index": 77,
+		"skill": 71842,
+		"tank": "Single"
+	},
+	"74": {
+		"score": 142354,
+		"kills": 3,
+		"skillset": [
+			3,
+			6,
+			8,
+			9,
+			7,
+			3,
+			6,
+			2,
+			-2,
+			5
+		],
+		"index": 107,
+		"skill": 427062,
+		"tank": "Sidewinder"
+	},
+	"75": {
+		"score": 94167,
+		"kills": 1,
+		"skillset": [
+			5,
+			4,
+			9,
+			5,
+			6,
+			4,
+			3,
+			1,
+			2,
+			8
+		],
+		"index": 77,
+		"skill": 94167,
+		"tank": "Single"
+	},
+	"76": {
+		"score": 59000,
+		"kills": 1,
+		"skillset": [
+			5,
+			9,
+			6,
+			1,
+			4,
+			6,
+			5,
+			2,
+			3,
+			6
+		],
+		"index": 77,
+		"skill": 59000,
+		"tank": "Single"
+	},
+	"77": {
+		"score": 140664,
+		"kills": 4,
+		"skillset": [
+			7,
+			8,
+			6,
+			2,
+			4,
+			1,
+			5,
+			4,
+			5,
+			5
+		],
+		"index": 147,
+		"skill": 562656,
+		"tank": "Mortar"
+	},
+	"78": {
+		"score": 71786,
+		"kills": 1,
+		"skillset": [
+			5,
+			8,
+			6,
+			5,
+			6,
+			1,
+			5,
+			0,
+			2,
+			9
+		],
+		"index": 123,
+		"skill": 71786,
+		"tank": "Necromancer"
+	},
+	"79": {
+		"score": 77636,
+		"kills": 1,
+		"skillset": [
+			4,
+			3,
+			7,
+			6,
+			9,
+			2,
+			4,
+			2,
+			1,
+			9
+		],
+		"index": 147,
+		"skill": 77636,
+		"tank": "Mortar"
+	},
+	"80": {
+		"score": 71828,
+		"kills": 1,
+		"skillset": [
+			6,
+			9,
+			6,
+			4,
+			6,
+			3,
+			6,
+			3,
+			1,
+			3
+		],
+		"index": 170,
+		"skill": 71828,
+		"tank": "Snipe Guard"
+	},
+	"81": {
+		"score": 71254,
+		"kills": 1,
+		"skillset": [
+			4,
+			6,
+			7,
+			7,
+			6,
+			4,
+			8,
+			2,
+			1,
+			2
+		],
+		"index": 77,
+		"skill": 71254,
+		"tank": "Single"
+	},
+	"82": {
+		"score": 76890,
+		"kills": 1,
+		"skillset": [
+			3,
+			6,
+			7,
+			5,
+			4,
+			4,
+			2,
+			2,
+			6,
+			8
+		],
+		"index": 106,
+		"skill": 76890,
+		"tank": "Poacher"
+	},
+	"83": {
+		"score": 71986,
+		"kills": 1,
+		"skillset": [
+			5,
+			6,
+			5,
+			5,
+			8,
+			1,
+			5,
+			3,
+			3,
+			6
+		],
+		"index": 129,
+		"skill": 71986,
+		"tank": "Streamliner"
+	},
+	"84": {
+		"score": 153352,
+		"kills": 3,
+		"skillset": [
+			7,
+			7,
+			5,
+			4,
+			9,
+			2,
+			2,
+			5,
+			5,
+			1
+		],
+		"index": 127,
+		"skill": 460056,
+		"tank": "Sprayer"
+	},
+	"85": {
+		"score": 45000,
+		"kills": 1,
+		"skillset": [
+			5,
+			5,
+			8,
+			9,
+			3,
+			3,
+			6,
+			2,
+			-1,
+			7
+		],
+		"index": 54,
+		"skill": 45000,
+		"tank": "Heli-Producer"
+	},
+	"86": {
+		"score": 72577,
+		"kills": 1,
+		"skillset": [
+			6,
+			7,
+			7,
+			4,
+			4,
+			3,
+			5,
+			2,
+			3,
+			6
+		],
+		"index": 77,
+		"skill": 72577,
+		"tank": "Single"
+	},
+	"87": {
+		"score": 71986,
+		"kills": 1,
+		"skillset": [
+			6,
+			5,
+			5,
+			4,
+			7,
+			2,
+			8,
+			4,
+			3,
+			3
+		],
+		"index": 106,
+		"skill": 71986,
+		"tank": "Poacher"
+	},
+	"88": {
+		"score": 100572,
+		"kills": 2,
+		"skillset": [
+			5,
+			8,
+			4,
+			5,
+			8,
+			2,
+			3,
+			5,
+			4,
+			3
+		],
+		"index": 121,
+		"skill": 201144,
+		"tank": "Fortress"
+	},
+	"89": {
+		"score": 57698,
+		"kills": 1,
+		"skillset": [
+			4,
+			6,
+			7,
+			6,
+			3,
+			1,
+			6,
+			3,
+			3,
+			8
+		],
+		"index": 140,
+		"skill": 57698,
+		"tank": "Mega Trapper"
+	},
+	"90": {
+		"score": 102071,
+		"kills": 2,
+		"skillset": [
+			8,
+			9,
+			3,
+			2,
+			7,
+			4,
+			6,
+			3,
+			1,
+			4
+		],
+		"index": 77,
+		"skill": 204142,
+		"tank": "Single"
+	},
+	"91": {
+		"score": 71786,
+		"kills": 1,
+		"skillset": [
+			3,
+			9,
+			8,
+			4,
+			3,
+			3,
+			8,
+			4,
+			1,
+			4
+		],
+		"index": 86,
+		"skill": 71786,
+		"tank": "Auto-Gunner"
+	},
+	"92": {
+		"score": 81031,
+		"kills": 1,
+		"skillset": [
+			5,
+			7,
+			7,
+			5,
+			4,
+			1,
+			7,
+			3,
+			3,
+			5
+		],
+		"index": 106,
+		"skill": 81031,
+		"tank": "Poacher"
+	},
+	"93": {
+		"score": 82718,
+		"kills": 1,
+		"skillset": [
+			4,
+			5,
+			9,
+			3,
+			6,
+			4,
+			6,
+			4,
+			1,
+			5
+		],
+		"index": 77,
+		"skill": 82718,
+		"tank": "Single"
+	},
+	"94": {
+		"score": 70794,
+		"kills": 1,
+		"skillset": [
+			8,
+			8,
+			3,
+			5,
+			8,
+			2,
+			4,
+			2,
+			4,
+			3
+		],
+		"index": 127,
+		"skill": 70794,
+		"tank": "Sprayer"
+	},
+	"95": {
+		"score": 71080,
+		"kills": 1,
+		"skillset": [
+			6,
+			6,
+			3,
+			5,
+			7,
+			4,
+			1,
+			5,
+			3,
+			7
+		],
+		"index": 77,
+		"skill": 71080,
+		"tank": "Single"
+	},
+	"96": {
+		"score": 76233,
+		"kills": 1,
+		"skillset": [
+			5,
+			5,
+			7,
+			4,
+			4,
+			8,
+			5,
+			4,
+			2,
+			3
+		],
+		"index": 77,
+		"skill": 76233,
+		"tank": "Single"
+	},
+	"97": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			6,
+			7,
+			8,
+			6,
+			5,
+			2,
+			4,
+			1,
+			1,
+			7
+		],
+		"index": 147,
+		"skill": 70786,
+		"tank": "Mortar"
+	},
+	"98": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			8,
+			5,
+			3,
+			4,
+			9,
+			3,
+			2,
+			3,
+			5,
+			5
+		],
+		"index": 140,
+		"skill": 70786,
+		"tank": "Mega Trapper"
+	},
+	"99": {
+		"score": 56786,
+		"kills": 2,
+		"skillset": [
+			6,
+			6,
+			5,
+			7,
+			9,
+			3,
+			2,
+			3,
+			1,
+			5
+		],
+		"index": 54,
+		"skill": 113572,
+		"tank": "Heli-Producer"
+	},
+	"100": {
+		"score": 73779,
+		"kills": 1,
+		"skillset": [
+			2,
+			7,
+			9,
+			7,
+			6,
+			2,
+			2,
+			3,
+			2,
+			7
+		],
+		"index": 121,
+		"skill": 73779,
+		"tank": "Fortress"
+	},
+	"101": {
+		"score": 81335,
+		"kills": 2,
+		"skillset": [
+			3,
+			7,
+			6,
+			5,
+			7,
+			2,
+			2,
+			8,
+			4,
+			3
+		],
+		"index": 147,
+		"skill": 162670,
+		"tank": "Mortar"
+	},
+	"102": {
+		"score": 64004,
+		"kills": 1,
+		"skillset": [
+			9,
+			6,
+			3,
+			3,
+			9,
+			4,
+			2,
+			2,
+			1,
+			8
+		],
+		"index": 147,
+		"skill": 64004,
+		"tank": "Mortar"
+	},
+	"103": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			9,
+			9,
+			2,
+			6,
+			7,
+			1,
+			7,
+			2,
+			2,
+			2
+		],
+		"index": 106,
+		"skill": 70786,
+		"tank": "Poacher"
+	},
+	"104": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			3,
+			9,
+			9,
+			6,
+			2,
+			2,
+			4,
+			2,
+			4,
+			6
+		],
+		"index": 121,
+		"skill": 70786,
+		"tank": "Fortress"
+	},
+	"105": {
+		"score": 70991,
+		"kills": 1,
+		"skillset": [
+			5,
+			3,
+			7,
+			7,
+			8,
+			2,
+			9,
+			3,
+			-1,
+			4
+		],
+		"index": 119,
+		"skill": 70991,
+		"tank": "Carrier"
+	},
+	"106": {
+		"score": 59858,
+		"kills": 1,
+		"skillset": [
+			5,
+			5,
+			7,
+			2,
+			5,
+			5,
+			5,
+			5,
+			4,
+			4
+		],
+		"index": 77,
+		"skill": 59858,
+		"tank": "Single"
+	},
+	"107": {
+		"score": 59727,
+		"kills": 1,
+		"skillset": [
+			9,
+			3,
+			4,
+			3,
+			9,
+			1,
+			6,
+			4,
+			4,
+			4
+		],
+		"index": 77,
+		"skill": 59727,
+		"tank": "Single"
+	},
+	"108": {
+		"score": 85100,
+		"kills": 3,
+		"skillset": [
+			5,
+			5,
+			6,
+			4,
+			8,
+			3,
+			8,
+			2,
+			1,
+			5
+		],
+		"index": 106,
+		"skill": 255300,
+		"tank": "Poacher"
+	},
+	"109": {
+		"score": 89786,
+		"kills": 2,
+		"skillset": [
+			7,
+			9,
+			6,
+			1,
+			4,
+			7,
+			1,
+			4,
+			4,
+			4
+		],
+		"index": 121,
+		"skill": 179572,
+		"tank": "Fortress"
+	},
+	"110": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			4,
+			9,
+			7,
+			3,
+			4,
+			6,
+			5,
+			2,
+			2,
+			5
+		],
+		"index": 163,
+		"skill": 70786,
+		"tank": "Auto-5"
+	},
+	"111": {
+		"score": 136241,
+		"kills": 3,
+		"skillset": [
+			4,
+			4,
+			7,
+			7,
+			7,
+			2,
+			6,
+			1,
+			2,
+			7
+		],
+		"index": 58,
+		"skill": 408723,
+		"tank": "Tri-Heli"
+	},
+	"112": {
+		"score": 87064,
+		"kills": 1,
+		"skillset": [
+			5,
+			6,
+			6,
+			6,
+			8,
+			5,
+			3,
+			2,
+			2,
+			4
+		],
+		"index": 77,
+		"skill": 87064,
+		"tank": "Single"
+	},
+	"113": {
+		"score": 72262,
+		"kills": 1,
+		"skillset": [
+			8,
+			3,
+			8,
+			9,
+			4,
+			2,
+			8,
+			1,
+			-2,
+			6
+		],
+		"index": 152,
+		"skill": 72262,
+		"tank": "Octo Tank"
+	},
+	"114": {
+		"score": 140294,
+		"kills": 14,
+		"skillset": [
+			7,
+			9,
+			3,
+			6,
+			8,
+			1,
+			1,
+			3,
+			5,
+			4
+		],
+		"index": 77,
+		"skill": 1964116,
+		"tank": "Single"
+	},
+	"115": {
+		"score": 71986,
+		"kills": 1,
+		"skillset": [
+			4,
+			5,
+			6,
+			5,
+			6,
+			6,
+			1,
+			1,
+			7,
+			6
+		],
+		"index": 154,
+		"skill": 71986,
+		"tank": "Hexa-Trapper"
+	},
+	"116": {
+		"score": 77438,
+		"kills": 1,
+		"skillset": [
+			6,
+			6,
+			7,
+			4,
+			3,
+			4,
+			7,
+			1,
+			1,
+			8
+		],
+		"index": 147,
+		"skill": 77438,
+		"tank": "Mortar"
+	},
+	"117": {
+		"score": 71786,
+		"kills": 1,
+		"skillset": [
+			3,
+			7,
+			9,
+			7,
+			3,
+			3,
+			5,
+			3,
+			1,
+			6
+		],
+		"index": 77,
+		"skill": 71786,
+		"tank": "Single"
+	},
+	"118": {
+		"score": 88177,
+		"kills": 1,
+		"skillset": [
+			2,
+			9,
+			3,
+			6,
+			8,
+			2,
+			4,
+			6,
+			2,
+			5
+		],
+		"index": 147,
+		"skill": 88177,
+		"tank": "Mortar"
+	},
+	"119": {
+		"score": 59000,
+		"kills": 1,
+		"skillset": [
+			4,
+			9,
+			5,
+			8,
+			6,
+			1,
+			8,
+			3,
+			1,
+			2
+		],
+		"index": 106,
+		"skill": 59000,
+		"tank": "Poacher"
+	},
+	"120": {
+		"score": 81134,
+		"kills": 1,
+		"skillset": [
+			3,
+			7,
+			9,
+			3,
+			6,
+			5,
+			4,
+			2,
+			5,
+			3
+		],
+		"index": 77,
+		"skill": 81134,
+		"tank": "Single"
+	},
+	"121": {
+		"score": 100718,
+		"kills": 2,
+		"skillset": [
+			7,
+			9,
+			7,
+			3,
+			3,
+			4,
+			3,
+			3,
+			3,
+			5
+		],
+		"index": 121,
+		"skill": 201436,
+		"tank": "Fortress"
+	},
+	"122": {
+		"score": 74177,
+		"kills": 1,
+		"skillset": [
+			7,
+			7,
+			3,
+			5,
+			3,
+			5,
+			3,
+			3,
+			2,
+			9
+		],
+		"index": 77,
+		"skill": 74177,
+		"tank": "Single"
+	},
+	"123": {
+		"score": 76809,
+		"kills": 1,
+		"skillset": [
+			8,
+			4,
+			4,
+			3,
+			9,
+			3,
+			2,
+			4,
+			5,
+			5
+		],
+		"index": 60,
+		"skill": 76809,
+		"tank": "Heli-Trapper"
+	},
+	"124": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			5,
+			9,
+			5,
+			6,
+			8,
+			3,
+			4,
+			4,
+			1,
+			2
+		],
+		"index": 105,
+		"skill": 70786,
+		"tank": "Predator"
+	},
+	"125": {
+		"score": 86591,
+		"kills": 2,
+		"skillset": [
+			5,
+			8,
+			9,
+			5,
+			4,
+			5,
+			2,
+			1,
+			2,
+			6
+		],
+		"index": 54,
+		"skill": 173182,
+		"tank": "Heli-Producer"
+	},
+	"126": {
+		"score": 70986,
+		"kills": 1,
+		"skillset": [
+			5,
+			3,
+			9,
+			6,
+			4,
+			4,
+			9,
+			3,
+			0,
+			4
+		],
+		"index": 106,
+		"skill": 70986,
+		"tank": "Poacher"
+	},
+	"127": {
+		"score": 70986,
+		"kills": 1,
+		"skillset": [
+			9,
+			8,
+			5,
+			4,
+			4,
+			4,
+			1,
+			4,
+			4,
+			4
+		],
+		"index": 121,
+		"skill": 70986,
+		"tank": "Fortress"
+	},
+	"128": {
+		"score": 143539,
+		"kills": 3,
+		"skillset": [
+			3,
+			6,
+			9,
+			6,
+			3,
+			2,
+			3,
+			5,
+			5,
+			5
+		],
+		"index": 77,
+		"skill": 430617,
+		"tank": "Single"
+	},
+	"129": {
+		"score": 72017,
+		"kills": 1,
+		"skillset": [
+			6,
+			7,
+			8,
+			6,
+			3,
+			4,
+			3,
+			4,
+			1,
+			5
+		],
+		"index": 127,
+		"skill": 72017,
+		"tank": "Sprayer"
+	},
+	"130": {
+		"score": 101990,
+		"kills": 2,
+		"skillset": [
+			4,
+			6,
+			7,
+			7,
+			4,
+			1,
+			7,
+			4,
+			6,
+			1
+		],
+		"index": 169,
+		"skill": 203980,
+		"tank": "Gunner Trapper"
+	},
+	"131": {
+		"score": 79258,
+		"kills": 1,
+		"skillset": [
+			8,
+			3,
+			6,
+			5,
+			5,
+			3,
+			4,
+			1,
+			3,
+			9
+		],
+		"index": 77,
+		"skill": 79258,
+		"tank": "Single"
+	},
+	"132": {
+		"score": 71786,
+		"kills": 1,
+		"skillset": [
+			5,
+			6,
+			7,
+			4,
+			7,
+			6,
+			3,
+			2,
+			3,
+			4
+		],
+		"index": 121,
+		"skill": 71786,
+		"tank": "Fortress"
+	},
+	"133": {
+		"score": 110482,
+		"kills": 1,
+		"skillset": [
+			9,
+			8,
+			3,
+			5,
+			7,
+			2,
+			2,
+			2,
+			4,
+			5
+		],
+		"index": 77,
+		"skill": 110482,
+		"tank": "Single"
+	},
+	"134": {
+		"score": 155011,
+		"kills": 2,
+		"skillset": [
+			7,
+			8,
+			3,
+			2,
+			5,
+			5,
+			6,
+			2,
+			6,
+			3
+		],
+		"index": 96,
+		"skill": 310022,
+		"tank": "Triplet"
+	},
+	"135": {
+		"score": 72423,
+		"kills": 1,
+		"skillset": [
+			5,
+			8,
+			5,
+			6,
+			6,
+			2,
+			8,
+			6,
+			0,
+			1
+		],
+		"index": 106,
+		"skill": 72423,
+		"tank": "Poacher"
+	},
+	"136": {
+		"score": 107498,
+		"kills": 2,
+		"skillset": [
+			2,
+			8,
+			9,
+			7,
+			4,
+			4,
+			6,
+			3,
+			0,
+			4
+		],
+		"index": 77,
+		"skill": 214996,
+		"tank": "Single"
+	},
+	"137": {
+		"score": 72004,
+		"kills": 1,
+		"skillset": [
+			5,
+			8,
+			8,
+			9,
+			8,
+			0,
+			3,
+			3,
+			2,
+			1
+		],
+		"index": 87,
+		"skill": 72004,
+		"tank": "Nailgun"
+	},
+	"138": {
+		"score": 60000,
+		"kills": 1,
+		"skillset": [
+			8,
+			9,
+			8,
+			4,
+			9,
+			2,
+			1,
+			3,
+			2,
+			1
+		],
+		"index": 156,
+		"skill": 60000,
+		"tank": "Booster"
+	},
+	"139": {
+		"score": 60832,
+		"kills": 1,
+		"skillset": [
+			7,
+			7,
+			7,
+			5,
+			5,
+			3,
+			4,
+			2,
+			1,
+			6
+		],
+		"index": 77,
+		"skill": 60832,
+		"tank": "Single"
+	},
+	"140": {
+		"score": 67786,
+		"kills": 1,
+		"skillset": [
+			3,
+			8,
+			7,
+			4,
+			7,
+			1,
+			3,
+			4,
+			3,
+			7
+		],
+		"index": 147,
+		"skill": 67786,
+		"tank": "Mortar"
+	},
+	"141": {
+		"score": 61719,
+		"kills": 1,
+		"skillset": [
+			3,
+			4,
+			7,
+			7,
+			9,
+			2,
+			7,
+			2,
+			0,
+			6
+		],
+		"index": 54,
+		"skill": 61719,
+		"tank": "Heli-Producer"
+	},
+	"142": {
+		"score": 100776,
+		"kills": 2,
+		"skillset": [
+			9,
+			5,
+			9,
+			5,
+			6,
+			1,
+			5,
+			3,
+			2,
+			2
+		],
+		"index": 77,
+		"skill": 201552,
+		"tank": "Single"
+	},
+	"143": {
+		"score": 71986,
+		"kills": 1,
+		"skillset": [
+			6,
+			6,
+			6,
+			7,
+			6,
+			3,
+			2,
+			0,
+			6,
+			5
+		],
+		"index": 77,
+		"skill": 71986,
+		"tank": "Single"
+	},
+	"144": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			4,
+			9,
+			8,
+			4,
+			3,
+			4,
+			1,
+			5,
+			2,
+			7
+		],
+		"index": 106,
+		"skill": 70786,
+		"tank": "Poacher"
+	},
+	"145": {
+		"score": 130558,
+		"kills": 3,
+		"skillset": [
+			8,
+			5,
+			5,
+			9,
+			7,
+			2,
+			4,
+			1,
+			2,
+			4
+		],
+		"index": 121,
+		"skill": 391674,
+		"tank": "Fortress"
+	},
+	"146": {
+		"score": 86833,
+		"kills": 1,
+		"skillset": [
+			4,
+			6,
+			9,
+			4,
+			7,
+			6,
+			2,
+			2,
+			3,
+			4
+		],
+		"index": 77,
+		"skill": 86833,
+		"tank": "Single"
+	},
+	"147": {
+		"score": 106948,
+		"kills": 2,
+		"skillset": [
+			2,
+			9,
+			5,
+			9,
+			8,
+			3,
+			3,
+			4,
+			2,
+			2
+		],
+		"index": 147,
+		"skill": 213896,
+		"tank": "Mortar"
+	},
+	"148": {
+		"score": 72009,
+		"kills": 1,
+		"skillset": [
+			2,
+			7,
+			7,
+			3,
+			9,
+			4,
+			3,
+			6,
+			4,
+			2
+		],
+		"index": 87,
+		"skill": 72009,
+		"tank": "Nailgun"
+	},
+	"149": {
+		"score": 147585,
+		"kills": 3,
+		"skillset": [
+			8,
+			4,
+			7,
+			8,
+			6,
+			0,
+			5,
+			4,
+			1,
+			4
+		],
+		"index": 121,
+		"skill": 442755,
+		"tank": "Fortress"
+	},
+	"150": {
+		"score": 72093,
+		"kills": 1,
+		"skillset": [
+			4,
+			7,
+			6,
+			5,
+			6,
+			1,
+			9,
+			4,
+			1,
+			4
+		],
+		"index": 89,
+		"skill": 72093,
+		"tank": "Triple Twin"
+	},
+	"151": {
+		"score": 101972,
+		"kills": 2,
+		"skillset": [
+			7,
+			8,
+			6,
+			3,
+			4,
+			5,
+			3,
+			2,
+			5,
+			4
+		],
+		"index": 77,
+		"skill": 203944,
+		"tank": "Single"
+	},
+	"152": {
+		"score": 32106,
+		"kills": 1,
+		"skillset": [
+			3,
+			6,
+			7,
+			4,
+			5,
+			5,
+			8,
+			4,
+			2,
+			3
+		],
+		"index": 54,
+		"skill": 32106,
+		"tank": "Heli-Producer"
+	},
+	"153": {
+		"score": 101625,
+		"kills": 2,
+		"skillset": [
+			3,
+			7,
+			8,
+			5,
+			5,
+			4,
+			5,
+			2,
+			2,
+			6
+		],
+		"index": 136,
+		"skill": 203250,
+		"tank": "Hybrid"
+	},
+	"154": {
+		"score": 82922,
+		"kills": 1,
+		"skillset": [
+			4,
+			6,
+			4,
+			5,
+			6,
+			2,
+			6,
+			4,
+			3,
+			7
+		],
+		"index": 96,
+		"skill": 82922,
+		"tank": "Triplet"
+	},
+	"155": {
+		"score": 55000,
+		"kills": 2,
+		"skillset": [
+			6,
+			7,
+			5,
+			6,
+			6,
+			3,
+			4,
+			4,
+			2,
+			4
+		],
+		"index": 82,
+		"skill": 110000,
+		"tank": "Auto-Smasher"
+	},
+	"156": {
+		"score": 108040,
+		"kills": 2,
+		"skillset": [
+			6,
+			8,
+			5,
+			5,
+			9,
+			3,
+			2,
+			3,
+			3,
+			3
+		],
+		"index": 77,
+		"skill": 216080,
+		"tank": "Single"
+	},
+	"157": {
+		"score": 73386,
+		"kills": 1,
+		"skillset": [
+			4,
+			6,
+			8,
+			8,
+			5,
+			3,
+			5,
+			3,
+			2,
+			3
+		],
+		"index": 119,
+		"skill": 73386,
+		"tank": "Carrier"
+	},
+	"158": {
+		"score": 43218,
+		"kills": 3,
+		"skillset": [
+			4,
+			4,
+			5,
+			5,
+			3,
+			2,
+			9,
+			1,
+			-1,
+			4
+		],
+		"index": 54,
+		"skill": 129654,
+		"tank": "Heli-Producer"
+	},
+	"159": {
+		"score": 96063,
+		"kills": 1,
+		"skillset": [
+			4,
+			6,
+			3,
+			3,
+			5,
+			1,
+			1,
+			3,
+			2,
+			1
+		],
+		"index": 75,
+		"skill": 96063,
+		"tank": "Basic"
+	},
+	"160": {
+		"score": 81746,
+		"kills": 1,
+		"skillset": [
+			3,
+			1,
+			2,
+			0,
+			1,
+			2,
+			1,
+			0,
+			3,
+			3
+		],
+		"index": 75,
+		"skill": 81746,
+		"tank": "Basic"
+	},
+	"161": {
+		"score": 33274,
+		"kills": 1,
+		"skillset": [
+			2,
+			3,
+			5,
+			5,
+			2,
+			2,
+			7,
+			2,
+			-1,
+			4
+		],
+		"index": 75,
+		"skill": 33274,
+		"tank": "Basic"
+	},
+	"162": {
+		"score": 66178,
+		"kills": 1,
+		"skillset": [
+			2,
+			4,
+			7,
+			2,
+			4,
+			3,
+			2,
+			2,
+			1,
+			2
+		],
+		"index": 75,
+		"skill": 66178,
+		"tank": "Basic"
+	},
+	"163": {
+		"score": 55832,
+		"kills": 1,
+		"skillset": [
+			3,
+			1,
+			1,
+			3,
+			1,
+			5,
+			0,
+			1,
+			0,
+			2
+		],
+		"index": 75,
+		"skill": 55832,
+		"tank": "Basic"
+	},
+	"164": {
+		"score": 22800,
+		"kills": 1,
+		"skillset": [
+			0,
+			2,
+			3,
+			1,
+			2,
+			1,
+			1,
+			2,
+			1,
+			1
+		],
+		"index": 75,
+		"skill": 22800,
+		"tank": "Basic"
+	},
+	"165": {
+		"score": 30334,
+		"kills": 2,
+		"skillset": [
+			3,
+			2,
+			4,
+			1,
+			3,
+			0,
+			0,
+			1,
+			1,
+			0
+		],
+		"index": 77,
+		"skill": 60668,
+		"tank": "Single"
+	},
+	"166": {
+		"score": 63879,
+		"kills": 2,
+		"skillset": [
+			4,
+			3,
+			1,
+			2,
+			3,
+			4,
+			2,
+			3,
+			3,
+			1
+		],
+		"index": 56,
+		"skill": 127758,
+		"tank": "Heli-Cruiser"
+	},
+	"167": {
+		"score": 22451,
+		"kills": 1,
+		"skillset": [
+			2,
+			3,
+			5,
+			5,
+			2,
+			2,
+			6,
+			1,
+			-1,
+			4
+		],
+		"index": 75,
+		"skill": 22451,
+		"tank": "Basic"
+	},
+	"168": {
+		"score": 17118,
+		"kills": 1,
+		"skillset": [
+			2,
+			4,
+			6,
+			2,
+			3,
+			3,
+			2,
+			1,
+			1,
+			2
+		],
+		"index": 75,
+		"skill": 17118,
+		"tank": "Basic"
+	},
+	"169": {
+		"score": 23334,
+		"kills": 1,
+		"skillset": [
+			2,
+			4,
+			6,
+			2,
+			3,
+			3,
+			2,
+			1,
+			1,
+			2
+		],
+		"index": 77,
+		"skill": 23334,
+		"tank": "Single"
+	},
+	"170": {
+		"score": 50573,
+		"kills": 2,
+		"skillset": [
+			4,
+			3,
+			5,
+			6,
+			7,
+			1,
+			3,
+			2,
+			5,
+			2
+		],
+		"index": 121,
+		"skill": 101146,
+		"tank": "Fortress"
+	},
+	"171": {
+		"score": 33334,
+		"kills": 1,
+		"skillset": [
+			4,
+			4,
+			4,
+			4,
+			3,
+			2,
+			6,
+			2,
+			2,
+			2
+		],
+		"index": 151,
+		"skill": 33334,
+		"tank": "Hexa Tank"
+	},
+	"172": {
+		"score": 54970,
+		"kills": 1,
+		"skillset": [
+			2,
+			5,
+			3,
+			3,
+			0,
+			2,
+			1,
+			4,
+			7,
+			5
+		],
+		"index": 170,
+		"skill": 54970,
+		"tank": "Snipe Guard"
+	},
+	"173": {
+		"score": 31405,
+		"kills": 1,
+		"skillset": [
+			1,
+			4,
+			3,
+			3,
+			1,
+			2,
+			4,
+			2,
+			2,
+			5
+		],
+		"index": 77,
+		"skill": 31405,
+		"tank": "Single"
+	},
+	"174": {
+		"score": 23310,
+		"kills": 1,
+		"skillset": [
+			2,
+			3,
+			6,
+			8,
+			2,
+			2,
+			7,
+			1,
+			-1,
+			4
+		],
+		"index": 54,
+		"skill": 23310,
+		"tank": "Heli-Producer"
+	},
+	"175": {
+		"score": 104240,
+		"kills": 3,
+		"skillset": [
+			2,
+			5,
+			2,
+			2,
+			2,
+			1,
+			0,
+			1,
+			1,
+			6
+		],
+		"index": 121,
+		"skill": 312720,
+		"tank": "Fortress"
+	},
+	"176": {
+		"score": 24001,
+		"kills": 1,
+		"skillset": [
+			2,
+			1,
+			1,
+			0,
+			3,
+			0,
+			3,
+			0,
+			0,
+			2
+		],
+		"index": 77,
+		"skill": 24001,
+		"tank": "Single"
+	},
+	"177": {
+		"score": 24000,
+		"kills": 1,
+		"skillset": [
+			2,
+			4,
+			8,
+			2,
+			4,
+			4,
+			2,
+			1,
+			1,
+			2
+		],
+		"index": 75,
+		"skill": 24000,
+		"tank": "Basic"
+	},
+	"178": {
+		"score": 33000,
+		"kills": 2,
+		"skillset": [
+			4,
+			6,
+			3,
+			3,
+			5,
+			1,
+			1,
+			3,
+			2,
+			1
+		],
+		"index": 77,
+		"skill": 66000,
+		"tank": "Single"
+	},
+	"179": {
+		"score": 37029,
+		"kills": 1,
+		"skillset": [
+			1,
+			4,
+			3,
+			1,
+			7,
+			2,
+			1,
+			1,
+			0,
+			5
+		],
+		"index": 77,
+		"skill": 37029,
+		"tank": "Single"
+	},
+	"180": {
+		"score": 747005,
+		"kills": 1,
+		"skillset": [
+			0,
+			1,
+			0,
+			2,
+			4,
+			3,
+			1,
+			1,
+			0,
+			2
+		],
+		"index": 75,
+		"skill": 747005,
+		"tank": "Basic"
+	},
+	"181": {
+		"score": 16667,
+		"kills": 1,
+		"skillset": [
+			2,
+			2,
+			1,
+			4,
+			2,
+			0,
+			1,
+			1,
+			0,
+			0
+		],
+		"index": 75,
+		"skill": 16667,
+		"tank": "Basic"
+	},
+	"182": {
+		"score": 25114,
+		"kills": 1,
+		"skillset": [
+			4,
+			5,
+			2,
+			1,
+			2,
+			3,
+			3,
+			2,
+			1,
+			3
+		],
+		"index": 75,
+		"skill": 25114,
+		"tank": "Basic"
+	},
+	"183": {
+		"score": 22334,
+		"kills": 1,
+		"skillset": [
+			1,
+			1,
+			1,
+			2,
+			1,
+			2,
+			2,
+			2,
+			0,
+			3
+		],
+		"index": 77,
+		"skill": 22334,
+		"tank": "Single"
+	},
+	"184": {
+		"score": 19920,
+		"kills": 1,
+		"skillset": [
+			2,
+			2,
+			0,
+			0,
+			4,
+			0,
+			1,
+			1,
+			1,
+			2
+		],
+		"index": 121,
+		"skill": 19920,
+		"tank": "Fortress"
+	},
+	"185": {
+		"score": 20667,
+		"kills": 1,
+		"skillset": [
+			0,
+			3,
+			0,
+			0,
+			0,
+			2,
+			4,
+			1,
+			0,
+			4
+		],
+		"index": 75,
+		"skill": 20667,
+		"tank": "Basic"
+	},
+	"186": {
+		"score": 34890,
+		"kills": 1,
+		"skillset": [
+			2,
+			1,
+			2,
+			4,
+			2,
+			1,
+			1,
+			0,
+			2,
+			0
+		],
+		"index": 106,
+		"skill": 34890,
+		"tank": "Poacher"
+	},
+	"187": {
+		"score": 70904,
+		"kills": 1,
+		"skillset": [
+			8,
+			9,
+			6,
+			5,
+			6,
+			1,
+			1,
+			3,
+			4,
+			4
+		],
+		"index": 105,
+		"skill": 70904,
+		"tank": "Predator"
+	},
+	"188": {
+		"score": 115856,
+		"kills": 3,
+		"skillset": [
+			2,
+			6,
+			6,
+			6,
+			5,
+			7,
+			6,
+			2,
+			1,
+			6
+		],
+		"index": 77,
+		"skill": 347568,
+		"tank": "Single"
+	},
+	"189": {
+		"score": 29884,
+		"kills": 1,
+		"skillset": [
+			5,
+			6,
+			3,
+			3,
+			5,
+			1,
+			1,
+			3,
+			2,
+			1
+		],
+		"index": 77,
+		"skill": 29884,
+		"tank": "Single"
+	},
+	"190": {
+		"score": 72618,
+		"kills": 2,
+		"skillset": [
+			2,
+			4,
+			4,
+			2,
+			3,
+			1,
+			7,
+			2,
+			0,
+			1
+		],
+		"index": 75,
+		"skill": 145236,
+		"tank": "Basic"
+	},
+	"191": {
+		"score": 88215,
+		"kills": 1,
+		"skillset": [
+			3,
+			2,
+			3,
+			4,
+			3,
+			2,
+			3,
+			1,
+			0,
+			3
+		],
+		"index": 75,
+		"skill": 88215,
+		"tank": "Basic"
+	},
+	"192": {
+		"score": 131064,
+		"kills": 3,
+		"skillset": [
+			6,
+			6,
+			4,
+			3,
+			4,
+			3,
+			3,
+			2,
+			3,
+			2
+		],
+		"index": 121,
+		"skill": 393192,
+		"tank": "Fortress"
+	},
+	"193": {
+		"score": 57389,
+		"kills": 2,
+		"skillset": [
+			3,
+			3,
+			6,
+			5,
+			2,
+			2,
+			6,
+			1,
+			1,
+			4
+		],
+		"index": 54,
+		"skill": 114778,
+		"tank": "Heli-Producer"
+	},
+	"194": {
+		"score": 21465,
+		"kills": 1,
+		"skillset": [
+			2,
+			2,
+			1,
+			2,
+			2,
+			0,
+			2,
+			0,
+			2,
+			1
+		],
+		"index": 147,
+		"skill": 21465,
+		"tank": "Mortar"
+	},
+	"195": {
+		"score": 41646,
+		"kills": 2,
+		"skillset": [
+			6,
+			6,
+			2,
+			1,
+			3,
+			3,
+			1,
+			2,
+			3,
+			2
+		],
+		"index": 75,
+		"skill": 83292,
+		"tank": "Basic"
+	},
+	"196": {
+		"score": 34258,
+		"kills": 2,
+		"skillset": [
+			1,
+			3,
+			0,
+			2,
+			2,
+			0,
+			4,
+			0,
+			1,
+			1
+		],
+		"index": 77,
+		"skill": 68516,
+		"tank": "Single"
+	},
+	"197": {
+		"score": 47198,
+		"kills": 1,
+		"skillset": [
+			4,
+			5,
+			2,
+			1,
+			2,
+			3,
+			3,
+			2,
+			1,
+			4
+		],
+		"index": 77,
+		"skill": 47198,
+		"tank": "Single"
+	},
+	"198": {
+		"score": 87875,
+		"kills": 1,
+		"skillset": [
+			6,
+			6,
+			2,
+			1,
+			3,
+			3,
+			1,
+			2,
+			3,
+			2
+		],
+		"index": 75,
+		"skill": 87875,
+		"tank": "Basic"
+	},
+	"199": {
+		"score": 88514,
+		"kills": 1,
+		"skillset": [
+			2,
+			9,
+			5,
+			9,
+			3,
+			3,
+			5,
+			6,
+			1,
+			4
+		],
+		"index": 136,
+		"skill": 88514,
+		"tank": "Hybrid"
+	},
+	"200": {
+		"score": 79180,
+		"kills": 1,
+		"skillset": [
+			9,
+			6,
+			2,
+			5,
+			6,
+			4,
+			2,
+			3,
+			5,
+			5
+		],
+		"index": 154,
+		"skill": 79180,
+		"tank": "Hexa-Trapper"
+	},
+	"201": {
+		"score": 77647,
+		"kills": 1,
+		"skillset": [
+			6,
+			6,
+			3,
+			3,
+			7,
+			4,
+			4,
+			5,
+			3,
+			6
+		],
+		"index": 160,
+		"skill": 77647,
+		"tank": "Auto-Tri-Angle"
+	},
+	"202": {
+		"score": 98570,
+		"kills": 1,
+		"skillset": [
+			9,
+			8,
+			3,
+			6,
+			6,
+			2,
+			2,
+			2,
+			6,
+			3
+		],
+		"index": 61,
+		"skill": 98570,
+		"tank": "Auto-Heli"
+	},
+	"203": {
+		"score": 31509,
+		"kills": 2,
+		"skillset": [
+			5,
+			5,
+			1,
+			3,
+			5,
+			1,
+			1,
+			1,
+			3,
+			1
+		],
+		"index": 77,
+		"skill": 63018,
+		"tank": "Single"
+	},
+	"204": {
+		"score": 46834,
+		"kills": 2,
+		"skillset": [
+			4,
+			6,
+			3,
+			1,
+			2,
+			3,
+			3,
+			2,
+			1,
+			3
+		],
+		"index": 77,
+		"skill": 93668,
+		"tank": "Single"
+	},
+	"205": {
+		"score": 61841,
+		"kills": 2,
+		"skillset": [
+			4,
+			5,
+			2,
+			2,
+			2,
+			3,
+			3,
+			2,
+			2,
+			3
+		],
+		"index": 75,
+		"skill": 123682,
+		"tank": "Basic"
+	},
+	"206": {
+		"score": 114917,
+		"kills": 3,
+		"skillset": [
+			5,
+			6,
+			3,
+			3,
+			5,
+			1,
+			2,
+			3,
+			3,
+			3
+		],
+		"index": 75,
+		"skill": 344751,
+		"tank": "Basic"
+	},
+	"207": {
+		"score": 127137,
+		"kills": 1,
+		"skillset": [
+			1,
+			3,
+			7,
+			3,
+			4,
+			0,
+			1,
+			0,
+			1,
+			2
+		],
+		"index": 77,
+		"skill": 127137,
+		"tank": "Single"
+	},
+	"208": {
+		"score": 141943,
+		"kills": 1,
+		"skillset": [
+			6,
+			6,
+			2,
+			1,
+			3,
+			4,
+			1,
+			2,
+			3,
+			2
+		],
+		"index": 75,
+		"skill": 141943,
+		"tank": "Basic"
+	},
+	"209": {
+		"score": 13000,
+		"kills": 1,
+		"skillset": [
+			2,
+			3,
+			3,
+			2,
+			3,
+			1,
+			6,
+			2,
+			0,
+			1
+		],
+		"index": 106,
+		"skill": 13000,
+		"tank": "Poacher"
+	},
+	"210": {
+		"score": 44366,
+		"kills": 2,
+		"skillset": [
+			3,
+			3,
+			7,
+			6,
+			4,
+			2,
+			6,
+			1,
+			-1,
+			6
+		],
+		"index": 54,
+		"skill": 88732,
+		"tank": "Heli-Producer"
+	},
+	"211": {
+		"score": 56066,
+		"kills": 1,
+		"skillset": [
+			6,
+			6,
+			2,
+			1,
+			3,
+			3,
+			1,
+			2,
+			3,
+			2
+		],
+		"index": 75,
+		"skill": 56066,
+		"tank": "Basic"
+	},
+	"212": {
+		"score": 148747,
+		"kills": 1,
+		"skillset": [
+			0,
+			4,
+			3,
+			3,
+			3,
+			1,
+			3,
+			3,
+			4,
+			2
+		],
+		"index": 83,
+		"skill": 148747,
+		"tank": "Twin"
+	},
+	"213": {
+		"score": 171904,
+		"kills": 2,
+		"skillset": [
+			7,
+			7,
+			4,
+			1,
+			4,
+			3,
+			2,
+			3,
+			4,
+			4
+		],
+		"index": 121,
+		"skill": 343808,
+		"tank": "Fortress"
+	},
+	"214": {
+		"score": 104800,
+		"kills": 1,
+		"skillset": [
+			1,
+			4,
+			2,
+			1,
+			2,
+			3,
+			2,
+			3,
+			1,
+			1
+		],
+		"index": 77,
+		"skill": 104800,
+		"tank": "Single"
+	},
+	"215": {
+		"score": 122487,
+		"kills": 3,
+		"skillset": [
+			2,
+			7,
+			8,
+			9,
+			6,
+			3,
+			6,
+			4,
+			1,
+			1
+		],
+		"index": 147,
+		"skill": 367461,
+		"tank": "Mortar"
+	},
+	"216": {
+		"score": 139326,
+		"kills": 2,
+		"skillset": [
+			5,
+			7,
+			3,
+			4,
+			3,
+			6,
+			3,
+			3,
+			2,
+			3
+		],
+		"index": 77,
+		"skill": 278652,
+		"tank": "Single"
+	},
+	"217": {
+		"score": 56514,
+		"kills": 1,
+		"skillset": [
+			1,
+			1,
+			2,
+			3,
+			5,
+			1,
+			2,
+			0,
+			0,
+			6
+		],
+		"index": 75,
+		"skill": 56514,
+		"tank": "Basic"
+	},
+	"218": {
+		"score": 90092,
+		"kills": 1,
+		"skillset": [
+			4,
+			6,
+			4,
+			3,
+			7,
+			1,
+			1,
+			3,
+			2,
+			2
+		],
+		"index": 75,
+		"skill": 90092,
+		"tank": "Basic"
+	},
+	"219": {
+		"score": 41118,
+		"kills": 1,
+		"skillset": [
+			3,
+			2,
+			2,
+			2,
+			1,
+			1,
+			2,
+			0,
+			2,
+			0
+		],
+		"index": 77,
+		"skill": 41118,
+		"tank": "Single"
+	},
+	"220": {
+		"score": 58413,
+		"kills": 4,
+		"skillset": [
+			4,
+			8,
+			5,
+			9,
+			7,
+			1,
+			1,
+			4,
+			4,
+			4
+		],
+		"index": 147,
+		"skill": 233652,
+		"tank": "Mortar"
+	},
+	"221": {
+		"score": 56988,
+		"kills": 1,
+		"skillset": [
+			4,
+			5,
+			4,
+			8,
+			7,
+			3,
+			1,
+			5,
+			4,
+			6
+		],
+		"index": 54,
+		"skill": 56988,
+		"tank": "Heli-Producer"
+	},
+	"222": {
+		"score": 77438,
+		"kills": 1,
+		"skillset": [
+			3,
+			9,
+			7,
+			7,
+			9,
+			4,
+			3,
+			1,
+			1,
+			3
+		],
+		"index": 77,
+		"skill": 77438,
+		"tank": "Single"
+	},
+	"223": {
+		"score": 71986,
+		"kills": 1,
+		"skillset": [
+			5,
+			4,
+			8,
+			5,
+			6,
+			4,
+			5,
+			4,
+			2,
+			4
+		],
+		"index": 147,
+		"skill": 71986,
+		"tank": "Mortar"
+	},
+	"224": {
+		"score": 71986,
+		"kills": 1,
+		"skillset": [
+			3,
+			7,
+			2,
+			5,
+			9,
+			5,
+			6,
+			5,
+			2,
+			3
+		],
+		"index": 121,
+		"skill": 71986,
+		"tank": "Fortress"
+	},
+	"225": {
+		"score": 74898,
+		"kills": 1,
+		"skillset": [
+			5,
+			6,
+			5,
+			6,
+			8,
+			1,
+			3,
+			4,
+			5,
+			4
+		],
+		"index": 77,
+		"skill": 74898,
+		"tank": "Single"
+	},
+	"226": {
+		"score": 143354,
+		"kills": 3,
+		"skillset": [
+			6,
+			7,
+			7,
+			3,
+			4,
+			3,
+			6,
+			4,
+			2,
+			5
+		],
+		"index": 77,
+		"skill": 430062,
+		"tank": "Single"
+	},
+	"227": {
+		"score": 88630,
+		"kills": 1,
+		"skillset": [
+			9,
+			6,
+			4,
+			5,
+			7,
+			2,
+			1,
+			2,
+			4,
+			7
+		],
+		"index": 77,
+		"skill": 88630,
+		"tank": "Single"
+	},
+	"228": {
+		"score": 45195,
+		"kills": 2,
+		"skillset": [
+			5,
+			6,
+			7,
+			7,
+			6,
+			2,
+			1,
+			7,
+			1,
+			5
+		],
+		"index": 54,
+		"skill": 90390,
+		"tank": "Heli-Producer"
+	},
+	"229": {
+		"score": 84856,
+		"kills": 1,
+		"skillset": [
+			6,
+			9,
+			4,
+			5,
+			7,
+			1,
+			3,
+			2,
+			2,
+			8
+		],
+		"index": 106,
+		"skill": 84856,
+		"tank": "Poacher"
+	},
+	"230": {
+		"score": 139575,
+		"kills": 1,
+		"skillset": [
+			4,
+			6,
+			3,
+			3,
+			5,
+			1,
+			1,
+			3,
+			2,
+			1
+		],
+		"index": 77,
+		"skill": 139575,
+		"tank": "Single"
+	},
+	"231": {
+		"score": 170399,
+		"kills": 1,
+		"skillset": [
+			5,
+			5,
+			4,
+			8,
+			5,
+			4,
+			8,
+			4,
+			1,
+			3
+		],
+		"index": 106,
+		"skill": 170399,
+		"tank": "Poacher"
+	},
+	"232": {
+		"score": 70804,
+		"kills": 1,
 		"skillset": [
 			6,
 			6,
 			6,
 			6,
+			5,
+			3,
 			6,
+			3,
+			-1,
+			7
+		],
+		"index": 55,
+		"skill": 70804,
+		"tank": "Heli-Master"
+	},
+	"233": {
+		"score": 74828,
+		"kills": 1,
+		"skillset": [
+			6,
+			2,
+			5,
+			9,
+			3,
+			1,
+			7,
+			3,
+			2,
+			9
+		],
+		"index": 123,
+		"skill": 74828,
+		"tank": "Necromancer"
+	},
+	"234": {
+		"score": 71921,
+		"kills": 1,
+		"skillset": [
+			5,
+			5,
+			8,
+			4,
+			7,
+			3,
+			3,
+			3,
+			4,
+			5
+		],
+		"index": 156,
+		"skill": 71921,
+		"tank": "Booster"
+	},
+	"235": {
+		"score": 71077,
+		"kills": 1,
+		"skillset": [
+			5,
+			6,
+			6,
+			1,
+			8,
+			5,
+			6,
+			2,
+			3,
+			5
+		],
+		"index": 77,
+		"skill": 71077,
+		"tank": "Single"
+	},
+	"236": {
+		"score": 71610,
+		"kills": 1,
+		"skillset": [
+			9,
+			3,
+			8,
+			9,
+			7,
+			0,
+			1,
+			1,
+			2,
+			7
+		],
+		"index": 77,
+		"skill": 71610,
+		"tank": "Single"
+	},
+	"237": {
+		"score": 61667,
+		"kills": 1,
+		"skillset": [
+			6,
+			5,
+			3,
+			8,
+			9,
+			4,
+			1,
+			3,
+			4,
+			4
+		],
+		"index": 96,
+		"skill": 61667,
+		"tank": "Triplet"
+	},
+	"238": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			7,
+			7,
+			7,
+			5,
+			7,
+			3,
+			3,
+			3,
+			2,
+			3
+		],
+		"index": 77,
+		"skill": 70786,
+		"tank": "Single"
+	},
+	"239": {
+		"score": 71986,
+		"kills": 1,
+		"skillset": [
+			5,
+			8,
+			5,
+			5,
+			8,
+			4,
+			3,
+			4,
+			3,
+			2
+		],
+		"index": 96,
+		"skill": 71986,
+		"tank": "Triplet"
+	},
+	"240": {
+		"score": 62000,
+		"kills": 1,
+		"skillset": [
+			7,
+			8,
+			2,
+			5,
+			8,
+			5,
+			5,
+			2,
+			2,
+			3
+		],
+		"index": 147,
+		"skill": 62000,
+		"tank": "Mortar"
+	},
+	"241": {
+		"score": 105773,
+		"kills": 2,
+		"skillset": [
+			5,
+			6,
+			8,
+			6,
+			3,
+			5,
+			5,
+			2,
+			1,
+			6
+		],
+		"index": 106,
+		"skill": 211546,
+		"tank": "Poacher"
+	},
+	"242": {
+		"score": 62438,
+		"kills": 1,
+		"skillset": [
+			5,
+			6,
+			8,
+			8,
+			2,
+			2,
+			7,
+			4,
+			0,
+			5
+		],
+		"index": 54,
+		"skill": 62438,
+		"tank": "Heli-Producer"
+	},
+	"243": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			4,
+			4,
+			5,
+			6,
+			6,
+			5,
+			5,
+			2,
+			4,
+			6
+		],
+		"index": 123,
+		"skill": 70786,
+		"tank": "Necromancer"
+	},
+	"244": {
+		"score": 77886,
+		"kills": 1,
+		"skillset": [
+			5,
+			6,
+			5,
+			4,
+			7,
+			5,
+			3,
+			3,
+			1,
+			8
+		],
+		"index": 106,
+		"skill": 77886,
+		"tank": "Poacher"
+	},
+	"245": {
+		"score": 88986,
+		"kills": 2,
+		"skillset": [
+			7,
+			8,
+			4,
+			3,
+			4,
+			5,
+			2,
+			3,
+			3,
+			8
+		],
+		"index": 77,
+		"skill": 177972,
+		"tank": "Single"
+	},
+	"246": {
+		"score": 77439,
+		"kills": 1,
+		"skillset": [
+			4,
+			6,
+			7,
+			9,
+			5,
+			2,
+			4,
+			2,
+			4,
+			4
+		],
+		"index": 164,
+		"skill": 77439,
+		"tank": "Mega-3"
+	},
+	"247": {
+		"score": 85586,
+		"kills": 2,
+		"skillset": [
+			9,
+			6,
+			3,
+			3,
+			3,
+			5,
+			6,
+			2,
+			3,
+			7
+		],
+		"index": 77,
+		"skill": 171172,
+		"tank": "Single"
+	},
+	"248": {
+		"score": 78703,
+		"kills": 1,
+		"skillset": [
+			5,
+			9,
+			4,
+			5,
+			8,
+			2,
 			3,
 			4,
 			2,
+			5
+		],
+		"index": 77,
+		"skill": 78703,
+		"tank": "Single"
+	},
+	"249": {
+		"score": 76490,
+		"kills": 1,
+		"skillset": [
+			7,
+			5,
+			6,
+			2,
+			6,
 			3,
+			8,
+			4,
+			2,
+			4
+		],
+		"index": 106,
+		"skill": 76490,
+		"tank": "Poacher"
+	},
+	"250": {
+		"score": 77198,
+		"kills": 1,
+		"skillset": [
+			7,
+			7,
+			4,
+			4,
+			8,
+			2,
+			4,
+			4,
+			3,
+			4
+		],
+		"index": 60,
+		"skill": 77198,
+		"tank": "Heli-Trapper"
+	},
+	"251": {
+		"score": 88786,
+		"kills": 2,
+		"skillset": [
+			5,
+			9,
+			5,
+			7,
+			4,
+			2,
+			9,
+			3,
+			1,
+			2
+		],
+		"index": 87,
+		"skill": 177572,
+		"tank": "Nailgun"
+	},
+	"252": {
+		"score": 80224,
+		"kills": 1,
+		"skillset": [
+			4,
+			6,
+			2,
+			6,
+			9,
+			3,
+			6,
+			3,
+			2,
+			6
+		],
+		"index": 106,
+		"skill": 80224,
+		"tank": "Poacher"
+	},
+	"253": {
+		"score": 77820,
+		"kills": 1,
+		"skillset": [
+			7,
+			8,
+			5,
+			4,
+			6,
+			4,
+			2,
+			3,
+			4,
+			4
+		],
+		"index": 121,
+		"skill": 77820,
+		"tank": "Fortress"
+	},
+	"254": {
+		"score": 122020,
+		"kills": 2,
+		"skillset": [
+			4,
+			3,
+			7,
+			9,
+			5,
+			3,
+			8,
+			2,
+			1,
+			5
+		],
+		"index": 54,
+		"skill": 244040,
+		"tank": "Heli-Producer"
+	},
+	"255": {
+		"score": 44560,
+		"kills": 1,
+		"skillset": [
+			4,
+			3,
+			8,
+			6,
+			6,
+			2,
+			9,
+			3,
+			-1,
+			7
+		],
+		"index": 121,
+		"skill": 44560,
+		"tank": "Fortress"
+	},
+	"256": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			4,
+			6,
+			7,
+			2,
+			8,
+			4,
+			4,
+			1,
+			6,
+			5
+		],
+		"index": 134,
+		"skill": 70786,
+		"tank": "Annihilator"
+	},
+	"257": {
+		"score": 106019,
+		"kills": 2,
+		"skillset": [
+			5,
+			7,
+			8,
+			3,
+			9,
+			1,
+			9,
+			3,
+			0,
+			2
+		],
+		"index": 82,
+		"skill": 212038,
+		"tank": "Auto-Smasher"
+	},
+	"258": {
+		"score": 67967,
+		"kills": 1,
+		"skillset": [
+			7,
+			9,
+			5,
+			6,
+			6,
+			3,
+			2,
+			4,
+			3,
+			2
+		],
+		"index": 54,
+		"skill": 67967,
+		"tank": "Heli-Producer"
+	},
+	"259": {
+		"score": 83084,
+		"kills": 2,
+		"skillset": [
+			8,
+			6,
+			5,
+			3,
+			6,
+			4,
+			1,
+			2,
+			4,
+			8
+		],
+		"index": 96,
+		"skill": 166168,
+		"tank": "Triplet"
+	},
+	"260": {
+		"score": 76233,
+		"kills": 1,
+		"skillset": [
+			9,
+			1,
+			3,
+			7,
+			7,
+			3,
+			7,
+			3,
+			0,
+			7
+		],
+		"index": 121,
+		"skill": 76233,
+		"tank": "Fortress"
+	},
+	"261": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			7,
+			4,
+			5,
+			7,
+			9,
+			2,
+			5,
+			1,
+			2,
+			5
+		],
+		"index": 121,
+		"skill": 70786,
+		"tank": "Fortress"
+	},
+	"262": {
+		"score": 100622,
+		"kills": 2,
+		"skillset": [
+			9,
+			7,
+			5,
+			9,
+			8,
+			2,
+			2,
+			2,
+			1,
+			2
+		],
+		"index": 77,
+		"skill": 201244,
+		"tank": "Single"
+	},
+	"263": {
+		"score": 41265,
+		"kills": 1,
+		"skillset": [
+			4,
+			6,
+			5,
+			7,
+			9,
+			3,
+			3,
+			6,
+			2,
+			2
+		],
+		"index": 147,
+		"skill": 41265,
+		"tank": "Mortar"
+	},
+	"264": {
+		"score": 73617,
+		"kills": 1,
+		"skillset": [
+			5,
+			5,
+			3,
+			3,
+			6,
+			7,
+			4,
+			2,
+			7,
+			5
+		],
+		"index": 77,
+		"skill": 73617,
+		"tank": "Single"
+	},
+	"265": {
+		"score": 121612,
+		"kills": 2,
+		"skillset": [
+			7,
+			9,
+			6,
+			4,
+			5,
+			3,
+			0,
+			1,
+			3,
+			9
+		],
+		"index": 106,
+		"skill": 243224,
+		"tank": "Poacher"
+	},
+	"266": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			5,
+			5,
+			8,
+			4,
+			6,
+			5,
+			3,
+			2,
+			5,
+			4
+		],
+		"index": 77,
+		"skill": 70786,
+		"tank": "Single"
+	},
+	"267": {
+		"score": 71907,
+		"kills": 1,
+		"skillset": [
+			8,
+			9,
+			4,
+			2,
+			6,
+			4,
+			2,
+			2,
+			5,
+			5
+		],
+		"index": 121,
+		"skill": 71907,
+		"tank": "Fortress"
+	},
+	"268": {
+		"score": 136203,
+		"kills": 3,
+		"skillset": [
+			4,
+			8,
+			8,
+			6,
+			5,
+			3,
+			6,
+			3,
+			1,
+			3
+		],
+		"index": 106,
+		"skill": 408609,
+		"tank": "Poacher"
+	},
+	"269": {
+		"score": 100772,
+		"kills": 2,
+		"skillset": [
+			3,
+			9,
+			6,
+			6,
+			6,
+			2,
+			8,
+			5,
+			0,
+			2
+		],
+		"index": 106,
+		"skill": 201544,
+		"tank": "Poacher"
+	},
+	"270": {
+		"score": 100013,
+		"kills": 2,
+		"skillset": [
+			5,
+			6,
+			5,
+			1,
+			8,
+			3,
+			3,
+			5,
+			7,
+			4
+		],
+		"index": 106,
+		"skill": 200026,
+		"tank": "Poacher"
+	},
+	"271": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			7,
+			9,
+			6,
+			2,
+			3,
+			4,
+			4,
+			4,
+			3,
+			5
+		],
+		"index": 147,
+		"skill": 70786,
+		"tank": "Mortar"
+	},
+	"272": {
+		"score": 183791,
+		"kills": 5,
+		"skillset": [
+			6,
+			4,
+			7,
+			7,
+			8,
+			1,
+			4,
+			6,
+			2,
+			2
+		],
+		"index": 106,
+		"skill": 918955,
+		"tank": "Poacher"
+	},
+	"273": {
+		"score": 90524,
+		"kills": 2,
+		"skillset": [
+			4,
+			3,
+			9,
+			4,
+			8,
+			4,
+			2,
+			4,
+			0,
+			9
+		],
+		"index": 77,
+		"skill": 181048,
+		"tank": "Single"
+	},
+	"274": {
+		"score": 59275,
+		"kills": 1,
+		"skillset": [
+			4,
+			5,
+			9,
+			7,
+			5,
+			5,
+			3,
+			2,
+			2,
+			5
+		],
+		"index": 77,
+		"skill": 59275,
+		"tank": "Single"
+	},
+	"275": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			8,
+			8,
+			7,
+			5,
+			5,
+			4,
+			3,
+			0,
+			0,
+			7
+		],
+		"index": 82,
+		"skill": 70786,
+		"tank": "Auto-Smasher"
+	},
+	"276": {
+		"score": 79814,
+		"kills": 2,
+		"skillset": [
+			7,
+			9,
+			3,
+			5,
+			6,
+			3,
+			3,
+			3,
+			5,
+			3
+		],
+		"index": 154,
+		"skill": 159628,
+		"tank": "Hexa-Trapper"
+	},
+	"277": {
+		"score": 70986,
+		"kills": 1,
+		"skillset": [
+			2,
+			4,
+			5,
+			5,
+			6,
+			3,
+			5,
+			3,
+			5,
+			9
+		],
+		"index": 134,
+		"skill": 70986,
+		"tank": "Annihilator"
+	},
+	"278": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			5,
+			7,
+			9,
+			4,
+			7,
+			4,
+			5,
+			1,
+			0,
+			5
+		],
+		"index": 77,
+		"skill": 70786,
+		"tank": "Single"
+	},
+	"279": {
+		"score": 100875,
+		"kills": 3,
+		"skillset": [
+			6,
+			4,
+			6,
+			8,
+			8,
+			1,
+			2,
+			2,
+			1,
+			9
+		],
+		"index": 163,
+		"skill": 302625,
+		"tank": "Auto-5"
+	},
+	"280": {
+		"score": 101388,
+		"kills": 2,
+		"skillset": [
+			6,
+			8,
+			6,
+			2,
+			6,
+			4,
+			5,
+			1,
+			2,
+			7
+		],
+		"index": 58,
+		"skill": 202776,
+		"tank": "Tri-Heli"
+	},
+	"281": {
+		"score": 75156,
+		"kills": 1,
+		"skillset": [
+			3,
+			5,
+			5,
+			9,
+			8,
+			4,
+			2,
+			5,
+			1,
+			5
+		],
+		"index": 87,
+		"skill": 75156,
+		"tank": "Nailgun"
+	},
+	"282": {
+		"score": 72540,
+		"kills": 1,
+		"skillset": [
+			8,
+			7,
+			9,
+			6,
+			4,
+			0,
+			5,
+			1,
+			2,
+			5
+		],
+		"index": 77,
+		"skill": 72540,
+		"tank": "Single"
+	},
+	"283": {
+		"score": 70986,
+		"kills": 1,
+		"skillset": [
+			9,
+			5,
+			6,
+			6,
+			6,
+			3,
+			4,
+			0,
+			3,
+			5
+		],
+		"index": 77,
+		"skill": 70986,
+		"tank": "Single"
+	},
+	"284": {
+		"score": 107276,
+		"kills": 2,
+		"skillset": [
+			6,
+			4,
+			7,
+			5,
+			9,
+			5,
+			2,
+			5,
+			0,
+			4
+		],
+		"index": 77,
+		"skill": 214552,
+		"tank": "Single"
+	},
+	"285": {
+		"score": 87208,
+		"kills": 2,
+		"skillset": [
+			3,
+			6,
+			8,
+			7,
+			2,
+			3,
+			8,
+			4,
+			-1,
+			7
+		],
+		"index": 54,
+		"skill": 174416,
+		"tank": "Heli-Producer"
+	},
+	"286": {
+		"score": 67159,
+		"kills": 1,
+		"skillset": [
+			6,
+			5,
+			7,
+			6,
+			9,
+			1,
+			1,
+			5,
+			3,
+			4
+		],
+		"index": 106,
+		"skill": 67159,
+		"tank": "Poacher"
+	},
+	"287": {
+		"score": 77010,
+		"kills": 1,
+		"skillset": [
+			7,
+			6,
+			9,
+			4,
+			5,
+			7,
+			2,
+			2,
+			1,
+			4
+		],
+		"index": 163,
+		"skill": 77010,
+		"tank": "Auto-5"
+	},
+	"288": {
+		"score": 83497,
+		"kills": 1,
+		"skillset": [
+			5,
+			4,
+			7,
+			5,
+			6,
+			2,
+			5,
+			7,
+			4,
+			2
+		],
+		"index": 106,
+		"skill": 83497,
+		"tank": "Poacher"
+	},
+	"289": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			6,
+			9,
+			4,
+			7,
+			7,
+			1,
+			3,
+			4,
+			3,
+			3
+		],
+		"index": 77,
+		"skill": 70786,
+		"tank": "Single"
+	},
+	"290": {
+		"score": 59000,
+		"kills": 1,
+		"skillset": [
+			2,
+			6,
+			8,
+			7,
+			2,
+			3,
+			2,
+			3,
+			5,
+			9
+		],
+		"index": 77,
+		"skill": 59000,
+		"tank": "Single"
+	},
+	"291": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			5,
+			2,
+			9,
+			6,
+			6,
+			3,
+			7,
+			2,
+			1,
+			6
+		],
+		"index": 125,
+		"skill": 70786,
+		"tank": "Factory"
+	},
+	"292": {
+		"score": 120912,
+		"kills": 2,
+		"skillset": [
+			9,
+			8,
+			9,
+			4,
+			4,
+			1,
+			4,
+			1,
+			3,
+			4
+		],
+		"index": 77,
+		"skill": 241824,
+		"tank": "Single"
+	},
+	"293": {
+		"score": 106008,
+		"kills": 4,
+		"skillset": [
+			8,
+			8,
+			4,
+			6,
+			6,
+			4,
+			3,
+			3,
+			2,
+			3
+		],
+		"index": 121,
+		"skill": 424032,
+		"tank": "Fortress"
+	},
+	"294": {
+		"score": 80986,
+		"kills": 1,
+		"skillset": [
+			5,
+			7,
+			5,
+			4,
+			7,
+			3,
+			4,
+			4,
+			4,
+			4
+		],
+		"index": 77,
+		"skill": 80986,
+		"tank": "Single"
+	},
+	"295": {
+		"score": 87947,
+		"kills": 1,
+		"skillset": [
+			6,
+			8,
+			4,
+			8,
+			7,
+			1,
+			4,
+			4,
+			2,
+			3
+		],
+		"index": 167,
+		"skill": 87947,
+		"tank": "Auto-4"
+	},
+	"296": {
+		"score": 100706,
+		"kills": 2,
+		"skillset": [
+			8,
+			6,
+			3,
+			5,
+			9,
+			3,
+			2,
+			5,
+			3,
+			3
+		],
+		"index": 121,
+		"skill": 201412,
+		"tank": "Fortress"
+	},
+	"297": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			7,
+			5,
+			6,
+			7,
+			3,
+			2,
+			5,
+			2,
+			2,
+			8
+		],
+		"index": 106,
+		"skill": 70786,
+		"tank": "Poacher"
+	},
+	"298": {
+		"score": 51000,
+		"kills": 1,
+		"skillset": [
+			5,
+			9,
+			5,
+			3,
+			9,
+			2,
+			2,
+			5,
+			4,
+			3
+		],
+		"index": 54,
+		"skill": 51000,
+		"tank": "Heli-Producer"
+	},
+	"299": {
+		"score": 63921,
+		"kills": 2,
+		"skillset": [
+			9,
+			1,
+			9,
+			6,
+			5,
+			2,
+			5,
+			3,
+			3,
+			4
+		],
+		"index": 77,
+		"skill": 127842,
+		"tank": "Single"
+	},
+	"300": {
+		"score": 85994,
+		"kills": 1,
+		"skillset": [
+			7,
+			6,
+			5,
+			7,
+			6,
+			5,
+			1,
+			4,
+			3,
+			3
+		],
+		"index": 127,
+		"skill": 85994,
+		"tank": "Sprayer"
+	},
+	"301": {
+		"score": 59000,
+		"kills": 1,
+		"skillset": [
+			5,
+			7,
+			3,
+			5,
+			7,
+			5,
+			3,
+			8,
+			3,
+			1
+		],
+		"index": 77,
+		"skill": 59000,
+		"tank": "Single"
+	},
+	"302": {
+		"score": 74177,
+		"kills": 1,
+		"skillset": [
+			7,
+			9,
+			2,
+			7,
+			6,
+			3,
+			3,
+			2,
+			4,
+			4
+		],
+		"index": 77,
+		"skill": 74177,
+		"tank": "Single"
+	},
+	"303": {
+		"score": 76809,
+		"kills": 1,
+		"skillset": [
+			8,
+			6,
+			8,
+			4,
+			4,
+			3,
+			6,
+			2,
+			3,
+			3
+		],
+		"index": 77,
+		"skill": 76809,
+		"tank": "Single"
+	},
+	"304": {
+		"score": 73632,
+		"kills": 1,
+		"skillset": [
+			8,
+			8,
+			5,
+			4,
+			5,
+			4,
+			1,
+			4,
+			4,
+			4
+		],
+		"index": 119,
+		"skill": 73632,
+		"tank": "Carrier"
+	},
+	"305": {
+		"score": 76717,
+		"kills": 1,
+		"skillset": [
+			9,
+			9,
+			9,
+			6,
+			3,
+			2,
+			2,
+			0,
+			1,
+			6
+		],
+		"index": 77,
+		"skill": 76717,
+		"tank": "Single"
+	},
+	"306": {
+		"score": 77236,
+		"kills": 1,
+		"skillset": [
+			9,
+			7,
+			4,
+			6,
+			8,
+			1,
+			2,
+			1,
+			5,
+			4
+		],
+		"index": 77,
+		"skill": 77236,
+		"tank": "Single"
+	},
+	"307": {
+		"score": 95493,
+		"kills": 1,
+		"skillset": [
+			8,
+			5,
+			4,
+			3,
+			5,
+			4,
+			6,
+			4,
+			1,
+			7
+		],
+		"index": 77,
+		"skill": 95493,
+		"tank": "Single"
+	},
+	"308": {
+		"score": 77337,
+		"kills": 1,
+		"skillset": [
+			8,
+			4,
+			7,
+			4,
+			4,
+			5,
+			3,
+			4,
+			2,
+			6
+		],
+		"index": 77,
+		"skill": 77337,
+		"tank": "Single"
+	},
+	"309": {
+		"score": 119060,
+		"kills": 3,
+		"skillset": [
+			3,
+			6,
+			6,
+			5,
+			4,
+			6,
+			6,
+			2,
+			3,
+			6
+		],
+		"index": 144,
+		"skill": 357180,
+		"tank": "Boomer"
+	},
+	"310": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			6,
+			4,
+			6,
+			6,
+			5,
+			2,
+			4,
+			4,
+			5,
+			5
+		],
+		"index": 123,
+		"skill": 70786,
+		"tank": "Necromancer"
+	},
+	"311": {
+		"score": 62354,
+		"kills": 1,
+		"skillset": [
+			6,
+			6,
+			5,
+			5,
+			2,
+			6,
+			4,
+			4,
+			5,
+			4
+		],
+		"index": 87,
+		"skill": 62354,
+		"tank": "Nailgun"
+	},
+	"312": {
+		"score": 56980,
+		"kills": 1,
+		"skillset": [
+			3,
+			5,
+			8,
+			8,
+			5,
+			3,
+			9,
+			2,
+			0,
+			4
+		],
+		"index": 54,
+		"skill": 56980,
+		"tank": "Heli-Producer"
+	},
+	"313": {
+		"score": 69531,
+		"kills": 1,
+		"skillset": [
+			4,
+			7,
+			7,
+			8,
+			9,
+			4,
+			3,
+			1,
+			2,
+			2
+		],
+		"index": 140,
+		"skill": 69531,
+		"tank": "Mega Trapper"
+	},
+	"314": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			9,
+			4,
+			4,
+			5,
+			5,
+			4,
+			3,
+			1,
+			3,
+			9
+		],
+		"index": 77,
+		"skill": 70786,
+		"tank": "Single"
+	},
+	"315": {
+		"score": 101003,
+		"kills": 2,
+		"skillset": [
+			4,
+			7,
+			8,
+			6,
+			9,
+			3,
+			1,
+			5,
+			1,
+			3
+		],
+		"index": 58,
+		"skill": 202006,
+		"tank": "Tri-Heli"
+	},
+	"316": {
+		"score": 61379,
+		"kills": 1,
+		"skillset": [
+			7,
+			5,
+			4,
+			4,
+			4,
+			8,
+			6,
+			4,
+			2,
+			3
+		],
+		"index": 77,
+		"skill": 61379,
+		"tank": "Single"
+	},
+	"317": {
+		"score": 95690,
+		"kills": 1,
+		"skillset": [
+			7,
+			9,
+			6,
+			3,
+			5,
+			3,
+			2,
+			6,
+			2,
+			4
+		],
+		"index": 77,
+		"skill": 95690,
+		"tank": "Single"
+	},
+	"318": {
+		"score": 76233,
+		"kills": 1,
+		"skillset": [
+			7,
+			6,
+			3,
+			7,
+			4,
+			3,
+			4,
+			2,
+			2,
+			9
+		],
+		"index": 77,
+		"skill": 76233,
+		"tank": "Single"
+	},
+	"319": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			7,
+			9,
+			4,
+			4,
+			7,
+			3,
+			4,
+			3,
+			2,
+			4
+		],
+		"index": 77,
+		"skill": 70786,
+		"tank": "Single"
+	},
+	"320": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			5,
+			3,
+			8,
+			8,
+			7,
+			1,
+			5,
+			4,
+			2,
+			4
+		],
+		"index": 55,
+		"skill": 70786,
+		"tank": "Heli-Master"
+	},
+	"321": {
+		"score": 76233,
+		"kills": 1,
+		"skillset": [
+			8,
+			3,
+			6,
+			4,
+			3,
+			5,
+			3,
+			4,
+			2,
+			9
+		],
+		"index": 77,
+		"skill": 76233,
+		"tank": "Single"
+	},
+	"322": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			4,
+			4,
+			6,
+			6,
+			6,
+			2,
+			6,
+			4,
+			0,
+			9
+		],
+		"index": 87,
+		"skill": 70786,
+		"tank": "Nailgun"
+	},
+	"323": {
+		"score": 106019,
+		"kills": 2,
+		"skillset": [
+			7,
+			8,
+			3,
+			3,
+			4,
+			8,
+			3,
+			2,
+			4,
+			5
+		],
+		"index": 121,
+		"skill": 212038,
+		"tank": "Fortress"
+	},
+	"324": {
+		"score": 56786,
+		"kills": 1,
+		"skillset": [
+			7,
+			6,
+			4,
+			8,
+			6,
+			3,
+			1,
+			4,
+			2,
+			6
+		],
+		"index": 154,
+		"skill": 56786,
+		"tank": "Hexa-Trapper"
+	},
+	"325": {
+		"score": 66817,
+		"kills": 1,
+		"skillset": [
+			8,
+			1,
+			9,
+			7,
+			7,
+			1,
+			4,
+			2,
+			4,
+			4
+		],
+		"index": 57,
+		"skill": 66817,
+		"tank": "Heli-Racer"
+	},
+	"326": {
+		"score": 104422,
+		"kills": 2,
+		"skillset": [
+			6,
+			6,
+			6,
+			6,
+			7,
+			2,
+			4,
+			2,
+			2,
+			6
+		],
+		"index": 106,
+		"skill": 208844,
+		"tank": "Poacher"
+	},
+	"327": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			8,
+			6,
+			4,
+			5,
+			9,
+			5,
+			2,
+			2,
+			4,
+			2
+		],
+		"index": 170,
+		"skill": 70786,
+		"tank": "Snipe Guard"
+	},
+	"328": {
+		"score": 62233,
+		"kills": 1,
+		"skillset": [
+			3,
+			6,
+			6,
+			7,
+			4,
+			3,
+			7,
+			2,
+			1,
+			8
+		],
+		"index": 54,
+		"skill": 62233,
+		"tank": "Heli-Producer"
+	},
+	"329": {
+		"score": 56786,
+		"kills": 1,
+		"skillset": [
+			4,
+			9,
+			4,
+			7,
+			3,
+			4,
+			4,
+			4,
+			3,
+			5
+		],
+		"index": 54,
+		"skill": 56786,
+		"tank": "Heli-Producer"
+	},
+	"330": {
+		"score": 103565,
+		"kills": 2,
+		"skillset": [
+			6,
+			5,
+			6,
+			9,
+			7,
+			0,
+			2,
+			4,
+			2,
+			6
+		],
+		"index": 77,
+		"skill": 207130,
+		"tank": "Single"
+	},
+	"331": {
+		"score": 73653,
+		"kills": 1,
+		"skillset": [
+			9,
+			5,
+			6,
+			6,
+			4,
+			0,
+			4,
+			2,
+			6,
+			5
+		],
+		"index": 170,
+		"skill": 73653,
+		"tank": "Snipe Guard"
+	},
+	"332": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			5,
+			7,
+			9,
+			7,
+			3,
+			4,
+			4,
+			3,
+			2,
+			3
+		],
+		"index": 129,
+		"skill": 70786,
+		"tank": "Streamliner"
+	},
+	"333": {
+		"score": 76233,
+		"kills": 1,
+		"skillset": [
+			5,
+			9,
+			7,
+			7,
+			4,
+			3,
+			3,
+			2,
+			2,
+			5
+		],
+		"index": 77,
+		"skill": 76233,
+		"tank": "Single"
+	},
+	"334": {
+		"score": 63000,
+		"kills": 1,
+		"skillset": [
+			1,
+			9,
+			9,
+			3,
+			9,
+			4,
+			1,
+			0,
+			2,
+			9
+		],
+		"index": 77,
+		"skill": 63000,
+		"tank": "Single"
+	},
+	"335": {
+		"score": 113439,
+		"kills": 1,
+		"skillset": [
+			7,
+			8,
+			3,
+			4,
+			7,
+			1,
+			6,
+			3,
+			3,
+			5
+		],
+		"index": 77,
+		"skill": 113439,
+		"tank": "Single"
+	},
+	"336": {
+		"score": 49000,
+		"kills": 1,
+		"skillset": [
+			4,
+			4,
+			8,
+			5,
+			8,
+			3,
+			2,
+			3,
+			3,
+			7
+		],
+		"index": 54,
+		"skill": 49000,
+		"tank": "Heli-Producer"
+	},
+	"337": {
+		"score": 102329,
+		"kills": 2,
+		"skillset": [
+			3,
+			9,
+			5,
+			8,
+			9,
+			1,
+			2,
+			4,
+			2,
+			4
+		],
+		"index": 125,
+		"skill": 204658,
+		"tank": "Factory"
+	},
+	"338": {
+		"score": 107634,
+		"kills": 2,
+		"skillset": [
+			9,
+			7,
+			6,
+			2,
+			6,
+			4,
+			2,
+			4,
+			3,
+			4
+		],
+		"index": 121,
+		"skill": 215268,
+		"tank": "Fortress"
+	},
+	"339": {
+		"score": 56834,
+		"kills": 1,
+		"skillset": [
+			3,
+			7,
+			7,
+			9,
+			6,
+			1,
+			7,
+			1,
+			1,
+			5
+		],
+		"index": 54,
+		"skill": 56834,
+		"tank": "Heli-Producer"
+	},
+	"340": {
+		"score": 73806,
+		"kills": 1,
+		"skillset": [
+			5,
+			8,
+			6,
+			5,
+			3,
+			5,
+			4,
+			4,
+			3,
+			4
+		],
+		"index": 77,
+		"skill": 73806,
+		"tank": "Single"
+	},
+	"341": {
+		"score": 71382,
+		"kills": 1,
+		"skillset": [
+			7,
+			5,
+			8,
+			9,
+			8,
+			2,
+			0,
+			3,
+			1,
+			4
+		],
+		"index": 82,
+		"skill": 71382,
+		"tank": "Auto-Smasher"
+	},
+	"342": {
+		"score": 45153,
+		"kills": 1,
+		"skillset": [
+			9,
+			9,
+			7,
+			3,
+			7,
+			3,
+			2,
+			1,
+			3,
+			3
+		],
+		"index": 54,
+		"skill": 45153,
+		"tank": "Heli-Producer"
+	},
+	"343": {
+		"score": 71606,
+		"kills": 1,
+		"skillset": [
+			7,
+			6,
+			7,
+			5,
+			7,
+			1,
+			5,
+			1,
+			4,
+			4
+		],
+		"index": 77,
+		"skill": 71606,
+		"tank": "Single"
+	},
+	"344": {
+		"score": 132410,
+		"kills": 3,
+		"skillset": [
+			5,
+			6,
+			5,
+			5,
+			9,
+			3,
+			2,
+			3,
+			6,
+			3
+		],
+		"index": 147,
+		"skill": 397230,
+		"tank": "Mortar"
+	},
+	"345": {
+		"score": 121376,
+		"kills": 2,
+		"skillset": [
+			3,
+			7,
+			5,
+			6,
+			9,
+			3,
+			2,
+			6,
+			2,
+			4
+		],
+		"index": 77,
+		"skill": 242752,
+		"tank": "Single"
+	},
+	"num": 346,
+	"resettrigger": 187,
+	"averagetank": {
+		"score": 88002.2774566474,
+		"kills": 1.9479768786127167,
+		"skill": 349211.78323699423,
+		"skillset": [
+			5,
+			6,
+			6,
+			5,
+			6,
+			3,
+			4,
+			3,
+			2,
 			4
 		]
 	}

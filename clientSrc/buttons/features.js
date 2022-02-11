@@ -1,6 +1,20 @@
 // For the contributor spot spell the github users name exactally right or put their github id there
 let featuresArray = [
     {
+        name: "Discord-Bot Implementation",
+        description: "A discord bot implemented into the OpenArras server creating a link between the game and discord.",
+        contributor: "79679437",
+        important: true,
+        done: false,
+    },
+    {
+        name: "A fully functional in-game chat",
+        description: "A chat in-game where players can talk by pressing the enter key.",
+        contributor: "79679437",
+        important: false,
+        done: true,
+    },
+    {
         name: "Server Life Support",
         description: "In an attempt to create a smoother experience if the server starts to get laggy this will reduce the amount of food on the map and the maxium amount of food thats able to spawn.",
         contributor: "79679437",
