@@ -17,7 +17,7 @@
   "MODE": "ffa",
   "RANDOM_COLORS": false,
   "BANNED_CHARACTER_REGEX": "/[\uFDFD\u200E\u0000]/gi", 
-  "COMPILED_CLIENT": false,
+  "COMPILED_CLIENT": true,
   "SERVER_LIFESUPPORT": true,
   "LIFESUPPORT_SENSITIVITY": 0,
   "GITHUBPATH": "Windows8964/openarras-project",

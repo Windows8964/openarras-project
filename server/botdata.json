@@ -6573,12 +6573,183 @@
 		"skill": 242752,
 		"tank": "Single"
 	},
-	"num": 346,
+	"346": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			6,
+			4,
+			5,
+			3,
+			8,
+			1,
+			4,
+			2,
+			5,
+			9
+		],
+		"index": 144,
+		"skill": 70786,
+		"tank": "Boomer"
+	},
+	"347": {
+		"score": 100572,
+		"kills": 2,
+		"skillset": [
+			8,
+			5,
+			5,
+			7,
+			4,
+			3,
+			5,
+			2,
+			3,
+			5
+		],
+		"index": 121,
+		"skill": 201144,
+		"tank": "Fortress"
+	},
+	"348": {
+		"score": 81111,
+		"kills": 1,
+		"skillset": [
+			1,
+			6,
+			5,
+			8,
+			8,
+			2,
+			4,
+			4,
+			3,
+			6
+		],
+		"index": 77,
+		"skill": 81111,
+		"tank": "Single"
+	},
+	"349": {
+		"score": 96279,
+		"kills": 2,
+		"skillset": [
+			6,
+			7,
+			7,
+			6,
+			7,
+			1,
+			2,
+			4,
+			3,
+			4
+		],
+		"index": 106,
+		"skill": 192558,
+		"tank": "Poacher"
+	},
+	"350": {
+		"score": 56794,
+		"kills": 1,
+		"skillset": [
+			8,
+			6,
+			3,
+			6,
+			6,
+			2,
+			3,
+			7,
+			1,
+			5
+		],
+		"index": 54,
+		"skill": 56794,
+		"tank": "Heli-Producer"
+	},
+	"351": {
+		"score": 70786,
+		"kills": 1,
+		"skillset": [
+			4,
+			4,
+			7,
+			9,
+			6,
+			1,
+			4,
+			6,
+			0,
+			6
+		],
+		"index": 77,
+		"skill": 70786,
+		"tank": "Single"
+	},
+	"352": {
+		"score": 102576,
+		"kills": 2,
+		"skillset": [
+			2,
+			8,
+			7,
+			6,
+			9,
+			2,
+			2,
+			6,
+			1,
+			4
+		],
+		"index": 147,
+		"skill": 205152,
+		"tank": "Mortar"
+	},
+	"353": {
+		"score": 72044,
+		"kills": 1,
+		"skillset": [
+			5,
+			5,
+			5,
+			9,
+			7,
+			4,
+			4,
+			0,
+			3,
+			5
+		],
+		"index": 55,
+		"skill": 72044,
+		"tank": "Heli-Master"
+	},
+	"354": {
+		"score": 100996,
+		"kills": 2,
+		"skillset": [
+			6,
+			8,
+			9,
+			2,
+			6,
+			4,
+			4,
+			3,
+			2,
+			3
+		],
+		"index": 127,
+		"skill": 201992,
+		"tank": "Sprayer"
+	},
+	"num": 355,
 	"resettrigger": 187,
 	"averagetank": {
-		"score": 88002.2774566474,
-		"kills": 1.9479768786127167,
-		"skill": 349211.78323699423,
+		"score": 87889.38591549295,
+		"kills": 1.935211267605634,
+		"skill": 343604.6309859155,
 		"skillset": [
 			5,
 			6,

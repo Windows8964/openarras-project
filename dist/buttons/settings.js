@@ -1,54 +1,9 @@
-let controlArray = [
-    {
-      key: "W/A/S/D/Arrow Keys",
-      description: "movement"
-    },
-    {
-      key: "Left Click/Space",
-      description: "fire"
-    },
-    {
-      key: "Right Click/Shift",
-      description: "secondary fire"
-    },
-    { key: 'Enter',
-      description: "chat"
-    },
-    {
-      key: "E",
-      description: "auto-fire"
-    },
-    {
-      key: "C",
-      description: "auto-spin"
-    },
-    {
-      key: "R",
-      description: "disable auto-weapons"
-    },
-    {
-      key: "N",
-      description: "level up"
-    },
-    {
-      key: "M + statkey",
-      description: "maxes out pressed stat"
-    },
-    {
-      key: "`",
-      description: "(Developer/Staff only) opens the Dev Menu"
-    },
-    {
-      key:"Q",
-      description: "(Developer/Staff only) activates the selected Dev function"
-    }
-]
-controls.onclick = function(){
+settings.onclick = function(){
     if(document.getElementsByClassName('popupMenu').length){
       let ele = document.getElementsByClassName('popupMenu');
       ele[0].style.animation = "menuGo .5s";
       ele[0].style.animationFillMode = "forward";
-      document.getElementById("invisDiv").appendChild(document.getElementById("graphicSection"))
+      document.getElementById("invisDiv").appendChild(document.getElementById("settingsSection"))
       setTimeout(function () {
           ele[0].remove();
       }, 500)
@@ -69,13 +24,14 @@ controls.onclick = function(){
         body.style.animationFillMode = "forward";
         body.style.pointerEvents = "none";
         setTimeout(function(){
+            document.getElementById("invisDiv").appendChild(document.getElementById("settingsSection"))
             body.remove();
         }, 500)
     }
     body.appendChild(close);
     body.appendChild((function(h1=document.createElement("h1")){
         h1.style="text-align:middle;font-size:25px;margin-left:10px;margin-top: 3px;margin-bottom:0px;";
-        h1.innerHTML = "OpenArras Controls";
+        h1.innerHTML = "OpenArras Settings";
         return h1;
     })());
     /*body.appendChild((function(h1=document.createElement("h1")){
@@ -83,14 +39,8 @@ controls.onclick = function(){
         h1.innerHTML = "(🗸: done, ✗: not done)";
         return h1;
     })())*/
-    for (let i = 0; i < controlArray.length; i++) {
-        let control = controlArray[i];
-        function createLine(h1=document.createElement("h1")){
-            h1.style=`font-weight:400;text-align:left;font-size:20px;margin-left:10px;margin-top: 10px;margin-bottom:0px;`;
-            h1.innerHTML = '<b>'+control.key+"</b> - "+control.description;
-            body.appendChild(h1)
-            }
-      createLine();
-    };
+    let ele1 = document.getElementById("settingsSection")
+    ele1.style.display = "initial"
+    body.appendChild(ele1)
     startMenuWrapper.appendChild(body);
 }
