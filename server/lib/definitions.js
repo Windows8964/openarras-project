@@ -4364,6 +4364,7 @@ exports.sentryTrap = makeAuto(exports.sentry, 'Sentry', { type: exports.trapTurr
 exports.miniboss = {
     PARENT: [exports.genericTank],
     TYPE: 'miniboss',
+    NAME: '',
     DANGER: 6,
     SKILL: skillSet({
         rld: 0.7,
@@ -4373,7 +4374,7 @@ exports.miniboss = {
         spd: 0.2,
         atk: 0.7,
         hlt: 0.65,
-        shi: 0.5,
+        shi: 0.25,
         rgn: 0,
         mob: 0,        
     }),
@@ -4516,7 +4517,6 @@ exports.miniboss = {
             SHAPE: 6,
             SIZE: 28,
             VALUE: 500000,
-            MSG_ON_SPAWN: 'A strange trembeling...',
             BODY: {
                 FOV: 1.3,
                 SPEED: base.SPEED * 0.1,
@@ -4602,7 +4602,6 @@ exports.miniboss = {
         VARIES_IN_SIZE: true,
         VALUE: 150000,
         MAX_CHILDREN: 65,
-        MSG_ON_SPAWN:'You notice the winds picking up...',
         BODY: {
             FOV: 1.3,
             SPEED: base.SPEED * 0.05,

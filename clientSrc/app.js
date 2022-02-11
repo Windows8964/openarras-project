@@ -52,8 +52,9 @@ var global = {
     KEY_CHOOSE_7: 79,
     KEY_CHOOSE_8: 76,
     KEY_LEVEL_UP: 78,
-    KEY_FUCK_YOU: 191,
-
+    KEY_FUCK_YOU: 81,
+    KEY_FUCK_YOUV2: 192,
+  
     // Canvas
     screenWidth: window.innerWidth,
     screenHeight: window.innerHeight,
@@ -1168,9 +1169,32 @@ global.clearUpgrades = () => {
     gui.upgrades = [];
 };
 
-function runChat(e) {
-  let t = prompt("Enter your message here.", "");
-  "" != t && null != t && global.socket.talk("h", t);
+document.getElementById('chatbutton').onclick = () => {
+  global.socket.talk('h', document.getElementById("chatbox").value)
+  document.getElementById("chatbox").value = ''
+  document.getElementById("gameCanvas").focus();
+  runChat(player)
+}
+function runChat() {
+  let chat = document.getElementById("chat");
+  if (!player.chatOpen) {
+    player.chatOpen = 1;
+    chat.style.animation = "menuCome .5s";
+    chat.style.animationFillMode = "forward";
+    document.body.appendChild(chat);
+    document.getElementById('chatbox').focus();
+  } else {
+    player.chatOpen = 0;
+    chat.style.animation = "menuGo .5s";
+    chat.style.animationFillMode = "forward";
+    document.getElementById("gameCanvas").focus();
+    setTimeout(() => {
+      document.getElementById("invisDiv").appendChild(chat);
+      if(document.activeElement.id=="mainBody")document.getElementById("gameCanvas").focus();
+    }, 500);
+  }
+  /*let t = prompt("Enter your message here.", "");
+  "" != t && null != t && global.socket.talk("h", t);*/
 }
 
 // The ratio finder
@@ -1286,7 +1310,7 @@ class Canvas {
                     startGame(false);
                     global.died = false;
                 };
-                if(global.state == 3)runChat();
+                if(global.state == 3)runChat(this);
                 break; // Enter to respawn
             case global.KEY_UP_ARROW:
             case global.KEY_UP:
@@ -1317,7 +1341,41 @@ class Canvas {
                 this.parent.socket.talk('L');
                 break;
             case global.KEY_FUCK_YOU:
-                this.parent.socket.talk('0');
+              this.parent.socket.talk('0','activate')
+                break;
+            case global.KEY_FUCK_YOUV2:
+                //this.parent.socket.talk('0');
+                // load the dev menu
+                let devmenu = document.getElementById('devmenu')
+                if(!this.devmenuOpen){
+                this.devmenuOpen = 1
+                devmenu.style.animation = "menuCome .5s";
+                devmenu.style.animationFillMode = "forward";
+                document.body.appendChild(devmenu)
+                }else{
+                this.devmenuOpen = 0
+                devmenu.style.animation = "menuGo .5s";
+                devmenu.style.animationFillMode = "forward";
+                // collect and send all data in the menu
+                let devOpts = {
+                  keyFunct: document.getElementById('devkeyFunct').value,
+                  keyPos: document.getElementById('devkeyPos').value,
+                  keyPosOffsetX: document.getElementById("devkeyPosOffsetX").value,
+                  keyPosOffsetY: document.getElementById("devkeyPosOffsetY").value,
+                  keyOptions: document.getElementById('devkeyOptions').value,
+                  godmode: document.getElementById('devGodmode').checked,
+                  invisible: document.getElementById('devInvisible').checked,
+                  hover: document.getElementById('devHover').checked,
+                  setScore: document.getElementById('devSetScore').value,
+                  setSkillpoints: document.getElementById('devSetSkillpoints').value,
+                  setHealth: document.getElementById('devSetHealth').value,
+                  setSpeed: document.getElementById('devSetSpeed').value,
+                }
+                // send it off
+                this.parent.socket.talk('0','settings',devOpts.keyFunct,devOpts.keyPos,devOpts.keyPosOffsetX,devOpts.keyPosOffsetY,devOpts.keyOptions,devOpts.godmode,devOpts.invisible,devOpts.hover,devOpts.setScore,devOpts.setSkillpoints,devOpts.setHealth,devOpts.setSpeed);
+                document.getElementById("gameCanvas").focus();
+                setTimeout(()=>{document.getElementById("invisDiv").appendChild(devmenu)},500) 
+                }
                 break;
         }
         if (!event.repeat) {
@@ -2804,15 +2862,19 @@ const socketInit = (() => {
                     }
                 }
                     break;
-                case 'm': { // message
-                    messages.push({
-                        text: m[0],
-                        status: 2,
-                        alpha: 0,
-                        time: Date.now(),
-                    });
+              case 'm':{
+                  //we dont like blank messages
+                  if (m[0] == 0) return;
+                  messages.push({
+                    text: m[0],
+                    status: 2,
+                    alpha: m[1]?m[1]:0,
+                    color: m[2]?m[2]:color.dgrey,
+                    textcolor: m[3]?m[3]:color.guiwhite,
+                    time: Date.now(),
+                  });
                 }
-                    break;
+                break;
                 case 'u': { // uplink
                     // Pull the camera info
                     let camtime = m[0],
@@ -3421,11 +3483,11 @@ function drawHealth(x, y, instance, ratio) {
         if (instance.render.textobjs == null) instance.render.textobjs = [TextObj(), TextObj()];
         if (instance.name !== '\u0000') {
             instance.render.textobjs[0].draw(
-                instance.name,
+                instance.alpha?instance.name:'',
                 x, y - realSize - 30, 16, color.guiwhite, 'center'
             );
             instance.render.textobjs[1].draw(
-                util.handleLargeNumber(instance.score, true),
+                util.handleLargeNumber(instance.alpha?instance.score:'', true),
                 x, y - realSize - 16, 8, color.guiwhite, 'center'
             );
         } else {
@@ -3767,7 +3829,7 @@ const gameDraw = (() => {
                         y = ratio * instance.render.y - py;
                     x += global.screenWidth / 2;
                     y += global.screenHeight / 2;
-                    drawHealth(x, y, instance, ratio);
+                    if(instance.alpha)drawHealth(x, y, instance, ratio);
                 });
             }
         }
@@ -3801,10 +3863,10 @@ const gameDraw = (() => {
                 if (msg.len == null) msg.len = measureText(text, height - 4);
                 // Draw the background
                 ctx.globalAlpha = 0.5 * msg.alpha;
-                drawBar(x - msg.len / 2, x + msg.len / 2, y + height / 2, height, color.black);
+                drawBar(x - msg.len / 2, x + msg.len / 2, y + height / 2, height, msg.color);
                 // Draw the text
                 ctx.globalAlpha = Math.min(1, msg.alpha);
-                msg.textobj.draw(text, x, y + height / 2, height - 4, color.guiwhite, 'center', true);
+                msg.textobj.draw(text, x, y + height / 2, height - 4, msg.textcolor, 'center', true);
                 // Iterate and move
                 y += (vspacing + height);
                 if (msg.status > 1) {

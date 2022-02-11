@@ -1,14 +1,19 @@
 let changelogArray = [
     {
-        name: ['orange', 'I. AM. SPEED.'],
+        name: ['purple', 'Biggest update yet!'],
         contributor: "79679437",
         description:[
+          ['magenta', '- Upgrades now only use the index ID rather than the entire class making <b>all</b> actions with entities that have upgrades faster!'],
+          ['black', '- Added color support for notifications.'],
+          ['green', '- Added a menu in game for anyone that has the correct token. This menu allows them to do many.. wild things...'],
           ['red', '- Added a new boss named the "Tempest", it a boss that harnesses the wind to surround your tank in high damaging drones.'],
           ['blue', '- Heavily nerfed bosses.'],
           ['black', '- Bosses now spawn faster,'],
-          ['black', '- Bosses have a 3 boss limit before they will stop spawning.'],
+          ['black', '- Bosses have a boss limit, when it is reached they will stop spawning.'],
           ['black', '- Fixed a bug with boss names.'],
-          ['purple', ' - Added a chat feature with some commands.'],
+          ['black', '- Improved boss spawning.'],
+          ['purple', ' - Added a chat feature.'],
+          ['black', '- Developers/Staff will appear as a different color in chat.'],
           ['orange', '- Added some very much needed optimizations.'],
           ['indigo', '- Bots now have somewhat of a bias and will choose bullet stats over body stats.. the bots are starting to get better than me at the game.'],
           ['violet', '- Added "server Lifesupport" <s>thats actaully what its called in the code</s> this feature will reduce the amount of food if things get laggy.'],
