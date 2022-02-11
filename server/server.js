@@ -5275,6 +5275,17 @@ function serverLifesupport(){
                     if (o.skill.level < c.SKILL_CAP) {
                         o.skill.score += 1000;
                         o.skill.maintain();
+              //skill up
+                    if (o.skill.points > 0){
+                        if (!o.skillset) o.skillset = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                        if (util.sumArray(o.skillset)>45) o.kill();
+                        o.skillset[Math.floor(Math.random()*o.skillset.length)]++
+                        o.skill.points--
+                        // is there still shit left?.. No?.. cool, lets apply it
+                        if(o.skill.points == 0){
+                          o.skill.set(o.skillset)
+                        }
+                      }
                     }
               //skill up
                     if (o.skill.points > 0){
@@ -5589,4 +5600,3 @@ request.end();
 }
 console.log((gitdata.lastupdate+30)-datemins + " more mins till githubstats.json is updated.")
 }, 300000)//check every 5 mins, 300000 ms
- 

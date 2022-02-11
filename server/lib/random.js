@@ -119,7 +119,6 @@ biasRan([1,2,3], [0.2, 0.8, 0.3])
 2 - Returned 80% of the time
 3 - Returned 30% of the time
 */
-
 const { uniqueNamesGenerator, adjectives, colors, animals, names } = require('unique-names-generator');
 exports.chooseBotName = () => {
   return uniqueNamesGenerator({
@@ -151,3 +150,4 @@ return uniqueNamesGenerator({
   separator: '-'
 });
 };
+

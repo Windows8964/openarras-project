@@ -1341,12 +1341,12 @@ exports.triheli = {
             }, },{ /* LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
             POSITION: [  16,     4,      1,      0,    -7,     0,     0,  ], 
             PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.basic, g.heli]),
+                SHOOT_SETTINGS: combineStats([g.basic, g.heli, g.slow, g.lessreload]),
                 TYPE: exports.bullet,
             }, },{ /* LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
             POSITION: [  19,     6,      1,      0,    0,     0,     0.5,  ], 
             PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.basic, g.heli, g.slow, g.lessreload]),
+                SHOOT_SETTINGS: combineStats([g.basic, g.heli]),
                 TYPE: exports.bullet,
             }, }]
 }
