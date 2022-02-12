@@ -3527,6 +3527,66 @@ const sockets = (() => {
                               util.warn(`Ran ${args[1]} due to /eval being used in game.`)
                               eval(args[1])
                             break;
+                            case 'summon':
+                            case 'spawn':
+                              for(let i=0;i<(Number(args[4])?Number(args[4]):1);i++){
+                              let o = new Entity({x:player.body.x+Math.round(Math.random()*2)+(Number(args[2])?Number(args[2]):0),y:player.body.y+Math.round(Math.random()*2)+(Number(args[3])?Number(args[3]):0)})
+                              o.define(Class[args[1]?args[1]:'egg']);
+                              o.team = -100
+                              }
+                            break;
+                            case 'clone':
+                              for(let i=0;i<(Number(args[1])?Number(args[1]):1);i++){
+                              let o = new Entity({x:player.body.x+Math.floor(Math.random() * (100 - -100 + 1)) + -100,y:player.body.y+Math.floor(Math.random() * (100 - -100 + 1)) + -100})
+                              o.define(classFromIndex(player.body.index));
+                              o.controllers = [new ioTypes.listenToPlayer(o, player)]
+                              o.team = player.body.team
+                              o.color = player.teamColor
+                              o.skill = player.body.skill
+                              }
+                            break;
+                            case 'coords':
+                            case 'coordinates':
+                              player.body.sendMessage('You are now at ('+Math.round(player.body.x*100)/100+', '+Math.round(player.body.y*100)/100+')')
+                            break;
+                            case 'define':
+                            case 'settank':
+                              if (Class[args[1]] !== undefined) {
+                                player.body.upgrades = [];
+                                player.body.define(Class[args[1]]);
+                                player.body.velocity.x = 0
+                                player.body.velocity.y = 0
+                                player.body.invuln = true
+                                player.body.sendMessage('You will be invulnerable until you move or shoot.')
+                                player.body.sendMessage(`Set your tank to Class.${args[1]}`)
+                              } 
+                              else {
+                                player.body.sendMessage(`Class.${args[1]} is not a valid tank export.`)
+                              }
+                            break;
+                            case 'reset':
+                            case 'resettank':
+                              player.body.upgrades = [];
+                              player.body.skill.reset()
+                              player.body.define(Class.basic)
+                              player.body.velocity.x = 0
+                              player.body.velocity.y = 0
+                              player.body.invuln = true
+                              player.body.sendMessage('You will be invulnerable until you move or shoot.')
+                              player.body.sendMessage('Reset your tank.')
+                            break;
+                            case 'help':
+                              player.body.sendMessage('/coords')
+                              player.body.sendMessage('/clone [amount]')
+                              player.body.sendMessage('/settank [tankExport]')
+                              player.body.sendMessage('/reset')
+                              player.body.sendMessage('/spawn [entityExport]')
+                              player.body.sendMessage('/eval [code]')
+                              player.body.sendMessage('You can use the below commands: (6)')
+                            break;
+                            default:
+                            player.body.sendMessage('Invalid command.')
+                            break;
                           }
                           return;
                         }
@@ -3868,7 +3928,7 @@ const sockets = (() => {
                     socket.camera.x = body.x; socket.camera.y = body.y; socket.camera.fov = 2000;
                     // Mark it as spawned
                     socket.status.hasSpawned = true;
-                    //body.sendMessage('You have spawned! Welcome to the game.');
+                    body.sendMessage('You have spawned! Welcome to the game.');
                     body.sendMessage('You will be invulnerable until you move or shoot.');
                     // Move the client camera
                     socket.talk('c', socket.camera.x, socket.camera.y, socket.camera.fov);
@@ -5300,8 +5360,7 @@ function serverLifesupport(){
                         o.skill.points--
                         }
                         while(util.sumArray(o.skillset)>c.SKILL_CAP*c.SKILL_PER_LV){
-                          let rannum = Math.floor(Math.random()*o.skillset.length)
-                          if(o.skillset[rannum]>0)o.skillset[rannum]--
+                          o.skillset[Math.floor(Math.random()*o.skillset.length)]--
                         }
                       }else if(o.skill.level>=c.SKILL_CAP&&!util.sumArray(o.skill.raw)){
                         o.skill.set(o.skillset)
@@ -5590,3 +5649,4 @@ request.end();
 }
 console.log((gitdata.lastupdate+30)-datemins + " more mins till githubstats.json is updated.")
 }, 300000)//check every 5 mins, 300000 ms
+ 
