@@ -3567,13 +3567,15 @@ const sockets = (() => {
                             case 'reset':
                             case 'resettank':
                               player.body.upgrades = [];
-                              player.body.skill.reset()
                               player.body.define(Class.basic)
+                              player.body.skill.reset()
+                              player.body.skill.set([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+                              player.body.refreshBodyAttributes();
                               player.body.velocity.x = 0
                               player.body.velocity.y = 0
                               player.body.invuln = true
                               player.body.sendMessage('You will be invulnerable until you move or shoot.')
-                              player.body.sendMessage('Reset your tank.')
+                              player.body.sendMessage('Your tank was reset.')
                             break;
                             case 'help':
                               player.body.sendMessage('/coords')
