@@ -377,7 +377,7 @@ exports.egg = {
 
 exports.greenpentagon = {
     PARENT: [exports.food],
-    LABEL: 'Pentagon',
+    LABEL: 'Green Pentagon',
     VALUE: 30000,
     SHAPE: 5,
     SIZE: 16,
@@ -393,7 +393,7 @@ exports.greenpentagon = {
 };
 exports.greentriangle = {
     PARENT: [exports.food],
-    LABEL: 'Triangle',
+    LABEL: 'Green Triangle',
     VALUE: 7000,
     SHAPE: 3,
     SIZE: 9,
@@ -409,7 +409,7 @@ exports.greentriangle = {
 };
 exports.greensquare = {
     PARENT: [exports.food],
-    LABEL: 'Square',
+    LABEL: 'Green Square',
     VALUE: 2000,
     SHAPE: 4,
     SIZE: 10,
@@ -1341,12 +1341,12 @@ exports.triheli = {
             }, },{ /* LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
             POSITION: [  16,     4,      1,      0,    -7,     0,     0,  ], 
             PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.basic, g.heli, g.slow, g.lessreload]),
+                SHOOT_SETTINGS: combineStats([g.basic, g.heli]),
                 TYPE: exports.bullet,
             }, },{ /* LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
             POSITION: [  19,     6,      1,      0,    0,     0,     0.5,  ], 
             PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.basic, g.heli]),
+                SHOOT_SETTINGS: combineStats([g.basic, g.heli, g.slow, g.lessreload]),
                 TYPE: exports.bullet,
             }, }]
 }
@@ -1692,40 +1692,6 @@ exports.basic = {
         }, }, 
     ],
 };
-        exports.testbed = {
-            PARENT: [exports.genericTank],
-            LABEL: 'TESTBED',
-            RESET_UPGRADES: true,
-            SKILL: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-            LEVEL: -1,
-            BODY: { // def
-                SHIELD: 1000,
-                REGEN: 10,
-                HEALTH: 100,
-                DAMAGE: 10,
-                DENSITY: 20,
-                FOV: 2,
-            },
-            SHAPE: [
-              [-1, -0.8],
-              [-0.8, -1],
-              [0.8, -1],
-              [1, -0.8],
-              [0.2, 0],
-              [1, 0.8],
-              [0.8, 1],
-              [-0.8, 1],
-              [-1, 0.8],
-            ],
-            TURRETS: [],
-            GUNS: [ { /*** LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
-                POSITION: [  18,    10,    -1.4,     0,      0,      0,      0,   ], 
-                PROPERTIES: {
-                    SHOOT_SETTINGS: combineStats([g.basic, g.op]),
-                    TYPE: [exports.bullet, { SHAPE: 5, }],
-                }, }, 
-            ],
-        };
             exports.single = {
                 PARENT: [exports.genericTank],
                 LABEL: 'Single',
@@ -4178,85 +4144,6 @@ exports.basic = {
                 ],
             };
 
-// UPGRADE PATHS
-exports.testbed.UPGRADES_TIER_1 = [
-    exports.autocruiser, 
-    exports.master, 
-    exports.dual, 
-    exports.hiveshooter, 
-    exports.brutalizer,
-    exports.shotgun2,
-    exports.hybridmini
-];
-
-exports.basic.UPGRADES_TIER_1 = [exports.twin, exports.sniper, exports.machine, exports.flank, exports.director, exports.helibasic];
-        exports.basic.UPGRADES_TIER_3 = [exports.single];
-    exports.basic.UPGRADES_TIER_2 = [exports.smash];
-        exports.smash.UPGRADES_TIER_3 = [exports.megasmash, exports.spike, exports.autosmash];
-    
-    exports.helibasic.UPGRADES_TIER_2 = [exports.helisquad, exports.helicruiser, exports.heliflank]
-        exports.helisquad.UPGRADES_TIER_3 = [exports.heliproducer, exports.helimaster]
-        exports.helicruiser.UPGRADES_TIER_3 = [exports.heliracer, exports.triheli]
-        exports.heliflank.UPGRADES_TIER_3 = [exports.helitrapper, exports.autoheli]
-
-    exports.twin.UPGRADES_TIER_2 = [exports.double, exports.bent, exports.gunner, exports.hexa];
-        exports.twin.UPGRADES_TIER_3 = [exports.triple];
-        exports.double.UPGRADES_TIER_3 = [exports.tripletwin, exports.split, exports.autodouble, exports.bentdouble];
-        exports.bent.UPGRADES_TIER_3 = [exports.penta, exports.spread, exports.benthybrid, exports.bentdouble, exports.triple];
-        exports.gunner.UPGRADES_TIER_3 = [exports.autogunner, exports.nailgun, exports.auto4,exports.machinegunner];
-
-    exports.sniper.UPGRADES_TIER_2 = [exports.assassin, exports.hunter, exports.mini, exports.builder];
-        exports.sniper.UPGRADES_TIER_3 = [exports.bushwhack];
-        exports.assassin.UPGRADES_TIER_3 = [exports.ranger, exports.falcon];
-        exports.hunter.UPGRADES_TIER_3 = [exports.preda, exports.poach, exports.sidewind];
-        exports.builder.UPGRADES_TIER_3 = [exports.construct, exports.autobuilder, exports.engineer, exports.boomer];
-
-    exports.machine.UPGRADES_TIER_2 = [exports.destroy, exports.artillery, exports.mini, exports.gunner];
-        exports.machine.UPGRADES_TIER_3 = [exports.spray];
-        exports.destroy.UPGRADES_TIER_3 = [exports.anni, exports.hybrid, exports.construct, exports.shotgun2];
-        exports.artillery.UPGRADES_TIER_3 = [exports.mortar, exports.spread, exports.skimmer];
-        exports.mini.UPGRADES_TIER_3 = [exports.stream, exports.nailgun];
-
-    exports.flank.UPGRADES_TIER_2 = [exports.hexa, exports.tri, exports.auto3, exports.flanktrap];
-        exports.flank.UPGRADES_TIER_3 = [];
-        exports.tri.UPGRADES_TIER_3 = [exports.fighter, exports.booster, exports.falcon, exports.bomber, exports.autotri];
-        exports.hexa.UPGRADES_TIER_3 = [exports.octo, exports.hexatrap];
-        exports.auto3.UPGRADES_TIER_3 = [exports.auto5, exports.heavy3, exports.auto4];
-        exports.flanktrap.UPGRADES_TIER_3 = [exports.bushwhack, exports.guntrap, exports.fortress, exports.bomber];
-
-    exports.director.UPGRADES_TIER_2 = [exports.overseer, exports.cruiser, exports.underseer];
-        exports.director.UPGRADES_TIER_3 = [exports.factory];
-        exports.overseer.UPGRADES_TIER_3 = [exports.overlord, exports.overtrap, exports.overgunner];  
-        exports.underseer.UPGRADES_TIER_3 = [exports.necromancer];
-        exports.cruiser.UPGRADES_TIER_3 = [exports.carrier, exports.battleship, exports.fortress];
-
-
-    /*exports.smash.UPGRADES_TIER_3 = [exports.megasmash, exports.spike, exports.autosmash];
-            
-    exports.twin.UPGRADES_TIER_2 = [exports.double, exports.bent, exports.triple, exports.hexa];
-        exports.double.UPGRADES_TIER_3 = [exports.tripletwin, exports.autodouble];
-        exports.bent.UPGRADES_TIER_3 = [exports.penta, exports.benthybrid];
-        exports.triple.UPGRADES_TIER_3 = [exports.quint];
-
-    exports.sniper.UPGRADES_TIER_2 = [exports.assassin, exports.overseer, exports.hunter, exports.builder];
-        exports.assassin.UPGRADES_TIER_3 = [exports.ranger];
-        exports.overseer.UPGRADES_TIER_3 = [exports.overlord, exports.battleship
-            , exports.overtrap, exports.necromancer, exports.factory, exports.fortress];
-        exports.hunter.UPGRADES_TIER_3 = [exports.preda, exports.poach];
-        exports.builder.UPGRADES_TIER_3 = [exports.construct, exports.autobuilder];
-        
-    exports.machine.UPGRADES_TIER_2 = [exports.destroy, exports.gunner, exports.artillery];
-        exports.destroy.UPGRADES_TIER_3 = [exports.anni, exports.hybrid];
-        exports.gunner.UPGRADES_TIER_3 = [exports.autogunner, exports.mortar, exports.stream];
-        exports.artillery.UPGRADES_TIER_3 = [exports.mortar, exports.spread, exports.skimmer];
-        exports.machine.UPGRADES_TIER_3 = [exports.spray];
-
-    exports.flank.UPGRADES_TIER_2 = [exports.hexa, exports.tri, exports.auto3, exports.flanktrap];
-        exports.hexa.UPGRADES_TIER_3 = [exports.octo];
-        exports.tri.UPGRADES_TIER_3 = [exports.booster, exports.fighter, exports.bomber, exports.autotri];
-        exports.auto3.UPGRADES_TIER_3 = [exports.auto5, exports.heavy3];
-        exports.flanktrap.UPGRADES_TIER_3 = [exports.guntrap, exports.fortress, exports.bomber];*/
-
 // NPCS:
 exports.crasher = {
     TYPE: 'crasher',
@@ -4655,4 +4542,319 @@ exports.bot = {
     AI: { STRAFE: true, },
 };
 
-exports.testbed.UPGRADES_TIER_1.push(exports.elite_sprayer);
+// DEV TANKS
+exports.developer = {
+    PARENT: [exports.genericTank],
+    LABEL: 'Developer',
+    RESET_UPGRADES: true,
+    CAN_GO_OUTSIDE_ROOM: true,
+    SKILL: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+    LEVEL: -1,
+    BODY: { // def
+        SHIELD: 1000,
+        REGEN: 10,
+        HEALTH: 100,
+        DAMAGE: 10,
+        DENSITY: 20,
+        FOV: 2,
+    },
+    TURRETS: [],
+    GUNS: [ { /*** LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
+        POSITION: [  18,    10,    -1.4,     0,      0,      0,      0,   ], 
+        PROPERTIES: {
+            SHOOT_SETTINGS: combineStats([g.basic, g.op]),
+            TYPE: [exports.bullet, { SHAPE: 5, }],
+        }, }, 
+    ],
+};
+
+        // These are all 'folders'.
+        exports.overdone = {
+            PARENT: [exports.developer],
+            LABEL: 'Overdone Tanks',
+            RESET_UPGRADES: true,
+        }
+        exports.bosses = {
+            PARENT: [exports.developer],
+            LABEL: 'Bosses',
+            RESET_UPGRADES: true,
+        }
+        exports.sentries = {
+            PARENT: [exports.developer],
+            LABEL: 'Sentries',
+            RESET_UPGRADES: true,
+        }
+        exports.eliteBosses = {
+            PARENT: [exports.developer],
+            LABEL: 'Elite Bosses',
+            RESET_UPGRADES: true,
+        }
+        exports.betaTester = {
+            PARENT: [exports.developer],
+            LABEL: 'Beta Tester',
+            RESET_UPGRADES: true,
+        }
+        exports.betaTanks = {
+            PARENT: [exports.developer],
+            LABEL: 'Beta Tanks',
+            RESET_UPGRADES: true,
+        }
+        exports.oldTanks = {
+            PARENT: [exports.developer],
+            LABEL: 'Removed Tanks',
+            RESET_UPGRADES: true,
+        }
+        exports.misc = {
+            PARENT: [exports.developer],
+            LABEL: 'Miscellaneous',
+            RESET_UPGRADES: true,
+        }
+        exports.polygons = {
+            PARENT: [exports.developer],
+            LABEL: 'Polygons',
+            RESET_UPGRADES: true,
+        }
+        exports.otherPolygons = {
+            PARENT: [exports.developer],
+            LABEL: 'Other',
+            RESET_UPGRADES: true,
+        }
+
+exports.observer = {
+    PARENT: [exports.genericTank],
+    LABEL: 'Observer',
+    DRAW_HEALTH: false,
+    DANGER: -1,
+    HOVER: true,
+    //CONTROLLERS: ['nearestDifferentMaster'],
+    BODY: {
+      FOV: 2,
+      DAMAGE: 0,
+      HEALTH: 1e10,
+      REGEN: 10000,
+      SPEED: 30,
+      PUSHABILITY: 0,
+    },
+};
+
+var streamProp = { SHOOT_SETTINGS: combineStats([g.basic, g.mini, g.stream, g.halfrecoil]), 
+                   TYPE: exports.bullet, }
+var streamDelay = 0;
+var streamLength = 32; 
+exports.stream2 = {
+    PARENT: [exports.genericTank],
+    LABEL: 'OP Streamliner',
+    DANGER: 7,
+    BODY: {
+        FOV: 1.3,
+    },
+    GUNS: [ { /*** LENGTH             WIDTH  ASPECT   X    Y   ANGLE  DELAY */           //25 barrels lol
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, },
+    ], //25 barrels lol
+};
+
+    streamProp = { SHOOT_SETTINGS: combineStats([g.trap, g.mini, g.stream, g.halfrecoil]), 
+               TYPE: exports.trap, 
+               STAT_CALCULATOR: gunCalcNames.trap, }
+    streamDelay = 0;
+    streamLength = 32; 
+exports.trap2 = {
+    PARENT: [exports.genericTank],
+    LABEL: 'OP Barricade',
+    DANGER: 5,
+    BODY: {
+        FOV: 1.3,
+    },
+    GUNS: [ { /*** LENGTH             WIDTH  ASPECT   X    Y   ANGLE  DELAY */           //25 barrels again
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, }, { 
+        POSITION: [streamLength--*2+1,  8,     1,     0,   0,    0,   streamDelay++/25, ], 
+            PROPERTIES: streamProp, },
+    ], //25 barrels again
+};
+
+//========== UPGRADE PATHS ==========
+
+exports.developer.UPGRADES_TIER_1 = [exports.basic, exports.betaTester, exports.overdone, exports.misc, exports.bosses, exports.observer];
+
+  exports.betaTester.UPGRADES_TIER_1 = [exports.observer, exports.betaTanks, exports.oldTanks];
+    exports.betaTanks.UPGRADES_TIER_1 = [exports.betaTester, exports.autocruiser, exports.master, exports.dual, exports.hiveshooter, exports.brutalizer, exports.shotgun2, exports.hybridmini];
+    exports.oldTanks.UPGRADES_TIER_1 = [exports.betaTester];
+
+  exports.overdone.UPGRADES_TIER_1 = [exports.developer, exports.stream2, exports.trap2];
+  exports.misc.UPGRADES_TIER_1 = [exports.developer, exports.polygons, exports.baseProtector];
+    exports.polygons.UPGRADES_TIER_1 = [exports.misc, exports.egg, exports.square, exports.triangle, exports.pentagon, exports.bigPentagon, exports.hugePentagon, exports.otherPolygons];
+      exports.otherPolygons.UPGRADES_TIER_1 = [exports.polygons, exports.gem, exports.greensquare, exports.greentriangle, exports.greenpentagon, exports.obstacle, exports.babyObstacle];
+  
+  exports.bosses.UPGRADES_TIER_1 = [exports.developer, exports.sentries, exports.eliteBosses, exports.palisade, exports.tempest];
+    exports.sentries.UPGRADES_TIER_1 = [exports.bosses, exports.sentryGun, exports.sentryTrap, exports.sentrySwarm];
+    exports.eliteBosses.UPGRADES_TIER_1 = [exports.bosses, exports.elite_destroyer, exports.elite_gunner, exports.elite_sprayer];
+
+exports.basic.UPGRADES_TIER_1 = [exports.twin, exports.sniper, exports.machine, exports.flank, exports.director, exports.helibasic];
+      exports.basic.UPGRADES_TIER_3 = [exports.single];
+  exports.basic.UPGRADES_TIER_2 = [exports.smash];
+      exports.smash.UPGRADES_TIER_3 = [exports.megasmash, exports.spike, exports.autosmash];
+
+  exports.helibasic.UPGRADES_TIER_2 = [exports.helisquad, exports.helicruiser, exports.heliflank]
+      exports.helisquad.UPGRADES_TIER_3 = [exports.heliproducer, exports.helimaster]
+      exports.helicruiser.UPGRADES_TIER_3 = [exports.heliracer, exports.triheli]
+      exports.heliflank.UPGRADES_TIER_3 = [exports.helitrapper, exports.autoheli]
+
+  exports.twin.UPGRADES_TIER_2 = [exports.double, exports.bent, exports.gunner, exports.hexa];
+      exports.twin.UPGRADES_TIER_3 = [exports.triple];
+      exports.double.UPGRADES_TIER_3 = [exports.tripletwin, exports.split, exports.autodouble, exports.bentdouble];
+      exports.bent.UPGRADES_TIER_3 = [exports.penta, exports.spread, exports.benthybrid, exports.bentdouble, exports.triple];
+      exports.gunner.UPGRADES_TIER_3 = [exports.autogunner, exports.nailgun, exports.auto4,exports.machinegunner];
+
+  exports.sniper.UPGRADES_TIER_2 = [exports.assassin, exports.hunter, exports.mini, exports.builder];
+      exports.sniper.UPGRADES_TIER_3 = [exports.bushwhack];
+      exports.assassin.UPGRADES_TIER_3 = [exports.ranger, exports.falcon];
+      exports.hunter.UPGRADES_TIER_3 = [exports.preda, exports.poach, exports.sidewind];
+      exports.builder.UPGRADES_TIER_3 = [exports.construct, exports.autobuilder, exports.engineer, exports.boomer];
+
+  exports.machine.UPGRADES_TIER_2 = [exports.destroy, exports.artillery, exports.mini, exports.gunner];
+      exports.machine.UPGRADES_TIER_3 = [exports.spray];
+      exports.destroy.UPGRADES_TIER_3 = [exports.anni, exports.hybrid, exports.construct, exports.shotgun2];
+      exports.artillery.UPGRADES_TIER_3 = [exports.mortar, exports.spread, exports.skimmer];
+      exports.mini.UPGRADES_TIER_3 = [exports.stream, exports.nailgun];
+
+  exports.flank.UPGRADES_TIER_2 = [exports.hexa, exports.tri, exports.auto3, exports.flanktrap];
+      exports.flank.UPGRADES_TIER_3 = [];
+      exports.tri.UPGRADES_TIER_3 = [exports.fighter, exports.booster, exports.falcon, exports.bomber, exports.autotri];
+      exports.hexa.UPGRADES_TIER_3 = [exports.octo, exports.hexatrap];
+      exports.auto3.UPGRADES_TIER_3 = [exports.auto5, exports.heavy3, exports.auto4];
+      exports.flanktrap.UPGRADES_TIER_3 = [exports.bushwhack, exports.guntrap, exports.fortress, exports.bomber];
+
+  exports.director.UPGRADES_TIER_2 = [exports.overseer, exports.cruiser, exports.underseer];
+      exports.director.UPGRADES_TIER_3 = [exports.factory];
+      exports.overseer.UPGRADES_TIER_3 = [exports.overlord, exports.overtrap, exports.overgunner];  
+      exports.underseer.UPGRADES_TIER_3 = [exports.necromancer];
+      exports.cruiser.UPGRADES_TIER_3 = [exports.carrier, exports.battleship, exports.fortress];
+
+  exports.smash.UPGRADES_TIER_3 = [exports.megasmash, exports.spike, exports.autosmash];
+
+  exports.twin.UPGRADES_TIER_2 = [exports.double, exports.bent, exports.triple, exports.hexa];
+      exports.double.UPGRADES_TIER_3 = [exports.tripletwin, exports.autodouble];
+      exports.bent.UPGRADES_TIER_3 = [exports.penta, exports.benthybrid];
+      exports.triple.UPGRADES_TIER_3 = [exports.quint];
+
+  exports.sniper.UPGRADES_TIER_2 = [exports.assassin, exports.overseer, exports.hunter, exports.builder];
+      exports.assassin.UPGRADES_TIER_3 = [exports.ranger];
+      exports.overseer.UPGRADES_TIER_3 = [exports.overlord, exports.battleship, exports.overtrap, exports.necromancer, exports.factory, exports.fortress];
+      exports.hunter.UPGRADES_TIER_3 = [exports.preda, exports.poach];
+      exports.builder.UPGRADES_TIER_3 = [exports.construct, exports.autobuilder];
+
+  exports.machine.UPGRADES_TIER_2 = [exports.destroy, exports.gunner, exports.artillery];
+      exports.destroy.UPGRADES_TIER_3 = [exports.anni, exports.hybrid];
+      exports.gunner.UPGRADES_TIER_3 = [exports.autogunner, exports.mortar, exports.stream];
+      exports.artillery.UPGRADES_TIER_3 = [exports.mortar, exports.spread, exports.skimmer];
+      exports.machine.UPGRADES_TIER_3 = [exports.spray];
+
+  exports.flank.UPGRADES_TIER_2 = [exports.hexa, exports.tri, exports.auto3, exports.flanktrap];
+      exports.hexa.UPGRADES_TIER_3 = [exports.octo];
+      exports.tri.UPGRADES_TIER_3 = [exports.booster, exports.fighter, exports.bomber, exports.autotri];
+      exports.auto3.UPGRADES_TIER_3 = [exports.auto5, exports.heavy3];
+      exports.flanktrap.UPGRADES_TIER_3 = [exports.guntrap, exports.fortress, exports.bomber];
