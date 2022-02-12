@@ -3712,6 +3712,8 @@ const gameDraw = (() => {
             TextObj(),
             TextObj(),
             TextObj(),
+            TextObj(),
+            TextObj(),
         ],
         upgradeKeys: [
             TextObj(),
@@ -4287,7 +4289,7 @@ const gameDrawDead = (() => {
             'lol you died', x, y - 80, 8, color.guiwhite, 'center'
         );
         text.level.draw(
-            'Level ' + gui.__s.getLevel() + ' ' + mockups[gui.type].name + '.',
+            'Level ' + gui.__s.getLevel() + ' ' + mockups[gui.type].name,
             x - 170, y - 30, 24, color.guiwhite
         );
         text.score.draw(
