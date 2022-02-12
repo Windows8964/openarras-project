@@ -742,7 +742,7 @@ global.clickables = (() => {
     })();
     return {
         stat: Region(10),
-        upgrade: Region(8),
+        upgrade: Region(20),
         hover: Region(1),
         skipUpgrades: Region(1),
     };
