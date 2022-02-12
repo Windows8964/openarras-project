@@ -3714,6 +3714,11 @@ const gameDraw = (() => {
             TextObj(),
             TextObj(),
             TextObj(),
+            TextObj(),
+            TextObj(),
+            TextObj(),
+            TextObj(),
+            TextObj(),
         ],
         upgradeKeys: [
             TextObj(),
